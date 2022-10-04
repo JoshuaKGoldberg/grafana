@@ -267,7 +267,7 @@ export function msRangeToTimeString(rangeMs: number): string {
   const s = Number((rangeSec % 60).toFixed());
   let formattedH = h ? h + 'h' : '';
   let formattedM = m ? m + 'min' : '';
-  let formattedS = s ? s + 'sec' : '';
+  const formattedS = s ? s + 'sec' : '';
 
   formattedH && formattedM ? (formattedH = formattedH + ' ') : (formattedH = formattedH);
   (formattedM || formattedH) && formattedS ? (formattedM = formattedM + ' ') : (formattedM = formattedM);

@@ -583,7 +583,7 @@ export class ElasticResponse {
         }
 
         for (let y = 0; y < tmpSeriesList.length; y++) {
-          let series = toDataFrame(tmpSeriesList[y]);
+          const series = toDataFrame(tmpSeriesList[y]);
 
           // When log results, show aggregations only in graph. Log fields are then going to be shown in table.
           if (isLogsRequest) {
@@ -658,7 +658,7 @@ const flattenHits = (hits: Doc[]): { docs: Array<Record<string, any>>; propNames
   const docs: any[] = [];
   // We keep a list of all props so that we can create all the fields in the dataFrame, this can lead
   // to wide sparse dataframes in case the scheme is different per document.
-  let propNames: string[] = [];
+  const propNames: string[] = [];
 
   for (const hit of hits) {
     const flattened = hit._source ? flatten(hit._source) : {};
@@ -760,7 +760,7 @@ const createEmptyDataFrame = (
 };
 
 const addPreferredVisualisationType = (series: any, type: PreferredVisualisationType) => {
-  let s = series;
+  const s = series;
   s.meta
     ? (s.meta.preferredVisualisationType = type)
     : (s.meta = {

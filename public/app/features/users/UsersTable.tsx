@@ -25,7 +25,7 @@ const UsersTable: FC<Props> = (props) => {
     async function fetchOptions() {
       try {
         if (contextSrv.hasPermission(AccessControlAction.ActionRolesList)) {
-          let options = await fetchRoleOptions(orgId);
+          const options = await fetchRoleOptions(orgId);
           setRoleOptions(options);
         }
       } catch (e) {

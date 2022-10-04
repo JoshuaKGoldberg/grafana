@@ -73,9 +73,9 @@ export class UPlotSeriesBuilder extends PlotConfigBuilder<SeriesProps, Series> {
       show = true,
     } = this.props;
 
-    let lineConfig: Partial<Series> = {};
+    const lineConfig: Partial<Series> = {};
 
-    let lineColor = this.getLineColor();
+    const lineColor = this.getLineColor();
 
     // GraphDrawStyle.Points mode also needs this for fill/stroke sharing & re-use in series.points. see getColor() below.
     lineConfig.stroke = lineColor;
@@ -94,7 +94,7 @@ export class UPlotSeriesBuilder extends PlotConfigBuilder<SeriesProps, Series> {
         lineConfig.dash = lineStyle.dash ?? [10, 10];
       }
       lineConfig.paths = (self: uPlot, seriesIdx: number, idx0: number, idx1: number) => {
-        let pathsBuilder = mapDrawStyleToPathBuilder(
+        const pathsBuilder = mapDrawStyleToPathBuilder(
           drawStyle,
           lineInterpolation,
           barAlignment,
@@ -201,7 +201,7 @@ export class UPlotSeriesBuilder extends PlotConfigBuilder<SeriesProps, Series> {
     if (mode === GraphGradientMode.None && dynamicSeriesColor && opacityPercent > 0) {
       return (u: uPlot, seriesIdx: number) => {
         // @ts-ignore
-        let lineColor = u.series[seriesIdx]._stroke; // cache
+        const lineColor = u.series[seriesIdx]._stroke; // cache
         return colorManipulator.alpha(lineColor ?? '', opacityPercent);
       };
     }
@@ -257,7 +257,7 @@ function mapDrawStyleToPathBuilder(
 
   if (style === GraphDrawStyle.Bars) {
     // each bars pathBuilder is lazy-initialized and globally cached by a key composed of its options
-    let barsCfgKey = `bars|${barAlignment}|${barWidthFactor}|${barMaxWidth}`;
+    const barsCfgKey = `bars|${barAlignment}|${barWidthFactor}|${barMaxWidth}`;
 
     if (!builders[barsCfgKey]) {
       builders[barsCfgKey] = pathBuilders.bars!({

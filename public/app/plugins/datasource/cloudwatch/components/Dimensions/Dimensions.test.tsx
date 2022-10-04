@@ -56,7 +56,7 @@ describe('Dimensions', () => {
   });
 
   describe('when adding a new filter item', () => {
-    it('it should add the new item but not call onChange', async () => {
+    it('should add the new item but not call onChange', async () => {
       props.query.dimensions = {};
       const onChange = jest.fn();
       render(<Dimensions {...props} metricStat={props.query} onChange={onChange} dimensionKeys={[]} />);
@@ -68,7 +68,7 @@ describe('Dimensions', () => {
   });
 
   describe('when adding a new filter item with key', () => {
-    it('it should add the new item but not call onChange', async () => {
+    it('should add the new item but not call onChange', async () => {
       props.query.dimensions = {};
       const onChange = jest.fn();
       const { container } = render(
@@ -88,7 +88,7 @@ describe('Dimensions', () => {
   });
 
   describe('when adding a new filter item with key and value', () => {
-    it('it should add the new item and trigger onChange', async () => {
+    it('should add the new item and trigger onChange', async () => {
       props.query.dimensions = {};
       const onChange = jest.fn();
       const { container } = render(

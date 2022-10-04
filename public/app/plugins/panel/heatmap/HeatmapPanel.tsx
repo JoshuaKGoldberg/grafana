@@ -24,7 +24,7 @@ import { PanelOptions } from './models.gen';
 import { quantizeScheme } from './palettes';
 import { HeatmapHoverEvent, prepConfig } from './utils';
 
-interface HeatmapPanelProps extends PanelProps<PanelOptions> {}
+type HeatmapPanelProps = PanelProps<PanelOptions>
 
 export const HeatmapPanel: React.FC<HeatmapPanelProps> = ({
   data,
@@ -44,7 +44,7 @@ export const HeatmapPanel: React.FC<HeatmapPanelProps> = ({
   const { sync } = usePanelContext();
 
   // ugh
-  let timeRangeRef = useRef<TimeRange>(timeRange);
+  const timeRangeRef = useRef<TimeRange>(timeRange);
   timeRangeRef.current = timeRange;
 
   const info = useMemo(() => {
@@ -67,7 +67,7 @@ export const HeatmapPanel: React.FC<HeatmapPanelProps> = ({
       const hasLabeledY = meta.yOrdinalDisplay != null;
 
       if (hasLabeledY) {
-        let matchExemplarsBy = info.exemplars?.fields
+        const matchExemplarsBy = info.exemplars?.fields
           .find((field) => field.name === meta.yMatchWithLabel)!
           .values.toArray();
         exemplarsyFacet = matchExemplarsBy.map((label) => meta.yOrdinalLabel?.indexOf(label)) as number[];
@@ -145,9 +145,9 @@ export const HeatmapPanel: React.FC<HeatmapPanelProps> = ({
       return null;
     }
 
-    let heatmapType = dataRef.current?.heatmap?.meta?.type;
-    let isSparseHeatmap = heatmapType === DataFrameType.HeatmapCells && !isHeatmapCellsDense(dataRef.current?.heatmap!);
-    let countFieldIdx = !isSparseHeatmap ? 2 : 3;
+    const heatmapType = dataRef.current?.heatmap?.meta?.type;
+    const isSparseHeatmap = heatmapType === DataFrameType.HeatmapCells && !isHeatmapCellsDense(dataRef.current?.heatmap!);
+    const countFieldIdx = !isSparseHeatmap ? 2 : 3;
     const countField = info.heatmap.fields[countFieldIdx];
 
     let hoverValue: number | undefined = undefined;

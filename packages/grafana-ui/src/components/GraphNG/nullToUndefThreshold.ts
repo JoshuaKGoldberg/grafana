@@ -5,7 +5,7 @@ export function nullToUndefThreshold(refValues: number[], fieldValues: any[], ma
   let nullIdx;
 
   for (let i = 0; i < fieldValues.length; i++) {
-    let fieldVal = fieldValues[i];
+    const fieldVal = fieldValues[i];
 
     if (fieldVal == null) {
       if (nullIdx == null && prevRef != null) {

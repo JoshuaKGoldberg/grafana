@@ -44,8 +44,8 @@ export const LokiQueryBuilderOptions = React.memo<Props>(({ app, query, onChange
     }
   }
 
-  let queryType = query.queryType ?? (query.instant ? LokiQueryType.Instant : LokiQueryType.Range);
-  let showMaxLines = isLogsQuery(query.expr);
+  const queryType = query.queryType ?? (query.instant ? LokiQueryType.Instant : LokiQueryType.Range);
+  const showMaxLines = isLogsQuery(query.expr);
 
   return (
     <EditorRow>

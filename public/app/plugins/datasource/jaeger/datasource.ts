@@ -74,7 +74,7 @@ export class JaegerDatasource extends DataSourceApi<JaegerQuery, JaegerJsonData>
           if (!traceData) {
             return { data: [emptyTraceDataFrame] };
           }
-          let data = [createTraceFrame(traceData)];
+          const data = [createTraceFrame(traceData)];
           if (this.nodeGraph?.enabled) {
             data.push(...createGraphFrames(traceData));
           }
@@ -92,7 +92,7 @@ export class JaegerDatasource extends DataSourceApi<JaegerQuery, JaegerJsonData>
 
       try {
         const traceData = JSON.parse(this.uploadedJson as string).data[0];
-        let data = [createTraceFrame(traceData)];
+        const data = [createTraceFrame(traceData)];
         if (this.nodeGraph?.enabled) {
           data.push(...createGraphFrames(traceData));
         }
@@ -102,7 +102,7 @@ export class JaegerDatasource extends DataSourceApi<JaegerQuery, JaegerJsonData>
       }
     }
 
-    let jaegerInterpolated = pick(this.applyVariables(target, options.scopedVars), [
+    const jaegerInterpolated = pick(this.applyVariables(target, options.scopedVars), [
       'service',
       'operation',
       'tags',

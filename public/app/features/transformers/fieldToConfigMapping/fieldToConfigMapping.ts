@@ -296,8 +296,8 @@ export function evaluteFieldMappings(
   };
 
   // Look up name and value field in mappings
-  let nameFieldMappping = mappings.find((x) => x.handlerKey === FieldConfigHandlerKey.Name);
-  let valueFieldMapping = mappings.find((x) => x.handlerKey === FieldConfigHandlerKey.Value);
+  const nameFieldMappping = mappings.find((x) => x.handlerKey === FieldConfigHandlerKey.Name);
+  const valueFieldMapping = mappings.find((x) => x.handlerKey === FieldConfigHandlerKey.Value);
 
   for (const field of frame.fields) {
     const fieldName = getFieldDisplayName(field, frame);

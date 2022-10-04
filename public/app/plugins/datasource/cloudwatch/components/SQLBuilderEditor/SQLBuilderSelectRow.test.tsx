@@ -104,7 +104,7 @@ describe('Cloudwatch SQLBuilderSelectRow', () => {
 
   it('Should reset metricName when selecting a namespace if metric does not exist in new namespace', async () => {
     datasource.api.getMetrics = jest.fn().mockImplementation((namespace: string, region: string) => {
-      let mockMetrics =
+      const mockMetrics =
         namespace === 'n1' && region === baseProps.query.region
           ? metrics
           : [{ value: 'newNamespaceMetric', label: 'newNamespaceMetric', text: 'newNamespaceMetric' }];

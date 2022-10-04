@@ -126,7 +126,7 @@ describe(`Azure Monitor QueryEditor`, () => {
   });
 
   it('correctly displays dimension labels', async () => {
-    let mockQuery = createMockQuery();
+    const mockQuery = createMockQuery();
     const mockPanelData = createMockPanelData();
     mockQuery.azureMonitor = {
       ...mockQuery.azureMonitor,

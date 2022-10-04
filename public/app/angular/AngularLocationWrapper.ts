@@ -19,7 +19,7 @@ export class AngularLocationWrapper {
   }
 
   wrapInDeprecationWarning(fn: Function, replacement?: string) {
-    let self = this;
+    const self = this;
 
     return function wrapper() {
       deprecationWarning('$location', fn.name, replacement || 'locationService');

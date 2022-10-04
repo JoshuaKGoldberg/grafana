@@ -58,7 +58,7 @@ export const FileUploader = ({ mediaType, setFormData, setUpload, error }: Props
         accept: acceptableFiles,
         multiple: false,
         onDrop: (acceptedFiles: File[]) => {
-          let formData = new FormData();
+          const formData = new FormData();
           formData.append('file', acceptedFiles[0]);
           setFile(URL.createObjectURL(acceptedFiles[0]));
           setDropped(true);

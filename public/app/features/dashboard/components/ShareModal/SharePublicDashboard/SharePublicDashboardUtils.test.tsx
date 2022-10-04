@@ -10,13 +10,13 @@ import {
 
 describe('dashboardHasTemplateVariables', () => {
   it('false', () => {
-    let variables: VariableModel[] = [];
+    const variables: VariableModel[] = [];
     expect(dashboardHasTemplateVariables(variables)).toBe(false);
   });
 
   it('true', () => {
     //@ts-ignore
-    let variables: VariableModel[] = ['a'];
+    const variables: VariableModel[] = ['a'];
     expect(dashboardHasTemplateVariables(variables)).toBe(true);
   });
 });
@@ -26,7 +26,7 @@ describe('generatePublicDashboardUrl', () => {
     const appUrl = 'http://localhost/';
     const accessToken = 'abcd1234';
     updateConfig({ appUrl });
-    let pubdash = { accessToken } as PublicDashboard;
+    const pubdash = { accessToken } as PublicDashboard;
 
     expect(generatePublicDashboardUrl(pubdash)).toEqual(`${appUrl}public-dashboards/${accessToken}`);
   });
@@ -34,7 +34,7 @@ describe('generatePublicDashboardUrl', () => {
 
 describe('publicDashboardPersisted', () => {
   it('true', () => {
-    let pubdash = { uid: 'abcd1234' } as PublicDashboard;
+    const pubdash = { uid: 'abcd1234' } as PublicDashboard;
     expect(publicDashboardPersisted(pubdash)).toBe(true);
   });
 

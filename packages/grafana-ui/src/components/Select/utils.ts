@@ -32,7 +32,7 @@ export const findSelectedValue = (
 ): SelectableValue | null => {
   for (const option of options) {
     if ('options' in option) {
-      let found = findSelectedValue(value, option.options);
+      const found = findSelectedValue(value, option.options);
       if (found) {
         return found;
       }

@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const CreateTokenModal = ({ isOpen, token, serviceAccountLogin, onCreateToken, onClose }: Props) => {
-  let tomorrow = new Date();
+  const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   const [defaultTokenName, setDefaultTokenName] = useState('');

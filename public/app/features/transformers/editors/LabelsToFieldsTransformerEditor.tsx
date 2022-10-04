@@ -26,8 +26,8 @@ export const LabelsAsFieldsTransformerEditor: React.FC<TransformerUIProps<Labels
   const labelWidth = 20;
 
   const { labelNames, selected } = useMemo(() => {
-    let labelNames: Array<SelectableValue<string>> = [];
-    let uniqueLabels: Record<string, boolean> = {};
+    const labelNames: Array<SelectableValue<string>> = [];
+    const uniqueLabels: Record<string, boolean> = {};
 
     for (const frame of input) {
       for (const field of frame.fields) {

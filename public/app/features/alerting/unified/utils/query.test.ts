@@ -7,7 +7,7 @@ import { GRAFANA_RULES_SOURCE_NAME } from './datasource';
 import { alertRuleToQueries } from './query';
 
 describe('alertRuleToQueries', () => {
-  it('it should convert grafana alert', () => {
+  it('should convert grafana alert', () => {
     const combinedRule: CombinedRule = {
       name: 'Test alert',
       query: 'up',

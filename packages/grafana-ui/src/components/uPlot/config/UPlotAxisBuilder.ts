@@ -87,7 +87,7 @@ export class UPlotAxisBuilder extends PlotConfigBuilder<AxisProps, Axis> {
     if (axis.side === 2) {
       axisSize += axis!.gap! + UPLOT_AXIS_FONT_SIZE;
     } else if (values?.length) {
-      let maxTextWidth = values.reduce(
+      const maxTextWidth = values.reduce(
         (acc, value) => Math.max(acc, measureText(value, UPLOT_AXIS_FONT_SIZE).width),
         0
       );
@@ -137,7 +137,7 @@ export class UPlotAxisBuilder extends PlotConfigBuilder<AxisProps, Axis> {
       filter = (u, splits) => splits.map((v) => (Number.isInteger(v) ? v : null));
     }
 
-    let config: Axis = {
+    const config: Axis = {
       scale: scaleKey,
       show,
       stroke: color ?? theme.colors.text.primary,
@@ -194,7 +194,7 @@ export class UPlotAxisBuilder extends PlotConfigBuilder<AxisProps, Axis> {
       config.values = formatTime;
     } else if (formatValue) {
       config.values = (u: uPlot, splits, axisIdx, tickSpace, tickIncr) => {
-        let decimals = guessDecimals(roundDecimals(tickIncr, 6));
+        const decimals = guessDecimals(roundDecimals(tickIncr, 6));
         return splits.map((v) => formatValue!(v, decimals > 0 ? decimals : undefined));
       };
     }

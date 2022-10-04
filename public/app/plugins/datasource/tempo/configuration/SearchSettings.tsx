@@ -6,7 +6,7 @@ import { InlineField, InlineFieldRow, InlineSwitch, useStyles } from '@grafana/u
 
 import { TempoJsonData } from '../types';
 
-interface Props extends DataSourcePluginOptionsEditorProps<TempoJsonData> {}
+type Props = DataSourcePluginOptionsEditorProps<TempoJsonData>
 
 export function SearchSettings({ options, onOptionsChange }: Props) {
   const styles = useStyles(getStyles);

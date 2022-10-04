@@ -94,7 +94,7 @@ export class GrafanaDatasource extends DataSourceWithBackend<GrafanaQuery> {
         continue;
       }
       if (target.queryType === GrafanaQueryType.LiveMeasurements) {
-        let channel = templateSrv.replace(target.channel, request.scopedVars);
+        const channel = templateSrv.replace(target.channel, request.scopedVars);
         const { filter } = target;
 
         const addr = parseLiveChannelAddress(channel);

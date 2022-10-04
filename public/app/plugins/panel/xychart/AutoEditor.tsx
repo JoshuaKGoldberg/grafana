@@ -54,7 +54,7 @@ export const AutoEditor: FC<StandardEditorProps<XYDimensionConfig, any, XYChartO
     const frame = context.data ? context.data[value?.frame ?? 0] : undefined;
     if (frame) {
       const xName = dims.x ? getFieldDisplayName(dims.x, dims.frame, context.data) : undefined;
-      for (let field of frame.fields) {
+      for (const field of frame.fields) {
         if (isGraphable(field)) {
           const name = getFieldDisplayName(field, frame, context.data);
           const sel = {
@@ -121,7 +121,7 @@ export const AutoEditor: FC<StandardEditorProps<XYDimensionConfig, any, XYChartO
                 name={v.value ? 'eye-slash' : 'eye'}
                 onClick={() => {
                   const exclude: string[] = value?.exclude ? [...value.exclude] : [];
-                  let idx = exclude.indexOf(v.label!);
+                  const idx = exclude.indexOf(v.label!);
                   if (idx < 0) {
                     exclude.push(v.label!);
                   } else {

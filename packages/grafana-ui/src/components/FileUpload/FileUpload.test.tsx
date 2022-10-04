@@ -31,13 +31,13 @@ describe('FileUpload', () => {
     const file = new File(['(⌐□_□)'], testFileName, { type: 'image/png' });
     const onFileUpload = jest.fn();
     const { getByTestId } = render(<FileUpload onFileUpload={onFileUpload} />);
-    let uploader = getByTestId(selectors.components.FileUpload.inputField);
+    const uploader = getByTestId(selectors.components.FileUpload.inputField);
     await waitFor(() =>
       fireEvent.change(uploader, {
         target: { files: [file] },
       })
     );
-    let uploaderLabel = getByTestId(selectors.components.FileUpload.fileNameSpan);
+    const uploaderLabel = getByTestId(selectors.components.FileUpload.fileNameSpan);
     expect(uploaderLabel).toHaveTextContent(testFileName);
   });
 
@@ -46,13 +46,13 @@ describe('FileUpload', () => {
     const file = new File(['(⌐□_□)'], testFileName, { type: 'image/png' });
     const onFileUpload = jest.fn();
     const { getByTestId } = render(<FileUpload onFileUpload={onFileUpload} />);
-    let uploader = getByTestId(selectors.components.FileUpload.inputField);
+    const uploader = getByTestId(selectors.components.FileUpload.inputField);
     await waitFor(() =>
       fireEvent.change(uploader, {
         target: { files: [file] },
       })
     );
-    let uploaderLabel = getByTestId(selectors.components.FileUpload.fileNameSpan);
+    const uploaderLabel = getByTestId(selectors.components.FileUpload.fileNameSpan);
     expect(uploaderLabel).toHaveTextContent('longFileName.som....png');
   });
 });

@@ -647,7 +647,7 @@ describe('graphiteDatasource', () => {
 
   describe('exporting to abstract query', () => {
     async function assertQueryExport(target: string, labelMatchers: AbstractLabelMatcher[]): Promise<void> {
-      let abstractQueries = await ctx.ds.exportToAbstractQueries([
+      const abstractQueries = await ctx.ds.exportToAbstractQueries([
         {
           refId: 'A',
           target,

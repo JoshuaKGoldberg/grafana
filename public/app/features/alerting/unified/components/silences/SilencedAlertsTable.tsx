@@ -17,7 +17,7 @@ const SilencedAlertsTable: FC<Props> = ({ silencedAlerts }) => {
   const tableStyles = useStyles2(getAlertTableStyles);
   const styles = useStyles2(getStyles);
 
-  if (!!silencedAlerts.length) {
+  if (silencedAlerts.length) {
     return (
       <table className={cx(tableStyles.table, styles.tableMargin)}>
         <colgroup>

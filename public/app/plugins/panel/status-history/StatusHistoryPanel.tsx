@@ -23,7 +23,7 @@ import { StatusPanelOptions } from './types';
 
 const TOOLTIP_OFFSET = 10;
 
-interface TimelinePanelProps extends PanelProps<StatusPanelOptions> {}
+type TimelinePanelProps = PanelProps<StatusPanelOptions>
 
 /**
  * @alpha

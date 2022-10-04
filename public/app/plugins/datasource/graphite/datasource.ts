@@ -144,7 +144,7 @@ export class GraphiteDatasource
     );
     graphiteQuery.parseTarget();
 
-    let labels: AbstractLabelMatcher[] = [];
+    const labels: AbstractLabelMatcher[] = [];
     const config = this.getImportQueryConfiguration().loki;
 
     if (graphiteQuery.seriesByTagUsed) {
@@ -157,14 +157,14 @@ export class GraphiteDatasource
       });
     } else {
       const targetNodes = graphiteQuery.segments.map((segment) => segment.value);
-      let mappings = config.mappings.filter((mapping) => mapping.matchers.length <= targetNodes.length);
+      const mappings = config.mappings.filter((mapping) => mapping.matchers.length <= targetNodes.length);
 
-      for (let mapping of mappings) {
+      for (const mapping of mappings) {
         const matchers = mapping.matchers.concat();
 
         matchers.every((matcher: GraphiteMetricLokiMatcher, index: number) => {
           if (matcher.labelName) {
-            let value = (targetNodes[index] as string)!;
+            const value = (targetNodes[index] as string)!;
 
             if (value === '*') {
               return true;
@@ -515,7 +515,7 @@ export class GraphiteDatasource
     }
 
     // If no tag-related query was found, perform metric-based search (using * as the wildcard for interpolation)
-    let useExpand = query.match(/^expand\((.*)\)$/);
+    const useExpand = query.match(/^expand\((.*)\)$/);
     query = useExpand ? useExpand[1] : query;
 
     interpolatedQuery = this.templateSrv.replace(

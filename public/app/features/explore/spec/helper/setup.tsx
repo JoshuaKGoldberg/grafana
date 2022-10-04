@@ -115,7 +115,7 @@ export function setupExplore(options?: SetupOptions): {
   locationService.push({ pathname: '/explore', search: options?.searchParams });
 
   if (options?.urlParams) {
-    let urlParams: Record<string, string | UrlQueryValue> =
+    const urlParams: Record<string, string | UrlQueryValue> =
       typeof options.urlParams === 'string' ? locationSearchToObject(options.urlParams) : options.urlParams;
     locationService.partial(urlParams);
   }

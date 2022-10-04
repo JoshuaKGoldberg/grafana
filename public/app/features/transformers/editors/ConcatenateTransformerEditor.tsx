@@ -13,7 +13,7 @@ import {
 } from '@grafana/data/src/transformations/transformers/concat';
 import { Input, Select } from '@grafana/ui';
 
-interface ConcatenateTransformerEditorProps extends TransformerUIProps<ConcatenateTransformerOptions> {}
+type ConcatenateTransformerEditorProps = TransformerUIProps<ConcatenateTransformerOptions>
 
 const nameModes: Array<SelectableValue<ConcatenateFrameNameMode>> = [
   { value: ConcatenateFrameNameMode.FieldName, label: 'Copy frame name to field name' },

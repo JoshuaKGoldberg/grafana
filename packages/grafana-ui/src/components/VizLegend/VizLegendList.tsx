@@ -10,7 +10,7 @@ import { List } from '../List/List';
 import { VizLegendListItem } from './VizLegendListItem';
 import { VizLegendBaseProps, VizLegendItem } from './types';
 
-export interface Props<T> extends VizLegendBaseProps<T> {}
+export type Props<T> = VizLegendBaseProps<T>
 
 /**
  * @internal

@@ -17,7 +17,7 @@ export interface DashboardListPageRouteParams {
   slug?: string;
 }
 
-interface Props extends GrafanaRouteComponentProps<DashboardListPageRouteParams> {}
+type Props = GrafanaRouteComponentProps<DashboardListPageRouteParams>
 
 export const DashboardListPage: FC<Props> = memo(({ match, location }) => {
   const { loading, value } = useAsync<() => Promise<{ folder?: FolderDTO; pageNav?: NavModelItem }>>(() => {

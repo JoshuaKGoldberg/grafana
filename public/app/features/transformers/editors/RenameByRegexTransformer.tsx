@@ -11,7 +11,7 @@ import {
 import { RenameByRegexTransformerOptions } from '@grafana/data/src/transformations/transformers/renameByRegex';
 import { Field, Input } from '@grafana/ui';
 
-interface RenameByRegexTransformerEditorProps extends TransformerUIProps<RenameByRegexTransformerOptions> {}
+type RenameByRegexTransformerEditorProps = TransformerUIProps<RenameByRegexTransformerOptions>
 
 interface RenameByRegexTransformerEditorState {
   regex?: string;

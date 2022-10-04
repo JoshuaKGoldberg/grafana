@@ -115,7 +115,7 @@ export class NumberInput extends PureComponent<Props, State> {
     const { inputCorrected } = this.state;
     if (inputCorrected) {
       let range = '';
-      let { min, max } = this.props;
+      const { min, max } = this.props;
       if (max == null) {
         if (min != null) {
           range = `< ${min}`;

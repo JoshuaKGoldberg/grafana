@@ -100,7 +100,7 @@ export const ContextMenuPlugin: React.FC<ContextMenuPluginProps> = ({
       let isClick = false;
 
       // REF: https://github.com/leeoniya/uPlot/issues/239
-      let pts = Array.from(u.root.querySelectorAll<HTMLDivElement>('.u-cursor-pt'));
+      const pts = Array.from(u.root.querySelectorAll<HTMLDivElement>('.u-cursor-pt'));
 
       plotCanvas.current?.addEventListener('mousedown', () => {
         isClick = true;

@@ -54,8 +54,8 @@ export function InlineEdit({ onClose, id, scene }: Props) {
   }, [windowHeight, windowWidth, placement, measurements]);
 
   const onDragStop = (event: any, dragElement: any) => {
-    let x = dragElement.x < 0 ? 0 : dragElement.x;
-    let y = dragElement.y < 0 ? 0 : dragElement.y;
+    const x = dragElement.x < 0 ? 0 : dragElement.x;
+    const y = dragElement.y < 0 ? 0 : dragElement.y;
 
     setPlacement({ x: x, y: y });
     saveToStore(x, y, measurements.width, measurements.height);

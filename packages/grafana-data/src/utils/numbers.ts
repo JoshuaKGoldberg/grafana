@@ -10,8 +10,8 @@ export function roundDecimals(val: number, dec = 0) {
     return val;
   }
 
-  let p = 10 ** dec;
-  let n = val * p * (1 + Number.EPSILON);
+  const p = 10 ** dec;
+  const n = val * p * (1 + Number.EPSILON);
   return Math.round(n) / p;
 }
 

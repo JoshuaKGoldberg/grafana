@@ -53,22 +53,22 @@ export function getBucketSize(frame: DataFrame) {
 const prepConfig = (frame: DataFrame, theme: GrafanaTheme2) => {
   // todo: scan all values in BucketMin and BucketMax fields to assert if uniform bucketSize
 
-  let builder = new UPlotConfigBuilder();
+  const builder = new UPlotConfigBuilder();
 
   // assumes BucketMin is fields[0] and BucktMax is fields[1]
-  let bucketSize = getBucketSize(frame);
+  const bucketSize = getBucketSize(frame);
 
   // splits shifter, to ensure splits always start at first bucket
-  let xSplits: uPlot.Axis.Splits = (u, axisIdx, scaleMin, scaleMax, foundIncr, foundSpace) => {
+  const xSplits: uPlot.Axis.Splits = (u, axisIdx, scaleMin, scaleMax, foundIncr, foundSpace) => {
     /** @ts-ignore */
-    let minSpace = u.axes[axisIdx]._space;
-    let bucketWidth = u.valToPos(u.data[0][0] + bucketSize, 'x') - u.valToPos(u.data[0][0], 'x');
+    const minSpace = u.axes[axisIdx]._space;
+    const bucketWidth = u.valToPos(u.data[0][0] + bucketSize, 'x') - u.valToPos(u.data[0][0], 'x');
 
-    let firstSplit = u.data[0][0];
-    let lastSplit = u.data[0][u.data[0].length - 1] + bucketSize;
+    const firstSplit = u.data[0][0];
+    const lastSplit = u.data[0][u.data[0].length - 1] + bucketSize;
 
-    let splits = [];
-    let skip = Math.ceil(minSpace / bucketWidth);
+    const splits = [];
+    const skip = Math.ceil(minSpace / bucketWidth);
 
     for (let i = 0, s = firstSplit; s <= lastSplit; i++, s += bucketSize) {
       !(i % skip) && splits.push(s);
@@ -84,8 +84,8 @@ const prepConfig = (frame: DataFrame, theme: GrafanaTheme2) => {
     orientation: ScaleOrientation.Horizontal,
     direction: ScaleDirection.Right,
     range: (u, wantedMin, wantedMax) => {
-      let fullRangeMin = u.data[0][0];
-      let fullRangeMax = u.data[0][u.data[0].length - 1];
+      const fullRangeMin = u.data[0][0];
+      const fullRangeMax = u.data[0][u.data[0].length - 1];
 
       // snap to bucket divisors...
 
@@ -146,8 +146,8 @@ const prepConfig = (frame: DataFrame, theme: GrafanaTheme2) => {
   });
 
   // assumes BucketMax is [1]
-  let countField = frame.fields[2];
-  let dispY = countField.display;
+  const countField = frame.fields[2];
+  const dispY = countField.display;
 
   builder.addAxis({
     scaleKey: 'y',
@@ -171,7 +171,7 @@ const prepConfig = (frame: DataFrame, theme: GrafanaTheme2) => {
     },
   });
 
-  let pathBuilder = uPlot.paths.bars!({ align: 1, size: [1, Infinity] });
+  const pathBuilder = uPlot.paths.bars!({ align: 1, size: [1, Infinity] });
 
   let seriesIndex = 0;
 
@@ -220,7 +220,7 @@ const prepConfig = (frame: DataFrame, theme: GrafanaTheme2) => {
 };
 
 const preparePlotData = (frame: DataFrame) => {
-  let data = [];
+  const data = [];
 
   for (const field of frame.fields) {
     if (field.name !== histogramFrameBucketMaxFieldName) {
@@ -231,7 +231,7 @@ const preparePlotData = (frame: DataFrame) => {
   // uPlot's bars pathBuilder will draw rects even if 0 (to distinguish them from nulls)
   // but for histograms we want to omit them, so remap 0s -> nulls
   for (let i = 1; i < data.length; i++) {
-    let counts = data[i];
+    const counts = data[i];
     for (let j = 0; j < counts.length; j++) {
       if (counts[j] === 0) {
         counts[j] = null;
@@ -283,7 +283,7 @@ export class Histogram extends React.Component<HistogramProps, State> {
     const { structureRev, alignedFrame, bucketSize } = this.props;
 
     if (alignedFrame !== prevProps.alignedFrame) {
-      let newState = this.prepState(this.props, false);
+      const newState = this.prepState(this.props, false);
 
       if (newState) {
         const shouldReconfig =

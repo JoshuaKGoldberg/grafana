@@ -368,7 +368,7 @@ function prevNonWhitespaceToken(token: Token): Token | null {
 
 function previousCommandToken(startToken: Token): Token | null {
   let thisToken = startToken;
-  while (!!thisToken.prev) {
+  while (thisToken.prev) {
     thisToken = thisToken.prev;
     if (
       thisToken.types.includes('query-command') &&

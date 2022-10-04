@@ -20,7 +20,7 @@ import { ShareModalTabProps } from 'app/features/dashboard/components/ShareModal
 import { isOrgAdmin } from 'app/features/plugins/admin/permissions';
 import { AccessControlAction } from 'app/types';
 
-interface Props extends ShareModalTabProps {}
+type Props = ShareModalTabProps
 
 export const SharePublicDashboard = (props: Props) => {
   const dashboardVariables = props.dashboard.getVariables();

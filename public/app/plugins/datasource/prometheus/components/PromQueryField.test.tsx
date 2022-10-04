@@ -124,7 +124,7 @@ describe('PromQueryField', () => {
     );
 
     // If we check the label browser right away it should be in loading state
-    let labelBrowser = screen.getByRole('button');
+    const labelBrowser = screen.getByRole('button');
     expect(labelBrowser.textContent).toContain('Loading');
   });
 

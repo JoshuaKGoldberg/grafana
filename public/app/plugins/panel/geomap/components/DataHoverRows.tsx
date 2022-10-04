@@ -61,7 +61,7 @@ export const DataHoverRows = ({ layers, activeTabIndex }: Props) => {
 
 export const generateLabel = (feature: FeatureLike, idx: number): string => {
   const names = ['Name', 'name', 'Title', 'ID', 'id'];
-  let props = feature.getProperties();
+  const props = feature.getProperties();
   let first = '';
   const frame = feature.get('frame') as DataFrame; // eslint-disable-line
   if (frame) {
@@ -77,7 +77,7 @@ export const generateLabel = (feature: FeatureLike, idx: number): string => {
     }
   }
 
-  for (let k of names) {
+  for (const k of names) {
     const v = props[k];
     if (v) {
       return v;
@@ -88,7 +88,7 @@ export const generateLabel = (feature: FeatureLike, idx: number): string => {
     return `${first}: ${props[first]}`;
   }
 
-  for (let k of Object.keys(props)) {
+  for (const k of Object.keys(props)) {
     const v = props[k];
     if (isString(v)) {
       return `${k}: ${v}`;

@@ -53,7 +53,7 @@ export const AmRoutesExpandedRead: FC<AmRoutesExpandedReadProps> = ({
       <div className={gridStyles.valueCell}>{repeatInterval}</div>
       <div className={gridStyles.titleCell}>Nested policies</div>
       <div className={gridStyles.valueCell}>
-        {!!subroutes.length ? (
+        {subroutes.length ? (
           <AmRoutesTable
             isAddMode={isAddMode}
             onCancelAdd={() => {

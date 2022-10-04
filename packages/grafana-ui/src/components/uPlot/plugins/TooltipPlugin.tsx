@@ -176,7 +176,7 @@ export const TooltipPlugin: React.FC<TooltipPluginProps> = ({
   }
 
   // GraphNG expects aligned data, let's take field 0 as x field. FTW
-  let xField = otherProps.data.fields[0];
+  const xField = otherProps.data.fields[0];
   if (!xField) {
     return null;
   }
@@ -214,7 +214,7 @@ export const TooltipPlugin: React.FC<TooltipPluginProps> = ({
     }
 
     if (mode === TooltipDisplayMode.Multi) {
-      let series: SeriesTableRowProps[] = [];
+      const series: SeriesTableRowProps[] = [];
       const frame = otherProps.data;
       const fields = frame.fields;
       const sortIdx: unknown[] = [];
@@ -295,7 +295,7 @@ export function positionTooltip(u: uPlot, bbox: DOMRect) {
     const idx = u.posToIdx(cL);
     // when cursor outside of uPlot's canvas
     if (cT < 0 || cT > bbox.height) {
-      let pos = findMidPointYPosition(u, idx);
+      const pos = findMidPointYPosition(u, idx);
 
       if (pos) {
         y = bbox.top + pos;

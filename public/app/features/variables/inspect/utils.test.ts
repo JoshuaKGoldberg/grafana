@@ -218,7 +218,7 @@ variableAdapters.setInit(() => [
   createQueryVariableAdapter(),
 ]);
 
-describe('getAllAffectedPanelIdsForVariableChange ', () => {
+describe('getAllAffectedPanelIdsForVariableChange', () => {
   describe('when called with a real world example with dependencies and panels', () => {
     it('then it should return correct panelIds', () => {
       const {

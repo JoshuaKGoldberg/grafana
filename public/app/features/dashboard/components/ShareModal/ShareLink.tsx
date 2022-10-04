@@ -10,7 +10,7 @@ import { ThemePicker } from './ThemePicker';
 import { ShareModalTabProps } from './types';
 import { buildImageUrl, buildShareUrl } from './utils';
 
-export interface Props extends ShareModalTabProps {}
+export type Props = ShareModalTabProps
 
 export interface State {
   useCurrentTimeRange: boolean;

@@ -112,7 +112,7 @@ export function getFilteredColors(colorsHex: string[], theme: GrafanaTheme2) {
   }
 
   // Only add colors that have a contrast ratio >= 3 for the current theme
-  let filteredColors = [];
+  const filteredColors = [];
   for (const color of colorsHex) {
     if (tinycolor.readability(theme.colors.background.primary, color) >= 3) {
       filteredColors.push(color);

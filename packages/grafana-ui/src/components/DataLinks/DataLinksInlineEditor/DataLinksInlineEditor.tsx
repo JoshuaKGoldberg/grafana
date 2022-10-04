@@ -50,7 +50,7 @@ export const DataLinksInlineEditor: React.FC<DataLinksInlineEditorProps> = ({
   };
 
   const onDataLinkAdd = () => {
-    let update = cloneDeep(linksSafe);
+    const update = cloneDeep(linksSafe);
     setEditIndex(update.length);
     setIsNew(true);
   };

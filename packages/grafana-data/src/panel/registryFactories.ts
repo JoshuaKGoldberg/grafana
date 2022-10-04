@@ -70,7 +70,7 @@ export function createFieldConfigRegistry<TFieldConfigOptions>(
     registry.register(fieldConfigProp);
 
     if (fieldConfigProp.category && standardOptionsExtensions[fieldConfigProp.category[0]]) {
-      for (let extensionProperty of standardOptionsExtensions[fieldConfigProp.category[0]]) {
+      for (const extensionProperty of standardOptionsExtensions[fieldConfigProp.category[0]]) {
         registry.register(extensionProperty);
       }
     }

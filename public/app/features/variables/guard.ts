@@ -109,7 +109,7 @@ export const hasLegacyVariableSupport = <
 >(
   datasource: DataSourceApi<TQuery, TOptions>
 ): datasource is DataSourceWithLegacyVariableSupport<TQuery, TOptions> => {
-  return Boolean(datasource.metricFindQuery) && !Boolean(datasource.variables);
+  return Boolean(datasource.metricFindQuery) && !datasource.variables;
 };
 
 export const hasStandardVariableSupport = <

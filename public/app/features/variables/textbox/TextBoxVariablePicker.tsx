@@ -10,7 +10,7 @@ import { changeVariableProp } from '../state/sharedReducer';
 import { TextBoxVariableModel } from '../types';
 import { toVariablePayload } from '../utils';
 
-export interface Props extends VariablePickerProps<TextBoxVariableModel> {}
+export type Props = VariablePickerProps<TextBoxVariableModel>
 
 export function TextBoxVariablePicker({ variable, onVariableChange, readOnly }: Props): ReactElement {
   const dispatch = useDispatch();

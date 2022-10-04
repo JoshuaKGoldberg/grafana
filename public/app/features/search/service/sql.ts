@@ -144,7 +144,7 @@ export class SQLSearcher implements GrafanaSearcher {
     const sortBy: number[] = [];
     let sortMetaName: string | undefined;
 
-    for (let hit of rsp) {
+    for (const hit of rsp) {
       const k = hit.type === 'dash-folder' ? 'folder' : 'dashboard';
       kind.push(k);
       name.push(hit.title);

@@ -64,7 +64,7 @@ const HeatmapHoverCell = ({ data, hover, showHistogram }: Props) => {
 
   const count = countVals?.[index];
 
-  const visibleFields = data.heatmap?.fields.filter((f) => !Boolean(f.config.custom?.hideFrom?.tooltip));
+  const visibleFields = data.heatmap?.fields.filter((f) => !f.config.custom?.hideFrom?.tooltip);
   const links: Array<LinkModel<Field>> = [];
   const linkLookup = new Set<string>();
 
@@ -84,17 +84,17 @@ const HeatmapHoverCell = ({ data, hover, showHistogram }: Props) => {
     }
   }
 
-  let can = useRef<HTMLCanvasElement>(null);
+  const can = useRef<HTMLCanvasElement>(null);
 
-  let histCssWidth = 150;
-  let histCssHeight = 50;
-  let histCanWidth = Math.round(histCssWidth * devicePixelRatio);
-  let histCanHeight = Math.round(histCssHeight * devicePixelRatio);
+  const histCssWidth = 150;
+  const histCssHeight = 50;
+  const histCanWidth = Math.round(histCssWidth * devicePixelRatio);
+  const histCanHeight = Math.round(histCssHeight * devicePixelRatio);
 
   useEffect(
     () => {
       if (showHistogram) {
-        let histCtx = can.current?.getContext('2d');
+        const histCtx = can.current?.getContext('2d');
 
         if (histCtx && xVals && yVals && countVals) {
           let fromIdx = index;
@@ -103,30 +103,30 @@ const HeatmapHoverCell = ({ data, hover, showHistogram }: Props) => {
 
           fromIdx++;
 
-          let toIdx = fromIdx + data.yBucketCount!;
+          const toIdx = fromIdx + data.yBucketCount!;
 
           let maxCount = 0;
 
           let i = fromIdx;
           while (i < toIdx) {
-            let c = countVals[i];
+            const c = countVals[i];
             maxCount = Math.max(maxCount, c);
             i++;
           }
 
-          let pHov = new Path2D();
-          let pRest = new Path2D();
+          const pHov = new Path2D();
+          const pRest = new Path2D();
 
           i = fromIdx;
           let j = 0;
           while (i < toIdx) {
-            let c = countVals[i];
+            const c = countVals[i];
 
             if (c > 0) {
-              let pctY = c / maxCount;
-              let pctX = j / (data.yBucketCount! + 1);
+              const pctY = c / maxCount;
+              const pctX = j / (data.yBucketCount! + 1);
 
-              let p = i === index ? pHov : pRest;
+              const p = i === index ? pHov : pRest;
 
               p.rect(
                 Math.round(histCanWidth * pctX),

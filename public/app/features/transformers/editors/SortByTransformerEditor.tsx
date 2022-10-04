@@ -42,7 +42,7 @@ export const SortByTransformerEditor: React.FC<TransformerUIProps<SortByTransfor
               <InlineSwitch
                 value={!!s.desc}
                 onChange={() => {
-                  onSortChange(index, { ...s, desc: !!!s.desc });
+                  onSortChange(index, { ...s, desc: !s.desc });
                 }}
               />
             </InlineField>

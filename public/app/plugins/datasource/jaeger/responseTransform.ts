@@ -121,13 +121,13 @@ function transformToTraceData(data: TraceResponse) {
 }
 
 export function transformToJaeger(data: MutableDataFrame): JaegerResponse {
-  let traceResponse: TraceResponse = {
+  const traceResponse: TraceResponse = {
     traceID: '',
     spans: [],
     processes: {},
     warnings: null,
   };
-  let processes: string[] = [];
+  const processes: string[] = [];
 
   for (let i = 0; i < data.length; i++) {
     const span = data.get(i);

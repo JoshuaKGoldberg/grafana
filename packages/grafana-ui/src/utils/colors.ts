@@ -130,4 +130,4 @@ export function getTextColorForAlphaBackground(color: string, themeIsDark: boole
   return b > 180 ? 'rgb(32, 34, 38)' : 'rgb(247, 248, 250)';
 }
 
-export let sortedColors = sortColorsByHue(colors);
+export const sortedColors = sortColorsByHue(colors);

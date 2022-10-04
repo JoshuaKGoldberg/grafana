@@ -146,7 +146,7 @@ describe('Explore reducer', () => {
             right: undefined,
           } as unknown as ExploreState);
       });
-      it('should reset right pane when it is closed ', () => {
+      it('should reset right pane when it is closed', () => {
         const leftItemMock = {
           containerWidth: 100,
         } as unknown as ExploreItemState;

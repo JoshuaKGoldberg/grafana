@@ -17,7 +17,7 @@ getAppEvents().subscribe<DashboardLoadedEvent<AzureMonitorQuery>>(
   DashboardLoadedEvent,
   ({ payload: { dashboardId, orgId, userId, grafanaVersion, queries } }) => {
     const azureQueries = queries[pluginJson.id];
-    let stats = {
+    const stats = {
       [AzureQueryType.AzureMonitor]: {
         hidden: 0,
         visible: 0,

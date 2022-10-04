@@ -29,7 +29,7 @@ export function OrgPicker({ onSelected, className, inputId, autoFocus, excludeOr
     const orgs: Organization[] = await getBackendSrv().get('/api/orgs');
     const allOrgs = orgs.map((org) => ({ value: { id: org.id, name: org.name }, label: org.name }));
     if (excludeOrgs) {
-      let idArray = excludeOrgs.map((anOrg) => anOrg.orgId);
+      const idArray = excludeOrgs.map((anOrg) => anOrg.orgId);
       const filteredOrgs = allOrgs.filter((item) => {
         return !idArray.includes(item.value.id);
       });

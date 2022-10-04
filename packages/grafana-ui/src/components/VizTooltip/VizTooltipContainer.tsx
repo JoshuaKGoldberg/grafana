@@ -43,7 +43,7 @@ export const VizTooltipContainer: React.FC<VizTooltipContainerProps> = ({
       // TS has hard time playing games with @types/resize-observer-browser, hence the ignore
       // @ts-ignore
       new ResizeObserver((entries) => {
-        for (let entry of entries) {
+        for (const entry of entries) {
           const tW = Math.floor(entry.contentRect.width + 2 * 8); //  adding padding until Safari supports borderBoxSize
           const tH = Math.floor(entry.contentRect.height + 2 * 8);
           if (tooltipMeasurement.width !== tW || tooltipMeasurement.height !== tH) {

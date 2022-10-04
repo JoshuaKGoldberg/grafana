@@ -7,13 +7,13 @@ function randInt(min: number, max: number) {
 }
 
 function genFrame() {
-  let fieldCount = 10;
-  let valueCount = 3000;
-  let step = 1000;
-  let skipProb = 0.5;
-  let skipSteps = [1, 5]; // min, max
+  const fieldCount = 10;
+  const valueCount = 3000;
+  const step = 1000;
+  const skipProb = 0.5;
+  const skipSteps = [1, 5]; // min, max
 
-  let allValues = Array(fieldCount);
+  const allValues = Array(fieldCount);
 
   allValues[0] = Array(valueCount);
 
@@ -22,7 +22,7 @@ function genFrame() {
   }
 
   for (let fi = 1; fi < fieldCount; fi++) {
-    let values = Array(valueCount);
+    const values = Array(valueCount);
 
     for (let i = 0; i < valueCount; i++) {
       values[i] = Math.random() * 100;
@@ -321,7 +321,7 @@ describe('nullInsertThreshold Transformer', () => {
   // Leave this test skipped - it should be run manually
   test.skip('perf stress test should be <= 10ms', () => {
     // 10 fields x 3,000 values with 50% skip (output = 10 fields x 6,000 values)
-    let bigFrameA = genFrame();
+    const bigFrameA = genFrame();
 
     // eslint-disable-next-line no-console
     console.time('insertValues-10x3k');

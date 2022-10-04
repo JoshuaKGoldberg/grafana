@@ -7,7 +7,7 @@ import { getDistinctLabels } from '../utils';
 
 import { joinByLabelsTransformer, JoinByLabelsTransformOptions } from './joinByLabels';
 
-export interface Props extends TransformerUIProps<JoinByLabelsTransformOptions> {}
+export type Props = TransformerUIProps<JoinByLabelsTransformOptions>
 
 export function JoinByLabelsTransformerEditor({ input, options, onChange }: Props) {
   const info = useMemo(() => {
@@ -86,7 +86,7 @@ export function JoinByLabelsTransformerEditor({ input, options, onChange }: Prop
       <InlineFieldRow>
         <InlineField
           error="required"
-          invalid={!Boolean(options.value?.length)}
+          invalid={!options.value?.length}
           label={'Value'}
           labelWidth={labelWidth}
           tooltip="Select the label indicating the values name"

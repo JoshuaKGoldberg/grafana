@@ -69,7 +69,7 @@ export function readHeatmapRowsCustomMeta(frame?: DataFrame): HeatmapRowsCustomM
 export function isHeatmapCellsDense(frame: DataFrame) {
   let foundY = false;
 
-  for (let field of frame.fields) {
+  for (const field of frame.fields) {
     // dense heatmap frames can only have one of these fields
     switch (field.name) {
       case 'y':
@@ -163,7 +163,7 @@ export function rowsToCellsHeatmap(opts: RowsHeatmapOptions): DataFrame {
       custom.yMinDisplay = formattedValueToString(fmt(0, opts.decimals));
     }
     custom.yOrdinalDisplay = custom.yOrdinalDisplay.map((name) => {
-      let num = +name;
+      const num = +name;
 
       if (!Number.isNaN(num)) {
         return formattedValueToString(fmt(num, opts.decimals));
@@ -253,7 +253,7 @@ export function calculateHeatmapFromData(frames: DataFrame[], options: HeatmapCa
 
   let dataLen = 0;
   // pre-allocate arrays
-  for (let frame of frames) {
+  for (const frame of frames) {
     // TODO: assumes numeric timestamps, ordered asc, without nulls
     const x = frame.fields.find((f) => f.type === FieldType.time);
     if (x) {
@@ -261,11 +261,11 @@ export function calculateHeatmapFromData(frames: DataFrame[], options: HeatmapCa
     }
   }
 
-  let xs: number[] = Array(dataLen);
-  let ys: number[] = Array(dataLen);
+  const xs: number[] = Array(dataLen);
+  const ys: number[] = Array(dataLen);
   let j = 0;
 
-  for (let frame of frames) {
+  for (const frame of frames) {
     // TODO: assumes numeric timestamps, ordered asc, without nulls
     const x = frame.fields.find((f) => f.type === FieldType.time);
     if (!x) {
@@ -277,7 +277,7 @@ export function calculateHeatmapFromData(frames: DataFrame[], options: HeatmapCa
     }
 
     const xValues = x.values.toArray();
-    for (let field of frame.fields) {
+    for (const field of frame.fields) {
       if (field !== x && field.type === FieldType.number) {
         const yValues = field.values.toArray();
 
@@ -396,10 +396,10 @@ interface HeatmapOpts {
 
 // TODO: handle NaN, Inf, -Inf, null, undefined values in xs & ys
 function heatmap(xs: number[], ys: number[], opts?: HeatmapOpts) {
-  let len = xs.length;
+  const len = xs.length;
 
-  let xSorted = opts?.xSorted ?? false;
-  let ySorted = opts?.ySorted ?? false;
+  const xSorted = opts?.xSorted ?? false;
+  const ySorted = opts?.ySorted ?? false;
 
   // find x and y limits to pre-compute buckets struct
   let minX = xSorted ? xs[0] : Infinity;
@@ -407,7 +407,7 @@ function heatmap(xs: number[], ys: number[], opts?: HeatmapOpts) {
   let maxX = xSorted ? xs[len - 1] : -Infinity;
   let maxY = ySorted ? ys[len - 1] : -Infinity;
 
-  let yExp = opts?.yLog;
+  const yExp = opts?.yLog;
 
   for (let i = 0; i < len; i++) {
     if (!xSorted) {
@@ -443,19 +443,19 @@ function heatmap(xs: number[], ys: number[], opts?: HeatmapOpts) {
 
   if (xMode === HeatmapCalculationMode.Count) {
     // TODO: optionally use view range min/max instead of data range for bucket sizing
-    let approx = (maxX - minX) / Math.max(xBinIncr - 1, 1);
+    const approx = (maxX - minX) / Math.max(xBinIncr - 1, 1);
     // nice-ify
-    let xIncrs = opts?.xTime ? niceTimeIncrs : niceLinearIncrs;
-    let xIncrIdx = xIncrs.findIndex((bucketSize) => bucketSize > approx) - 1;
+    const xIncrs = opts?.xTime ? niceTimeIncrs : niceLinearIncrs;
+    const xIncrIdx = xIncrs.findIndex((bucketSize) => bucketSize > approx) - 1;
     xBinIncr = xIncrs[Math.max(xIncrIdx, 0)];
   }
 
   if (yMode === HeatmapCalculationMode.Count) {
     // TODO: optionally use view range min/max instead of data range for bucket sizing
-    let approx = (maxY - minY) / Math.max(yBinIncr - 1, 1);
+    const approx = (maxY - minY) / Math.max(yBinIncr - 1, 1);
     // nice-ify
-    let yIncrs = opts?.yTime ? niceTimeIncrs : niceLinearIncrs;
-    let yIncrIdx = yIncrs.findIndex((bucketSize) => bucketSize > approx) - 1;
+    const yIncrs = opts?.yTime ? niceTimeIncrs : niceLinearIncrs;
+    const yIncrIdx = yIncrs.findIndex((bucketSize) => bucketSize > approx) - 1;
     yBinIncr = yIncrs[Math.max(yIncrIdx, 0)];
   }
 
@@ -464,24 +464,24 @@ function heatmap(xs: number[], ys: number[], opts?: HeatmapOpts) {
   //   xBinIncr,
   // });
 
-  let binX = opts?.xCeil ? (v: number) => incrRoundUp(v, xBinIncr) : (v: number) => incrRoundDn(v, xBinIncr);
+  const binX = opts?.xCeil ? (v: number) => incrRoundUp(v, xBinIncr) : (v: number) => incrRoundDn(v, xBinIncr);
   let binY = opts?.yCeil ? (v: number) => incrRoundUp(v, yBinIncr) : (v: number) => incrRoundDn(v, yBinIncr);
 
   if (yExp) {
     yBinIncr = 1 / (opts?.ySize ?? 1); // sub-divides log exponents
-    let yLog = yExp === 2 ? Math.log2 : Math.log10;
+    const yLog = yExp === 2 ? Math.log2 : Math.log10;
     binY = opts?.yCeil ? (v: number) => incrRoundUp(yLog(v), yBinIncr) : (v: number) => incrRoundDn(yLog(v), yBinIncr);
   }
 
-  let minXBin = binX(minX);
-  let maxXBin = binX(maxX);
-  let minYBin = binY(minY);
-  let maxYBin = binY(maxY);
+  const minXBin = binX(minX);
+  const maxXBin = binX(maxX);
+  const minYBin = binY(minY);
+  const maxYBin = binY(maxY);
 
-  let xBinQty = Math.round((maxXBin - minXBin) / xBinIncr) + 1;
-  let yBinQty = Math.round((maxYBin - minYBin) / yBinIncr) + 1;
+  const xBinQty = Math.round((maxXBin - minXBin) / xBinIncr) + 1;
+  const yBinQty = Math.round((maxYBin - minYBin) / yBinIncr) + 1;
 
-  let [xs2, ys2, counts] = initBins(xBinQty, yBinQty, minXBin, xBinIncr, minYBin, yBinIncr, yExp);
+  const [xs2, ys2, counts] = initBins(xBinQty, yBinQty, minXBin, xBinIncr, minYBin, yBinIncr, yExp);
 
   for (let i = 0; i < len; i++) {
     if (yExp && ys[i] <= 0) {

@@ -279,7 +279,7 @@ describe('CloudWatchMetricsQueryRunner', () => {
     });
   });
 
-  describe('handleMetricQueries ', () => {
+  describe('handleMetricQueries', () => {
     const queries: CloudWatchMetricsQuery[] = [
       {
         id: '',

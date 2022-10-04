@@ -13,7 +13,7 @@ import { loadNotificationChannel, testNotificationChannel, updateNotificationCha
 import { initialChannelState, resetSecureField } from './state/reducers';
 import { mapChannelsToSelectableValue, transformSubmitData, transformTestData } from './utils/notificationChannels';
 
-interface OwnProps extends GrafanaRouteComponentProps<{ id: string }> {}
+type OwnProps = GrafanaRouteComponentProps<{ id: string }>
 
 interface ConnectedProps {
   notificationChannel: any;

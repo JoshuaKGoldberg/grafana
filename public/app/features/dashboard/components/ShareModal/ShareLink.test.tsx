@@ -68,7 +68,7 @@ jest.mock('@grafana/runtime', () => {
 });
 
 describe('ShareModal', () => {
-  let templateSrv = initTemplateSrv('key', []);
+  const templateSrv = initTemplateSrv('key', []);
   let props: Props;
 
   beforeAll(() => {

@@ -13,7 +13,7 @@ describe('getHighlighterExpressionsFromQuery', () => {
     expect(getHighlighterExpressionsFromQuery('')).toEqual([]);
   });
 
-  it('returns no expression for query with empty filter ', () => {
+  it('returns no expression for query with empty filter', () => {
     expect(getHighlighterExpressionsFromQuery('{foo="bar"} |= ``')).toEqual([]);
   });
 

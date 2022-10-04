@@ -72,13 +72,13 @@ export const AnnotationsPlugin: React.FC<AnnotationsPluginProps> = ({ annotation
             continue;
           }
 
-          let x0 = u.valToPos(annotation.time, 'x', true);
+          const x0 = u.valToPos(annotation.time, 'x', true);
           const color = theme.visualization.getColorByName(annotation.color);
 
           renderLine(x0, color);
 
           if (annotation.isRegion && annotation.timeEnd) {
-            let x1 = u.valToPos(annotation.timeEnd, 'x', true);
+            const x1 = u.valToPos(annotation.timeEnd, 'x', true);
 
             renderLine(x1, color);
 

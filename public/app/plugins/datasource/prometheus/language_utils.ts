@@ -307,15 +307,15 @@ export interface PromLikeQuery extends DataQuery {
 export function extractLabelMatchers(tokens: Array<string | Token>): AbstractLabelMatcher[] {
   const labelMatchers: AbstractLabelMatcher[] = [];
 
-  for (let prop in tokens) {
+  for (const prop in tokens) {
     if (tokens[prop] instanceof Token) {
-      let token: Token = tokens[prop] as Token;
+      const token: Token = tokens[prop] as Token;
       if (token.type === 'context-labels') {
         let labelKey = '';
         let labelValue = '';
         let labelOperator = '';
-        let contentTokens: any[] = token.content as any[];
-        for (let currentToken in contentTokens) {
+        const contentTokens: any[] = token.content as any[];
+        for (const currentToken in contentTokens) {
           if (typeof contentTokens[currentToken] === 'string') {
             let currentStr: string;
             currentStr = contentTokens[currentToken] as string;

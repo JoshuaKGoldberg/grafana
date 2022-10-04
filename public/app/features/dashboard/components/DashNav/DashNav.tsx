@@ -138,7 +138,7 @@ export const DashNav = React.memo<Props>((props) => {
     }
 
     if (canStar) {
-      let desc = isStarred
+      const desc = isStarred
         ? t({ id: 'dashboard.toolbar.unmark-favorite', message: 'Unmark as favorite' })
         : t({ id: 'dashboard.toolbar.mark-favorite', message: 'Mark as favorite' });
       buttons.push(

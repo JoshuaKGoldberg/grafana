@@ -109,8 +109,8 @@ export function usePanning<T extends Element>({ scale = 1, bounds, focus }: Opti
       frame.current = requestAnimationFrame(() => {
         if (isMounted() && panRef.current) {
           // Get the diff by which we moved the mouse.
-          let xDiff = pos.x - startMousePosition.current.x;
-          let yDiff = pos.y - startMousePosition.current.y;
+          const xDiff = pos.x - startMousePosition.current.x;
+          const yDiff = pos.y - startMousePosition.current.y;
 
           // Add the diff to the position from the moment we started panning.
           currentPosition.current = {

@@ -73,7 +73,7 @@ export const groupByTransformer: DataTransformerInfo<GroupByTransformerOptions> 
               valuesByGroupKey.set(groupKey, valuesByField);
             }
 
-            for (let field of frame.fields) {
+            for (const field of frame.fields) {
               const fieldName = getFieldDisplayName(field);
 
               if (!valuesByField[fieldName]) {

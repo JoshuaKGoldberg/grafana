@@ -8,7 +8,7 @@ import { VariableTextField } from '../editor/VariableTextField';
 import { VariableEditorProps } from '../editor/types';
 import { TextBoxVariableModel } from '../types';
 
-export interface Props extends VariableEditorProps<TextBoxVariableModel> {}
+export type Props = VariableEditorProps<TextBoxVariableModel>
 
 export function TextBoxVariableEditor({ onPropChange, variable: { query } }: Props): ReactElement {
   const updateVariable = useCallback(

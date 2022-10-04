@@ -61,7 +61,7 @@ interface EvaluationBehaviorSummaryProps {
 
 const EvaluationBehaviorSummary = ({ rule }: EvaluationBehaviorSummaryProps) => {
   let forDuration: string | undefined;
-  let every = rule.group.interval;
+  const every = rule.group.interval;
 
   // recording rules don't have a for duration
   if (!isRecordingRulerRule(rule.rulerRule)) {

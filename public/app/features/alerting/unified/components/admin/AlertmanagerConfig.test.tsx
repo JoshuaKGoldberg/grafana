@@ -116,7 +116,7 @@ describe('Admin config', () => {
   });
 
   it('Edit and save alertmanager config', async () => {
-    let savedConfig: AlertManagerCortexConfig | undefined = undefined;
+    const savedConfig: AlertManagerCortexConfig | undefined = undefined;
 
     const defaultConfig = {
       template_files: {

@@ -165,8 +165,8 @@ export function dataFrameFromJSON(dto: DataFrameJSON): DataFrame {
   // Find the longest field length
   const length = data ? data.values.reduce((max, vals) => Math.max(max, vals.length), 0) : 0;
   const fields = schema.fields.map((f, index) => {
-    let buffer = data ? data.values[index] : [];
-    let origLen = buffer.length;
+    const buffer = data ? data.values[index] : [];
+    const origLen = buffer.length;
     let type = f.type;
 
     if (origLen !== length) {
@@ -175,13 +175,13 @@ export function dataFrameFromJSON(dto: DataFrameJSON): DataFrame {
       buffer.fill(undefined, origLen);
     }
 
-    let entities = data?.entities?.[index];
+    const entities = data?.entities?.[index];
 
     if (entities) {
       decodeFieldValueEntities(entities, buffer);
     }
 
-    let enums = data?.enums?.[index];
+    const enums = data?.enums?.[index];
 
     if (enums) {
       decodeFieldValueEnums(enums, buffer);

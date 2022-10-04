@@ -6,7 +6,7 @@ import { FieldToConfigMappingEditor } from '../fieldToConfigMapping/FieldToConfi
 
 import { rowsToFieldsTransformer, RowToFieldsTransformOptions } from './rowsToFields';
 
-export interface Props extends TransformerUIProps<RowToFieldsTransformOptions> {}
+export type Props = TransformerUIProps<RowToFieldsTransformOptions>
 
 export function RowsToFieldsTransformerEditor({ input, options, onChange }: Props) {
   if (input.length === 0) {

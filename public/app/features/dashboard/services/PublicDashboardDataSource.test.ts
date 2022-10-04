@@ -50,70 +50,70 @@ describe('PublicDashboardDatasource', () => {
   });
 
   test('returns public datasource uid when datasource passed in is null', () => {
-    let ds = new PublicDashboardDataSource(null);
+    const ds = new PublicDashboardDataSource(null);
     expect(ds.uid).toBe(PUBLIC_DATASOURCE);
   });
 
   test('returns datasource when datasource passed in is a string', () => {
-    let ds = new PublicDashboardDataSource('theDatasourceUid');
+    const ds = new PublicDashboardDataSource('theDatasourceUid');
     expect(ds.uid).toBe('theDatasourceUid');
   });
 
   test('returns datasource uid when datasource passed in is a DataSourceRef implementation', () => {
     const datasource = { type: 'datasource', uid: 'abc123' };
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.uid).toBe('abc123');
   });
 
   test('returns datasource uid when datasource passed in is a DatasourceApi instance', () => {
     const settings: DataSourceInstanceSettings = { id: 1, uid: 'abc123' } as DataSourceInstanceSettings;
     const datasource = new DataSourceWithBackend(settings);
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.uid).toBe('abc123');
   });
 
   test('isMixedDatasource returns true when datasource is mixed', () => {
     const datasource = new DataSourceWithBackend({ id: 1, uid: MIXED_DATASOURCE_NAME } as DataSourceInstanceSettings);
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.meta.mixed).toBeTruthy();
   });
 
   test('isMixedDatasource returns false when datasource is not mixed', () => {
     const datasource = new DataSourceWithBackend({ id: 1, uid: 'abc123' } as DataSourceInstanceSettings);
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.meta.mixed).toBeFalsy();
   });
 
   test('isMixedDatasource returns false when datasource is a string', () => {
-    let ds = new PublicDashboardDataSource('abc123');
+    const ds = new PublicDashboardDataSource('abc123');
     expect(ds.meta.mixed).toBeFalsy();
   });
 
   test('isMixedDatasource returns false when datasource is null', () => {
-    let ds = new PublicDashboardDataSource(null);
+    const ds = new PublicDashboardDataSource(null);
     expect(ds.meta.mixed).toBeFalsy();
   });
 
   test('returns default datasource interval when datasource passed in is null', () => {
-    let ds = new PublicDashboardDataSource(null);
+    const ds = new PublicDashboardDataSource(null);
     expect(ds.interval).toBe(DEFAULT_INTERVAL);
   });
 
   test('returns default datasource interval when datasource passed in is a string', () => {
-    let ds = new PublicDashboardDataSource('theDatasourceUid');
+    const ds = new PublicDashboardDataSource('theDatasourceUid');
     expect(ds.interval).toBe(DEFAULT_INTERVAL);
   });
 
   test('returns default datasource interval when datasource passed in is a DataSourceRef implementation', () => {
     const datasource = { type: 'datasource', uid: 'abc123' };
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.interval).toBe(DEFAULT_INTERVAL);
   });
 
   test('returns default datasource interval when datasource passed in is a DatasourceApi instance that has no interval', () => {
     const settings: DataSourceInstanceSettings = { id: 1, uid: 'abc123' } as DataSourceInstanceSettings;
     const datasource = new DataSourceWithBackend(settings);
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.interval).toBe(DEFAULT_INTERVAL);
   });
 
@@ -121,7 +121,7 @@ describe('PublicDashboardDatasource', () => {
     const settings: DataSourceInstanceSettings = { id: 1, uid: 'abc123' } as DataSourceInstanceSettings;
     const datasource = new DataSourceWithBackend(settings);
     datasource.interval = 'abc123';
-    let ds = new PublicDashboardDataSource(datasource);
+    const ds = new PublicDashboardDataSource(datasource);
     expect(ds.interval).toBe('abc123');
   });
 });

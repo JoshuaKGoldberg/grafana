@@ -333,7 +333,7 @@ export class HeatmapRenderer {
 
   addYAxisFromBuckets() {
     const tsBuckets = this.data.tsBuckets;
-    let ticks = Math.ceil(this.chartHeight / DEFAULT_Y_TICK_SIZE_PX);
+    const ticks = Math.ceil(this.chartHeight / DEFAULT_Y_TICK_SIZE_PX);
 
     this.scope.yScale = this.yScale = d3
       .scaleLinear()

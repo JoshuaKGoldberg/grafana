@@ -6,7 +6,7 @@ import { GrafanaTheme2 } from '@grafana/data';
 import { useTheme2, stylesFactory } from '../../themes';
 import { Button, ButtonProps } from '../Button';
 
-interface AccessoryButtonProps extends ButtonProps {}
+type AccessoryButtonProps = ButtonProps
 
 export const AccessoryButton: React.FC<AccessoryButtonProps> = ({ className, ...props }) => {
   const theme = useTheme2();

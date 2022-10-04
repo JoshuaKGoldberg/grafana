@@ -14,7 +14,7 @@ import { LibraryElementDTO } from '../library-panels/types';
 import { getFolderByUid } from './state/actions';
 import { getLoadingNav } from './state/navModel';
 
-export interface OwnProps extends GrafanaRouteComponentProps<{ uid: string }> {}
+export type OwnProps = GrafanaRouteComponentProps<{ uid: string }>
 
 const mapStateToProps = (state: StoreState, props: OwnProps) => {
   const uid = props.match.params.uid;

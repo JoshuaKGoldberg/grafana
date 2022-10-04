@@ -169,7 +169,7 @@ class UnThemedRichHistory extends PureComponent<RichHistoryProps> {
       icon: 'sliders-v-alt',
     };
 
-    let tabs = [QueriesTab, StarredTab, SettingsTab];
+    const tabs = [QueriesTab, StarredTab, SettingsTab];
     return (
       <TabbedContainer tabs={tabs} onClose={onClose} defaultTab={firstTab} closeIconTooltip="Close query history" />
     );

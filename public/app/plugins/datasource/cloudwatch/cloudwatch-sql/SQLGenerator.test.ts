@@ -20,7 +20,7 @@ import { SQLExpression } from '../types';
 import SQLGenerator from './SQLGenerator';
 
 describe('SQLGenerator', () => {
-  let baseQuery: SQLExpression = {
+  const baseQuery: SQLExpression = {
     select: createFunctionWithParameter('SUM', ['CPUUtilization']),
     from: createFunctionWithParameter('SCHEMA', ['AWS/EC2']),
     orderByDirection: 'DESC',
@@ -56,7 +56,7 @@ describe('SQLGenerator', () => {
       );
     });
 
-    it('should wrap in double quotes if metric name contains illegal characters ', () => {
+    it('should wrap in double quotes if metric name contains illegal characters', () => {
       const select = createFunctionWithParameter('COUNT', ['Bytes-Per-Second']);
       expect(new SQLGenerator().expressionToSqlQuery({ ...baseQuery, select })).toEqual(
         `SELECT COUNT("Bytes-Per-Second") FROM SCHEMA("AWS/EC2")`
@@ -318,7 +318,7 @@ describe('SQLGenerator', () => {
 
   describe('full query', () => {
     it('should not add LIMIT clause in case its empty', () => {
-      let query: SQLExpression = {
+      const query: SQLExpression = {
         select: createFunctionWithParameter('COUNT', ['DroppedBytes']),
         from: createFunctionWithParameter('SCHEMA', ['AWS/MQ', 'InstanceId', 'Instance-Group']),
         where: createArray(
@@ -350,7 +350,7 @@ describe('SQLGenerator', () => {
     templateService.init([metricVariable, namespaceVariable, labelsVariable, aggregationvariable]);
 
     it('should interpolate variables correctly', () => {
-      let query: SQLExpression = {
+      const query: SQLExpression = {
         select: createFunctionWithParameter('$aggregation', ['$metric']),
         from: createFunctionWithParameter('SCHEMA', ['$namespace', '$labels']),
         where: createArray(

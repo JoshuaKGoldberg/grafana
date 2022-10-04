@@ -11,7 +11,7 @@ function getTable(): HTMLElement {
 }
 
 function getRowsData(rows: HTMLElement[]): Object[] {
-  let content = [];
+  const content = [];
   for (let i = 1; i < rows.length; i++) {
     content.push({
       time: within(rows[i]).getByText(/2021*/).textContent,

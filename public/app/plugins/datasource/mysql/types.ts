@@ -8,6 +8,6 @@ export interface MysqlQueryForInterpolation {
   hide?: any;
 }
 
-export interface MySQLOptions extends SQLOptions {}
+export type MySQLOptions = SQLOptions
 
-export interface MySQLQuery extends SQLQuery {}
+export type MySQLQuery = SQLQuery

@@ -176,7 +176,7 @@ describe('Check field state calculations (displayName and id)', () => {
     expect(title).toEqual('Value');
   });
 
-  it('should use series name when field name is TIME_SERIES_VALUE_FIELD_NAME and there are no labels ', () => {
+  it('should use series name when field name is TIME_SERIES_VALUE_FIELD_NAME and there are no labels', () => {
     const title = checkScenario({
       frames: [
         toDataFrame({

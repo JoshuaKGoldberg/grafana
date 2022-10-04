@@ -46,8 +46,8 @@ export function compareDataFrameStructures(a: DataFrame, b: DataFrame, skipConfi
     const cfgA = fA.config as any;
     const cfgB = fB.config as any;
 
-    let aKeys = Object.keys(cfgA);
-    let bKeys = Object.keys(cfgB);
+    const aKeys = Object.keys(cfgA);
+    const bKeys = Object.keys(cfgB);
 
     if (aKeys.length !== bKeys.length) {
       return false;
@@ -113,7 +113,7 @@ export function shallowCompare<T extends {}>(a: T, b: T, cmp: Cmp = defaultCmp) 
     return false;
   }
 
-  for (let key of aKeys) {
+  for (const key of aKeys) {
     //@ts-ignore
     if (!cmp(a[key], b[key])) {
       return false;

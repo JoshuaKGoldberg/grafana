@@ -14,7 +14,7 @@ import {
 
 import { SettingsPageProps } from './types';
 
-interface Props extends SettingsPageProps {}
+type Props = SettingsPageProps
 
 type State = {
   isLoading: boolean;

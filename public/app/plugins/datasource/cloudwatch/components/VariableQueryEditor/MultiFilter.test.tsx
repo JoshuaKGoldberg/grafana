@@ -25,7 +25,7 @@ describe('MultiFilters', () => {
   });
 
   describe('when adding a new filter item', () => {
-    it('it should add the new item but not call onChange', async () => {
+    it('should add the new item but not call onChange', async () => {
       const filters = {};
       const onChange = jest.fn();
       render(<MultiFilter filters={filters} onChange={onChange} />);
@@ -37,7 +37,7 @@ describe('MultiFilters', () => {
   });
 
   describe('when adding a new filter item with key', () => {
-    it('it should add the new item but not call onChange', async () => {
+    it('should add the new item but not call onChange', async () => {
       const filters = {};
       const onChange = jest.fn();
       render(<MultiFilter filters={filters} onChange={onChange} />);
@@ -57,7 +57,7 @@ describe('MultiFilters', () => {
   });
 
   describe('when adding a new filter item with key and value', () => {
-    it('it should add the new item and trigger onChange', async () => {
+    it('should add the new item and trigger onChange', async () => {
       const filters = {};
       const onChange = jest.fn();
       render(<MultiFilter filters={filters} onChange={onChange} />);
@@ -85,7 +85,7 @@ describe('MultiFilters', () => {
     });
   });
   describe('when editing an existing filter item key', () => {
-    it('it should change the key and call onChange', async () => {
+    it('should change the key and call onChange', async () => {
       const filters = { 'my-key': ['my-value'] };
       const onChange = jest.fn();
       render(<MultiFilter filters={filters} onChange={onChange} />);

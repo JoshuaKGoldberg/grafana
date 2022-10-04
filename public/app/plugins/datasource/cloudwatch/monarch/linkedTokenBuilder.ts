@@ -30,7 +30,7 @@ export function linkedTokenBuilder(
 
     for (let columnIndex = 0; columnIndex < tokens.length; columnIndex++) {
       const token = tokens[columnIndex];
-      let endColumn =
+      const endColumn =
         tokens.length > columnIndex + 1 ? tokens[columnIndex + 1].offset + 1 : model.getLineLength(lineIndex + 1) + 1;
 
       const range: monacoTypes.IRange = {

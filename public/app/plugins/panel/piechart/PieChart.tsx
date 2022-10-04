@@ -272,7 +272,7 @@ function PieLabel({ arc, outerRadius, innerRadius, displayLabels, total, color, 
     return null;
   }
 
-  let labelFontSize = displayLabels.includes(PieChartLabels.Name)
+  const labelFontSize = displayLabels.includes(PieChartLabels.Name)
     ? Math.min(Math.max((outerRadius / 150) * 14, 12), 30)
     : Math.min(Math.max((outerRadius / 100) * 14, 12), 36);
 

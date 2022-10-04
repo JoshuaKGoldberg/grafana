@@ -8,7 +8,7 @@ import { VariableTextField } from '../editor/VariableTextField';
 import { VariableEditorProps } from '../editor/types';
 import { ConstantVariableModel } from '../types';
 
-export interface Props extends VariableEditorProps<ConstantVariableModel> {}
+export type Props = VariableEditorProps<ConstantVariableModel>
 
 export class ConstantVariableEditor extends PureComponent<Props> {
   onChange = (event: FormEvent<HTMLInputElement>) => {

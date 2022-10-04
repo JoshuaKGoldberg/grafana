@@ -24,7 +24,7 @@ interface QueryParams {
   code?: string;
 }
 
-interface Props extends GrafanaRouteComponentProps<{}, QueryParams> {}
+type Props = GrafanaRouteComponentProps<{}, QueryParams>
 
 export const SignupPage: FC<Props> = (props) => {
   const notifyApp = useAppNotification();

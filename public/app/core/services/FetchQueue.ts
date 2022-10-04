@@ -2,7 +2,7 @@ import { Observable, Subject } from 'rxjs';
 
 import { BackendSrvRequest } from '@grafana/runtime';
 
-export interface QueueState extends Record<string, { state: FetchStatus; options: BackendSrvRequest }> {}
+export type QueueState = Record<string, { state: FetchStatus; options: BackendSrvRequest }>
 
 export enum FetchStatus {
   Pending,

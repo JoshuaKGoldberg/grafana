@@ -4,4 +4,4 @@ export interface ScopedVar<T = any> {
   [key: string]: any;
 }
 
-export interface ScopedVars extends Record<string, ScopedVar> {}
+export type ScopedVars = Record<string, ScopedVar>

@@ -16,7 +16,7 @@ export interface TreeElement {
 }
 
 export function getTreeData(root?: RootElement | FrameState, selection?: string[], selectedColor?: string) {
-  let elements: TreeElement[] = [];
+  const elements: TreeElement[] = [];
   if (root) {
     for (let i = root.elements.length; i--; i >= 0) {
       const item = root.elements[i];

@@ -150,7 +150,7 @@ const APPROX_BUCKETS = 20;
  */
 export function buildHistogram(frames: DataFrame[], options?: HistogramTransformerOptions): HistogramFields | null {
   let bucketSize = options?.bucketSize;
-  let bucketOffset = options?.bucketOffset ?? 0;
+  const bucketOffset = options?.bucketOffset ?? 0;
 
   // if bucket size is auto, try to calc from all numeric fields
   if (!bucketSize || bucketSize < 0) {
@@ -176,7 +176,7 @@ export function buildHistogram(frames: DataFrame[], options?: HistogramTransform
       smallestDelta = 1;
     } else {
       for (let i = 1; i < allValues.length; i++) {
-        let delta = allValues[i] - allValues[i - 1];
+        const delta = allValues[i] - allValues[i - 1];
 
         if (delta !== 0) {
           smallestDelta = Math.min(smallestDelta, delta);
@@ -184,16 +184,16 @@ export function buildHistogram(frames: DataFrame[], options?: HistogramTransform
       }
     }
 
-    let min = allValues[0];
-    let max = allValues[allValues.length - 1];
+    const min = allValues[0];
+    const max = allValues[allValues.length - 1];
 
-    let range = max - min;
+    const range = max - min;
 
     const targetSize = range / APPROX_BUCKETS;
 
     // choose bucket
     for (let i = 0; i < histogramBucketSizes.length; i++) {
-      let _bucketSize = histogramBucketSizes[i];
+      const _bucketSize = histogramBucketSizes[i];
 
       if (targetSize < _bucketSize && _bucketSize >= smallestDelta) {
         bucketSize = _bucketSize;
@@ -205,16 +205,16 @@ export function buildHistogram(frames: DataFrame[], options?: HistogramTransform
   const getBucket = (v: number) => incrRoundDn(v - bucketOffset, bucketSize!) + bucketOffset;
 
   // guess number of decimals
-  let bucketDecimals = (('' + bucketSize).match(/\.\d+$/) ?? ['.'])[0].length - 1;
+  const bucketDecimals = (('' + bucketSize).match(/\.\d+$/) ?? ['.'])[0].length - 1;
 
-  let histograms: AlignedData[] = [];
+  const histograms: AlignedData[] = [];
   let counts: Field[] = [];
   let config: FieldConfig | undefined = undefined;
 
   for (const frame of frames) {
     for (const field of frame.fields) {
       if (field.type === FieldType.number) {
-        let fieldHist = histogram(field.values.toArray(), getBucket, histFilter, histSort) as AlignedData;
+        const fieldHist = histogram(field.values.toArray(), getBucket, histFilter, histSort) as AlignedData;
         histograms.push(fieldHist);
         counts.push({
           ...field,
@@ -236,11 +236,11 @@ export function buildHistogram(frames: DataFrame[], options?: HistogramTransform
   }
 
   // align histograms
-  let joinedHists = join(histograms);
+  const joinedHists = join(histograms);
 
   // zero-fill all undefined values (missing buckets -> 0 counts)
   for (let histIdx = 1; histIdx < joinedHists.length; histIdx++) {
-    let hist = joinedHists[histIdx];
+    const hist = joinedHists[histIdx];
 
     for (let bucketIdx = 0; bucketIdx < hist.length; bucketIdx++) {
       if (hist[bucketIdx] == null) {
@@ -324,7 +324,7 @@ function histogram(
   filterOut?: any[] | null,
   sort?: ((a: any, b: any) => number) | null
 ) {
-  let hist = new Map();
+  const hist = new Map();
 
   for (let i = 0; i < vals.length; i++) {
     let v = vals[i];
@@ -333,7 +333,7 @@ function histogram(
       v = getBucket(v);
     }
 
-    let entry = hist.get(v);
+    const entry = hist.get(v);
 
     if (entry) {
       entry.count++;
@@ -344,12 +344,12 @@ function histogram(
 
   filterOut && filterOut.forEach((v) => hist.delete(v));
 
-  let bins = [...hist.values()];
+  const bins = [...hist.values()];
 
   sort && bins.sort((a, b) => sort(a.value, b.value));
 
-  let values = Array(bins.length);
-  let counts = Array(bins.length);
+  const values = Array(bins.length);
+  const counts = Array(bins.length);
 
   for (let i = 0; i < bins.length; i++) {
     values[i] = bins[i].value;

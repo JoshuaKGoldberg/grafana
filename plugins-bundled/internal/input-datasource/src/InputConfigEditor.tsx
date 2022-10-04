@@ -8,7 +8,7 @@ import { TableInputCSV } from '@grafana/ui';
 import { InputOptions } from './types';
 import { dataFrameToCSV } from './utils';
 
-interface Props extends DataSourcePluginOptionsEditorProps<InputOptions> {}
+type Props = DataSourcePluginOptionsEditorProps<InputOptions>
 
 interface State {
   text: string;

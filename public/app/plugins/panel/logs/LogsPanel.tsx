@@ -22,7 +22,7 @@ import { LogRows } from '../../../features/logs/components/LogRows';
 
 import { Options } from './types';
 
-interface LogsPanelProps extends PanelProps<Options> {}
+type LogsPanelProps = PanelProps<Options>
 
 export const LogsPanel: React.FunctionComponent<LogsPanelProps> = ({
   data,

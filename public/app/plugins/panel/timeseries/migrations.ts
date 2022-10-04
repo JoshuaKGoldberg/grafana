@@ -373,7 +373,7 @@ export function flotToGraphOptions(angular: any): { fieldConfig: FieldConfigSour
   }
 
   if (angular.thresholds && angular.thresholds.length > 0) {
-    let steps: Threshold[] = [];
+    const steps: Threshold[] = [];
     let area = false;
     let line = false;
 

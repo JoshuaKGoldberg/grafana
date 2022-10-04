@@ -125,18 +125,18 @@ export class InspectDataTab extends PureComponent<Props, State> {
 
       switch (df.meta?.custom?.traceFormat) {
         case 'jaeger': {
-          let res = transformToJaeger(new MutableDataFrame(df));
+          const res = transformToJaeger(new MutableDataFrame(df));
           downloadAsJson(res, (panel ? panel.getDisplayTitle() : 'Explore') + '-traces');
           break;
         }
         case 'zipkin': {
-          let res = transformToZipkin(new MutableDataFrame(df));
+          const res = transformToZipkin(new MutableDataFrame(df));
           downloadAsJson(res, (panel ? panel.getDisplayTitle() : 'Explore') + '-traces');
           break;
         }
         case 'otlp':
         default: {
-          let res = transformToOTLP(new MutableDataFrame(df));
+          const res = transformToOTLP(new MutableDataFrame(df));
           downloadAsJson(res, (panel ? panel.getDisplayTitle() : 'Explore') + '-traces');
           break;
         }

@@ -44,9 +44,7 @@ export interface AppRootProps<T extends KeyValue = KeyValue> {
   path: string;
 }
 
-export interface AppPluginMeta<T extends KeyValue = KeyValue> extends PluginMeta<T> {
-  // TODO anything specific to apps?
-}
+export type AppPluginMeta<T extends KeyValue = KeyValue> = PluginMeta<T>
 
 export class AppPlugin<T extends KeyValue = KeyValue> extends GrafanaPlugin<AppPluginMeta<T>> {
   // Content under: /a/${plugin-id}/*

@@ -102,13 +102,13 @@ export function prepConfig(opts: PrepConfigOpts) {
 
   const pxRatio = devicePixelRatio;
 
-  let heatmapType = dataRef.current?.heatmap?.meta?.type;
+  const heatmapType = dataRef.current?.heatmap?.meta?.type;
   const exemplarFillColor = theme.visualization.getColorByName(opts.exemplarColor);
 
   let qt: Quadtree;
   let hRect: Rect | null;
 
-  let builder = new UPlotConfigBuilder(timeZone);
+  const builder = new UPlotConfigBuilder(timeZone);
 
   let rect: DOMRect;
 
@@ -126,7 +126,7 @@ export function prepConfig(opts: PrepConfigOpts) {
         'mouseup',
         (e) => {
           // @ts-ignore
-          let isDragging: boolean = u.cursor.drag._x || u.cursor.drag._y;
+          const isDragging: boolean = u.cursor.drag._x || u.cursor.drag._y;
 
           if (!isDragging) {
             onclick(e);
@@ -150,10 +150,10 @@ export function prepConfig(opts: PrepConfigOpts) {
   builder.addHook('setData', (u) => {
     //let [min, max] = (u.scales!.x!.range! as uPlot.Range.Function)(u, 0, 100, xScaleKey);
 
-    let { min: xMin, max: xMax } = u.scales!.x;
+    const { min: xMin, max: xMax } = u.scales!.x;
 
-    let min = getTimeRange().from.valueOf();
-    let max = getTimeRange().to.valueOf();
+    const min = getTimeRange().from.valueOf();
+    const max = getTimeRange().to.valueOf();
 
     if (xMin !== min || xMax !== max) {
       queueMicrotask(() => {
@@ -289,20 +289,20 @@ export function prepConfig(opts: PrepConfigOpts) {
               : [dataMin, dataMax];
 
             if (shouldUseLogScale && !isOrdianalY) {
-              let yExp = u.scales[yScaleKey].log!;
-              let log = yExp === 2 ? Math.log2 : Math.log10;
+              const yExp = u.scales[yScaleKey].log!;
+              const log = yExp === 2 ? Math.log2 : Math.log10;
 
-              let { min: explicitMin, max: explicitMax } = yAxisConfig;
+              const { min: explicitMin, max: explicitMax } = yAxisConfig;
 
               // guard against <= 0
               if (explicitMin != null && explicitMin > 0) {
                 // snap to magnitude
-                let minLog = log(explicitMin);
+                const minLog = log(explicitMin);
                 scaleMin = yExp ** incrRoundDn(minLog, 1);
               }
 
               if (explicitMax != null && explicitMax > 0) {
-                let maxLog = log(explicitMax);
+                const maxLog = log(explicitMax);
                 scaleMax = yExp ** incrRoundUp(maxLog, 1);
               }
             }
@@ -314,20 +314,20 @@ export function prepConfig(opts: PrepConfigOpts) {
             let scaleMin = dataMin,
               scaleMax = dataMax;
 
-            let { min: explicitMin, max: explicitMax } = yAxisConfig;
+            const { min: explicitMin, max: explicitMax } = yAxisConfig;
 
             // logarithmic expansion
             if (shouldUseLogScale) {
-              let yExp = u.scales[yScaleKey].log!;
+              const yExp = u.scales[yScaleKey].log!;
 
               let minExpanded = false;
               let maxExpanded = false;
 
-              let log = yExp === 2 ? Math.log2 : Math.log10;
+              const log = yExp === 2 ? Math.log2 : Math.log10;
 
               if (ySizeDivisor !== 1) {
-                let minLog = log(dataMin);
-                let maxLog = log(dataMax);
+                const minLog = log(dataMin);
+                const maxLog = log(dataMax);
 
                 if (!Number.isInteger(minLog)) {
                   scaleMin = yExp ** incrRoundDn(minLog, 1);
@@ -357,12 +357,12 @@ export function prepConfig(opts: PrepConfigOpts) {
                 // guard against <= 0
                 if (explicitMin != null && explicitMin > 0) {
                   // snap down to magnitude
-                  let minLog = log(explicitMin);
+                  const minLog = log(explicitMin);
                   scaleMin = yExp ** incrRoundDn(minLog, 1);
                 }
 
                 if (explicitMax != null && explicitMax > 0) {
-                  let maxLog = log(explicitMax);
+                  const maxLog = log(explicitMax);
                   scaleMax = yExp ** incrRoundUp(maxLog, 1);
                 }
               }
@@ -495,7 +495,7 @@ export function prepConfig(opts: PrepConfigOpts) {
       disp: {
         fill: {
           values: (u, seriesIdx) => {
-            let countFacetIdx = !isSparseHeatmap ? 2 : 3;
+            const countFacetIdx = !isSparseHeatmap ? 2 : 3;
             return valuesToFills(
               u.data[seriesIdx][countFacetIdx] as unknown as number[],
               palette,
@@ -553,8 +553,8 @@ export function prepConfig(opts: PrepConfigOpts) {
       if (seriesIdx === 1) {
         hRect = null;
 
-        let cx = u.cursor.left! * pxRatio;
-        let cy = u.cursor.top! * pxRatio;
+        const cx = u.cursor.left! * pxRatio;
+        const cy = u.cursor.top! * pxRatio;
 
         qt.get(cx, cy, 1, 1, (o) => {
           if (pointWithin(cx, cy, o.x, o.y, o.x + o.w, o.y + o.h)) {
@@ -568,7 +568,7 @@ export function prepConfig(opts: PrepConfigOpts) {
     points: {
       fill: 'rgba(255,255,255, 0.3)',
       bbox: (u, seriesIdx) => {
-        let isHovered = hRect && seriesIdx === hRect.sidx;
+        const isHovered = hRect && seriesIdx === hRect.sidx;
 
         return {
           left: isHovered ? hRect!.x / pxRatio : -10,
@@ -639,7 +639,7 @@ export function heatmapPathsDense(opts: PathbuilderOpts) {
         rect,
         arc
       ) => {
-        let d = u.data[seriesIdx];
+        const d = u.data[seriesIdx];
         const xs = d[0] as unknown as number[];
         const ys = d[1] as unknown as number[];
         const counts = d[2] as unknown as number[];
@@ -647,16 +647,16 @@ export function heatmapPathsDense(opts: PathbuilderOpts) {
 
         // fill colors are mapped from interpolating densities / counts along some gradient
         // (should be quantized to 64 colors/levels max. e.g. 16)
-        let fills = disp.fill.values(u, seriesIdx);
-        let fillPalette = disp.fill.index ?? [...new Set(fills)];
+        const fills = disp.fill.values(u, seriesIdx);
+        const fillPalette = disp.fill.index ?? [...new Set(fills)];
 
-        let fillPaths = fillPalette.map((color) => new Path2D());
+        const fillPaths = fillPalette.map((color) => new Path2D());
 
         // detect x and y bin qtys by detecting layout repetition in x & y data
-        let yBinQty = dlen - ys.lastIndexOf(ys[0]);
-        let xBinQty = dlen / yBinQty;
-        let yBinIncr = ys[1] - ys[0] || scaleY.max! - scaleY.min!;
-        let xBinIncr = xs[yBinQty] - xs[0];
+        const yBinQty = dlen - ys.lastIndexOf(ys[0]);
+        const xBinQty = dlen / yBinQty;
+        const yBinIncr = ys[1] - ys[0] || scaleY.max! - scaleY.min!;
+        const xBinIncr = xs[yBinQty] - xs[0];
 
         // uniform tile sizes based on zoom level
         let xSize: number;
@@ -684,21 +684,21 @@ export function heatmapPathsDense(opts: PathbuilderOpts) {
         // let xCeil = false;
         // let yCeil = false;
 
-        let xOffset = xAlign === -1 ? -xSize : xAlign === 0 ? -xSize / 2 : 0;
-        let yOffset = yAlign === 1 ? -ySize : yAlign === 0 ? -ySize / 2 : 0;
+        const xOffset = xAlign === -1 ? -xSize : xAlign === 0 ? -xSize / 2 : 0;
+        const yOffset = yAlign === 1 ? -ySize : yAlign === 0 ? -ySize / 2 : 0;
 
         // pre-compute x and y offsets
-        let cys = ys.slice(0, yBinQty).map((y) => round(valToPosY(y, scaleY, yDim, yOff) + yOffset));
-        let cxs = Array.from({ length: xBinQty }, (v, i) =>
+        const cys = ys.slice(0, yBinQty).map((y) => round(valToPosY(y, scaleY, yDim, yOff) + yOffset));
+        const cxs = Array.from({ length: xBinQty }, (v, i) =>
           round(valToPosX(xs[i * yBinQty], scaleX, xDim, xOff) + xOffset)
         );
 
         for (let i = 0; i < dlen; i++) {
           if (counts[i] > hideLE && counts[i] < hideGE) {
-            let cx = cxs[~~(i / yBinQty)];
-            let cy = cys[i % yBinQty];
+            const cx = cxs[~~(i / yBinQty)];
+            const cy = cys[i % yBinQty];
 
-            let fillPath = fillPaths[fills[i]];
+            const fillPath = fillPaths[fills[i]];
 
             rect(fillPath, cx, cy, xSize, ySize);
 
@@ -750,21 +750,21 @@ export function heatmapPathsPoints(opts: PointsBuilderOpts, exemplarColor: strin
 
         [dataX, dataY] = dataY as unknown as number[][];
 
-        let points = new Path2D();
-        let fillPaths = [points];
-        let fillPalette = [exemplarColor ?? 'rgba(255,0,255,0.7)'];
+        const points = new Path2D();
+        const fillPaths = [points];
+        const fillPalette = [exemplarColor ?? 'rgba(255,0,255,0.7)'];
 
         for (let i = 0; i < dataX.length; i++) {
           let yVal = dataY[i]!;
           yVal -= 0.5; // center vertically in bucket (when tiles are le)
           // y-randomize vertically to distribute exemplars in same bucket at same time
-          let randSign = Math.round(Math.random()) * 2 - 1;
+          const randSign = Math.round(Math.random()) * 2 - 1;
           yVal += randSign * 0.5 * Math.random();
 
-          let x = valToPosX(dataX[i], scaleX, xDim, xOff);
-          let y = valToPosY(yVal, scaleY, yDim, yOff);
-          let w = 8;
-          let h = 8;
+          const x = valToPosX(dataX[i], scaleX, xDim, xOff);
+          const y = valToPosY(yVal, scaleY, yDim, yOff);
+          const w = 8;
+          const h = 8;
 
           rect(points, x - w / 2, y - h / 2, w, h);
 
@@ -819,7 +819,7 @@ export function heatmapPathsSparse(opts: PathbuilderOpts) {
       ) => {
         //console.time('heatmapPathsSparse');
 
-        let d = u.data[seriesIdx];
+        const d = u.data[seriesIdx];
         const xMaxs = d[0] as unknown as number[]; // xMax, do we get interval?
         const yMins = d[1] as unknown as number[];
         const yMaxs = d[2] as unknown as number[];
@@ -828,19 +828,19 @@ export function heatmapPathsSparse(opts: PathbuilderOpts) {
 
         // fill colors are mapped from interpolating densities / counts along some gradient
         // (should be quantized to 64 colors/levels max. e.g. 16)
-        let fills = disp.fill.values(u, seriesIdx);
-        let fillPalette = disp.fill.index ?? [...new Set(fills)];
+        const fills = disp.fill.values(u, seriesIdx);
+        const fillPalette = disp.fill.index ?? [...new Set(fills)];
 
-        let fillPaths = fillPalette.map((color) => new Path2D());
+        const fillPaths = fillPalette.map((color) => new Path2D());
 
         // cache all tile bounds
-        let xOffs = new Map();
-        let yOffs = new Map();
+        const xOffs = new Map();
+        const yOffs = new Map();
 
         for (let i = 0; i < xMaxs.length; i++) {
-          let xMax = xMaxs[i];
-          let yMin = yMins[i];
-          let yMax = yMaxs[i];
+          const xMax = xMaxs[i];
+          const yMin = yMins[i];
+          const yMax = yMaxs[i];
 
           if (!xOffs.has(xMax)) {
             xOffs.set(xMax, round(valToPosX(xMax, scaleX, xDim, xOff)));
@@ -856,20 +856,20 @@ export function heatmapPathsSparse(opts: PathbuilderOpts) {
         }
 
         // uniform x size (interval, step)
-        let xSizeUniform = xOffs.get(xMaxs.find((v) => v !== xMaxs[0])) - xOffs.get(xMaxs[0]);
+        const xSizeUniform = xOffs.get(xMaxs.find((v) => v !== xMaxs[0])) - xOffs.get(xMaxs[0]);
 
         for (let i = 0; i < dlen; i++) {
           if (counts[i] <= hideLE || counts[i] >= hideGE) {
             continue;
           }
 
-          let xMax = xMaxs[i];
-          let yMin = yMins[i];
-          let yMax = yMaxs[i];
+          const xMax = xMaxs[i];
+          const yMin = yMins[i];
+          const yMax = yMaxs[i];
 
-          let xMaxPx = xOffs.get(xMax); // xSize is from interval, or inferred delta?
-          let yMinPx = yOffs.get(yMin);
-          let yMaxPx = yOffs.get(yMax);
+          const xMaxPx = xOffs.get(xMax); // xSize is from interval, or inferred delta?
+          const yMinPx = yOffs.get(yMin);
+          const yMaxPx = yOffs.get(yMax);
 
           let xSize = xSizeUniform;
           let ySize = yMinPx - yMaxPx;
@@ -878,10 +878,10 @@ export function heatmapPathsSparse(opts: PathbuilderOpts) {
           xSize = Math.max(1, xSize - cellGap);
           ySize = Math.max(1, ySize - cellGap);
 
-          let x = xMaxPx;
-          let y = yMinPx;
+          const x = xMaxPx;
+          const y = yMinPx;
 
-          let fillPath = fillPaths[fills[i]];
+          const fillPath = fillPaths[fills[i]];
 
           rect(fillPath, x, y, xSize, ySize);
 
@@ -937,11 +937,11 @@ export const boundedMinMax = (
 };
 
 export const valuesToFills = (values: number[], palette: string[], minValue: number, maxValue: number) => {
-  let range = Math.max(maxValue - minValue, 1);
+  const range = Math.max(maxValue - minValue, 1);
 
-  let paletteSize = palette.length;
+  const paletteSize = palette.length;
 
-  let indexedFills = Array(values.length);
+  const indexedFills = Array(values.length);
 
   for (let i = 0; i < values.length; i++) {
     indexedFills[i] =

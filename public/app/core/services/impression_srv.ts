@@ -30,7 +30,7 @@ export class ImpressionSrv {
   }
 
   private async convertToUIDs() {
-    let impressions = this.getImpressions();
+    const impressions = this.getImpressions();
     const ids = filter(impressions, (el) => isNumber(el));
     if (!ids.length) {
       return;

@@ -142,13 +142,11 @@ export type PanelTypeChangedHandler<TOptions = any> = (
 
 export type PanelOptionEditorsRegistry = Registry<PanelOptionsEditorItem>;
 
-export interface PanelOptionsEditorProps<TValue> extends StandardEditorProps<TValue> {}
+export type PanelOptionsEditorProps<TValue> = StandardEditorProps<TValue>
 
-export interface PanelOptionsEditorItem<TOptions = any, TValue = any, TSettings = any>
-  extends OptionsEditorItem<TOptions, TSettings, PanelOptionsEditorProps<TValue>, TValue> {}
+export type PanelOptionsEditorItem<TOptions = any, TValue = any, TSettings = any> = OptionsEditorItem<TOptions, TSettings, PanelOptionsEditorProps<TValue>, TValue>
 
-export interface PanelOptionsEditorConfig<TOptions, TSettings = any, TValue = any>
-  extends OptionEditorConfig<TOptions, TSettings, TValue> {}
+export type PanelOptionsEditorConfig<TOptions, TSettings = any, TValue = any> = OptionEditorConfig<TOptions, TSettings, TValue>
 
 /**
  * @internal

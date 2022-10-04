@@ -34,7 +34,7 @@ export const AnnotationTooltip = ({
   let editControls;
   let state: React.ReactNode | null = null;
 
-  const ts = <span className={styles.time}>{Boolean(annotation.isRegion) ? `${time} - ${timeEnd}` : time}</span>;
+  const ts = <span className={styles.time}>{annotation.isRegion ? `${time} - ${timeEnd}` : time}</span>;
 
   if (annotation.login && annotation.avatarUrl) {
     avatar = <img className={styles.avatar} alt="Annotation avatar" src={annotation.avatarUrl} />;

@@ -219,7 +219,7 @@ export class UPlotConfigBuilder {
 
         // interpolate for gradients/thresholds
         if (typeof s !== 'string') {
-          let field = this.frames![0].fields[seriesIdx];
+          const field = this.frames![0].fields[seriesIdx];
           s = field.display!(field.values.get(u.cursor.idxs![seriesIdx]!)).color!;
         }
 
@@ -260,7 +260,7 @@ export class UPlotConfigBuilder {
   }
 
   private tzDate = (ts: number) => {
-    let date = new Date(ts);
+    const date = new Date(ts);
 
     return this.tz ? uPlot.tzDate(date, this.tz) : date;
   };

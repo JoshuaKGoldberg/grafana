@@ -217,7 +217,7 @@ describe('VariableEditor:', () => {
       );
     });
 
-    it('should show template variables as options ', async () => {
+    it('should show template variables as options', async () => {
       const onChange = jest.fn();
       const { rerender } = render(<VariableEditor {...defaultProps} onChange={onChange} />);
       // wait for initial load

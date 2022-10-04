@@ -61,8 +61,8 @@ export class UPlotScaleBuilder extends PlotConfigBuilder<ScaleProps, Scale> {
       : {};
 
     // uPlot's default ranging config for both min & max is {pad: 0.1, hard: null, soft: 0, mode: 3}
-    let softMinMode: Range.SoftMode = softMin == null ? 3 : 1;
-    let softMaxMode: Range.SoftMode = softMax == null ? 3 : 1;
+    const softMinMode: Range.SoftMode = softMin == null ? 3 : 1;
+    const softMaxMode: Range.SoftMode = softMax == null ? 3 : 1;
 
     const rangeConfig: Range.Config = {
       min: {
@@ -79,9 +79,9 @@ export class UPlotScaleBuilder extends PlotConfigBuilder<ScaleProps, Scale> {
       },
     };
 
-    let hardMinOnly = softMin == null && hardMin != null;
-    let hardMaxOnly = softMax == null && hardMax != null;
-    let hasFixedRange = hardMinOnly && hardMaxOnly;
+    const hardMinOnly = softMin == null && hardMin != null;
+    const hardMaxOnly = softMax == null && hardMax != null;
+    const hasFixedRange = hardMinOnly && hardMaxOnly;
 
     const rangeFn: uPlot.Range.Function = (
       u: uPlot,
@@ -98,13 +98,13 @@ export class UPlotScaleBuilder extends PlotConfigBuilder<ScaleProps, Scale> {
         return minMax;
       }
 
-      let logBase = scale.log ?? 10;
+      const logBase = scale.log ?? 10;
 
       if (scale.distr === 1 || scale.distr === 2 || scale.distr === 4) {
         if (centeredZero) {
-          let absMin = Math.abs(dataMin!);
-          let absMax = Math.abs(dataMax!);
-          let max = Math.max(absMin, absMax);
+          const absMin = Math.abs(dataMin!);
+          const absMax = Math.abs(dataMax!);
+          const max = Math.max(absMin, absMax);
           dataMin = -max;
           dataMax = max;
         }
@@ -128,19 +128,19 @@ export class UPlotScaleBuilder extends PlotConfigBuilder<ScaleProps, Scale> {
         }
         // log2 or log10 scale min must be clamped to 1
         else if (scale.distr === 3) {
-          let logFn = scale.log === 2 ? Math.log2 : Math.log10;
+          const logFn = scale.log === 2 ? Math.log2 : Math.log10;
 
           if (minMax[0]! <= 1) {
             // clamp min
             minMax[0] = 1;
           } else {
             // snap min to nearest mag below
-            let minExp = Math.floor(logFn(minMax[0]!));
+            const minExp = Math.floor(logFn(minMax[0]!));
             minMax[0] = logBase ** minExp;
           }
 
           // snap max to nearest mag above
-          let maxExp = Math.ceil(logFn(minMax[1]!));
+          const maxExp = Math.ceil(logFn(minMax[1]!));
           minMax[1] = logBase ** maxExp;
 
           // inflate max by mag if same

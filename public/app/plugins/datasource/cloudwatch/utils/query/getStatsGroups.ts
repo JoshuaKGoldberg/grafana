@@ -8,7 +8,7 @@ const byRE = /\s+by\s+/im;
 const groupsRE = /([\w$@().]+)(?:(\s+as\s+)([\w$]+))?\s*,?\s*/iy;
 
 export function getStatsGroups(query: string): string[] {
-  let groups = [];
+  const groups = [];
 
   // find " by "
   let b;

@@ -254,7 +254,7 @@ function getLabelParser(expr: string, node: SyntaxNode): QueryBuilderOperation {
   const parser = getString(expr, parserNode);
 
   const string = handleQuotes(getString(expr, node.getChild(String)));
-  const params = !!string ? [string] : [];
+  const params = string ? [string] : [];
   return {
     id: parser,
     params,
@@ -402,7 +402,7 @@ function handleRangeAggregation(expr: string, node: SyntaxNode, context: Context
   const logExpr = node.getChild(LogRangeExpr);
   const params = number !== null && number !== undefined ? [getString(expr, number)] : [];
 
-  let match = getString(expr, node).match(/\[(.+)\]/);
+  const match = getString(expr, node).match(/\[(.+)\]/);
   if (match?.[1]) {
     params.push(match[1]);
   }

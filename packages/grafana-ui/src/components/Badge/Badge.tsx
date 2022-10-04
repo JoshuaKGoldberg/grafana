@@ -42,7 +42,7 @@ export const Badge = React.memo<BadgeProps>(({ icon, color, text, tooltip, class
 Badge.displayName = 'Badge';
 
 const getStyles = (theme: GrafanaTheme2, color: BadgeColor) => {
-  let sourceColor = theme.visualization.getColorByName(color);
+  const sourceColor = theme.visualization.getColorByName(color);
   let borderColor = '';
   let bgColor = '';
   let textColor = '';

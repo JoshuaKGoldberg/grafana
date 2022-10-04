@@ -217,7 +217,7 @@ export class CloudWatchMetricsQueryRunner extends CloudWatchRequest {
   }
 
   getPeriod(target: CloudWatchMetricsQuery, options: DataQueryRequest<CloudWatchQuery>) {
-    let period = this.templateSrv.replace(target.period, options.scopedVars);
+    const period = this.templateSrv.replace(target.period, options.scopedVars);
     if (period && period.toLowerCase() !== 'auto') {
       let p: number;
       if (/^\d+$/.test(period)) {

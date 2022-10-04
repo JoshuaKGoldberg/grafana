@@ -41,7 +41,7 @@ export function randomizeData(data: DataFrameJSON[], opts: Randomize): DataFrame
   const keepNames = new Set(['time', 'value', 'exemplar', 'traceid', 'id', 'uid', 'uuid', '__name__', 'le', 'name']);
   const rand = newLetterRandomizer();
   return data.map((s) => {
-    let { schema, data } = s;
+    const { schema, data } = s;
     if (schema && data) {
       if (opts.labels) {
         for (const f of schema.fields) {

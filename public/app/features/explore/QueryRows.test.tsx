@@ -83,7 +83,7 @@ describe('Explore QueryRows', () => {
     // waiting for the d&d component to fully render.
     await screen.findAllByText('someDs query editor');
 
-    let duplicateButton = screen.getByLabelText(/Duplicate query/i);
+    const duplicateButton = screen.getByLabelText(/Duplicate query/i);
 
     fireEvent.click(duplicateButton);
 

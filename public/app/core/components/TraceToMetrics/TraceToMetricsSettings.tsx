@@ -30,7 +30,7 @@ export interface TraceToMetricsData extends DataSourceJsonData {
   tracesToMetrics?: TraceToMetricsOptions;
 }
 
-interface Props extends DataSourcePluginOptionsEditorProps<TraceToMetricsData> {}
+type Props = DataSourcePluginOptionsEditorProps<TraceToMetricsData>
 
 export function TraceToMetricsSettings({ options, onOptionsChange }: Props) {
   const styles = useStyles(getStyles);
@@ -145,7 +145,7 @@ export function TraceToMetricsSettings({ options, onOptionsChange }: Props) {
               allowFullScreen
               value={query.name}
               onChange={(e) => {
-                let newQueries = options.jsonData.tracesToMetrics?.queries.slice() ?? [];
+                const newQueries = options.jsonData.tracesToMetrics?.queries.slice() ?? [];
                 newQueries[i].name = e.currentTarget.value;
                 updateDatasourcePluginJsonDataOption({ onOptionsChange, options }, 'tracesToMetrics', {
                   ...options.jsonData.tracesToMetrics,
@@ -166,7 +166,7 @@ export function TraceToMetricsSettings({ options, onOptionsChange }: Props) {
               allowFullScreen
               value={query.query}
               onChange={(e) => {
-                let newQueries = options.jsonData.tracesToMetrics?.queries.slice() ?? [];
+                const newQueries = options.jsonData.tracesToMetrics?.queries.slice() ?? [];
                 newQueries[i].query = e.currentTarget.value;
                 updateDatasourcePluginJsonDataOption({ onOptionsChange, options }, 'tracesToMetrics', {
                   ...options.jsonData.tracesToMetrics,
@@ -182,7 +182,7 @@ export function TraceToMetricsSettings({ options, onOptionsChange }: Props) {
             icon="times"
             type="button"
             onClick={() => {
-              let newQueries = options.jsonData.tracesToMetrics?.queries.slice();
+              const newQueries = options.jsonData.tracesToMetrics?.queries.slice();
               newQueries?.splice(i, 1);
               updateDatasourcePluginJsonDataOption({ onOptionsChange, options }, 'tracesToMetrics', {
                 ...options.jsonData.tracesToMetrics,

@@ -42,7 +42,7 @@ export const ServiceAccountCreatePage = ({}: Props): JSX.Element => {
     async function fetchOptions() {
       try {
         if (contextSrv.hasPermission(AccessControlAction.ActionRolesList)) {
-          let options = await fetchRoleOptions(currentOrgId);
+          const options = await fetchRoleOptions(currentOrgId);
           setRoleOptions(options);
         }
       } catch (e) {

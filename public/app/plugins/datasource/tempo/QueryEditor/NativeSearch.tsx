@@ -287,7 +287,7 @@ const NativeSearch = ({ datasource, query, onChange, onBlur, onRunQuery }: Props
               placeholder={`Default: ${DEFAULT_LIMIT}`}
               type="number"
               onChange={(v) => {
-                let limit = v.currentTarget.value ? parseInt(v.currentTarget.value, 10) : undefined;
+                const limit = v.currentTarget.value ? parseInt(v.currentTarget.value, 10) : undefined;
                 if (limit && (!Number.isInteger(limit) || limit <= 0)) {
                   setInputErrors({ ...inputErrors, limit: true });
                 } else {

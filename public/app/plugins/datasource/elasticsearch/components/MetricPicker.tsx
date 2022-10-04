@@ -35,7 +35,7 @@ export const MetricPicker = ({ options, onChange, className, value }: Props) => 
       options={toOptions(options)}
       onChange={onChange}
       placeholder="Select Metric"
-      value={!!selectedOption ? toOption(selectedOption) : undefined}
+      value={selectedOption ? toOption(selectedOption) : undefined}
     />
   );
 };

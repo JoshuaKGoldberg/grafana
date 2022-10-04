@@ -74,7 +74,7 @@ function SelectInputParamEditor({
     }));
   }
 
-  let valueOption = selectOptions.find((x) => x.value === value) ?? toOption(value as string);
+  const valueOption = selectOptions.find((x) => x.value === value) ?? toOption(value as string);
 
   // If we have optional options param and don't have value, we want to render button with which we add optional options.
   // This makes it easier to understand what needs to be selected and what is optional.

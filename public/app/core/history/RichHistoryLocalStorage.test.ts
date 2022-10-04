@@ -192,7 +192,7 @@ describe('RichHistoryLocalStorage', () => {
       // For testing we create storage of MAX_HISTORY_ITEMS + extraItems. Half ot these items are starred.
       const extraItems = 100;
 
-      let history = [];
+      const history = [];
       for (let i = 0; i < MAX_HISTORY_ITEMS + extraItems; i++) {
         history.push({
           starred: i % 2 === 0,

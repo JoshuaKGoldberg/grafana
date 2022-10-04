@@ -71,7 +71,7 @@ export function OpenLibraryPanelModal({ libraryPanel, onDismiss }: OpenLibraryPa
         <Button variant="secondary" onClick={onDismiss} fill="outline">
           Cancel
         </Button>
-        <Button onClick={onViewPanel} disabled={!Boolean(option)}>
+        <Button onClick={onViewPanel} disabled={!option}>
           {option ? `View panel in ${option?.label}...` : 'View panel in dashboard...'}
         </Button>
       </Modal.ButtonRow>

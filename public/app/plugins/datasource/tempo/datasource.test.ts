@@ -505,20 +505,20 @@ describe('Tempo apm table', () => {
   });
 
   it('should build link expr correctly', () => {
-    let builtQuery = buildLinkExpr('topk(5, sum(rate(traces_spanmetrics_calls_total{}[$__range])) by (span_name))');
+    const builtQuery = buildLinkExpr('topk(5, sum(rate(traces_spanmetrics_calls_total{}[$__range])) by (span_name))');
     expect(builtQuery).toBe('sum(rate(traces_spanmetrics_calls_total{}[$__rate_interval]))');
   });
 
   it('should get field config correctly', () => {
-    let datasourceUid = 's4Jvz8Qnk';
-    let tempoDatasourceUid = 'EbPO1fYnz';
-    let targetField = '__data.fields.target';
-    let tempoField = '__data.fields.target';
-    let sourceField = '__data.fields.source';
+    const datasourceUid = 's4Jvz8Qnk';
+    const tempoDatasourceUid = 'EbPO1fYnz';
+    const targetField = '__data.fields.target';
+    const tempoField = '__data.fields.target';
+    const sourceField = '__data.fields.source';
 
-    let fieldConfig = getFieldConfig(datasourceUid, tempoDatasourceUid, targetField, tempoField, sourceField);
+    const fieldConfig = getFieldConfig(datasourceUid, tempoDatasourceUid, targetField, tempoField, sourceField);
 
-    let resultObj = {
+    const resultObj = {
       links: [
         {
           url: '',
@@ -614,7 +614,7 @@ describe('Tempo apm table', () => {
       },
     };
 
-    let value = getRateAlignedValues(resp, objToAlign as any);
+    const value = getRateAlignedValues(resp, objToAlign as any);
     expect(value.toString()).toBe('0,0.6789,0.1234,0,0.4321');
   });
 

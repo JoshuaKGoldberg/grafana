@@ -56,7 +56,7 @@ describe('EventBus', () => {
 
     it('adds the source to the event payload', () => {
       const bus = new EventBusSrv();
-      let events: BusEvent[] = [];
+      const events: BusEvent[] = [];
 
       bus.subscribe(DataHoverEvent, (event) => events.push(event));
 

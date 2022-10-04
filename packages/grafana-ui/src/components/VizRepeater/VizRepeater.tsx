@@ -96,7 +96,7 @@ export class VizRepeater<V, D = {}> extends PureComponent<Props<V, D>, State<V>>
 
     let xGrid = 0;
     let yGrid = 0;
-    let items: JSX.Element[] = [];
+    const items: JSX.Element[] = [];
 
     for (let i = 0; i < values.length; i++) {
       const value = values[i];
@@ -170,7 +170,7 @@ export class VizRepeater<V, D = {}> extends PureComponent<Props<V, D>, State<V>>
     let vizHeight = height;
     let vizWidth = width;
 
-    let resolvedOrientation = this.getOrientation();
+    const resolvedOrientation = this.getOrientation();
 
     switch (resolvedOrientation) {
       case VizOrientation.Horizontal:

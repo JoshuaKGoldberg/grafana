@@ -192,7 +192,7 @@ const determineRequired = (option: NotificationChannelOption, getValues: any, pa
   }
   if (isEmpty(getValues(`${pathIndex}secureFields`))) {
     const dependentOn = getValues(`${pathIndex}secureSettings.${option.dependsOn}`);
-    return !Boolean(dependentOn) && option.required ? 'Required' : false;
+    return !dependentOn && option.required ? 'Required' : false;
   } else {
     const dependentOn: boolean = getValues(`${pathIndex}secureFields.${option.dependsOn}`);
     return !dependentOn && option.required ? 'Required' : false;

@@ -122,7 +122,7 @@ describe('PromExploreQueryEditor', () => {
 
   it('should set default value for instant and range if expr is falsy', async () => {
     const onChange = jest.fn();
-    let query = { expr: '', exemplar: true };
+    const query = { expr: '', exemplar: true };
     render(setup({ onChange, query }));
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ instant: true, range: true }));
@@ -130,14 +130,14 @@ describe('PromExploreQueryEditor', () => {
 
   it('should not set default value for instant and range with truthy expr', async () => {
     const onChange = jest.fn();
-    let query = { expr: 'foo', exemplar: true };
+    const query = { expr: 'foo', exemplar: true };
     render(setup({ onChange, query }));
     expect(onChange).toHaveBeenCalledTimes(0);
   });
 
   it('should add default values for multiple missing values', async () => {
     const onChange = jest.fn();
-    let query = {};
+    const query = {};
     render(setup({ onChange, query }));
     expect(onChange).toHaveBeenCalledTimes(3);
   });

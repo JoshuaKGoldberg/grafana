@@ -95,7 +95,7 @@ export const RolesLabel = ({ showBuiltInRole, numberOfRoles, appliedRoles }: Rol
 
   return (
     <>
-      {!!numberOfRoles ? (
+      {numberOfRoles ? (
         <Tooltip
           content={
             <div className={styles.tooltip}>

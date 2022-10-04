@@ -14,7 +14,7 @@ export interface Props {
 export function SceneObjectTree({ node, selectedObject }: Props) {
   const styles = useStyles2(getStyles);
   const state = node.useState();
-  let children: SceneLayoutChild[] = [];
+  const children: SceneLayoutChild[] = [];
 
   for (const propKey of Object.keys(state)) {
     const propValue = (state as any)[propKey];

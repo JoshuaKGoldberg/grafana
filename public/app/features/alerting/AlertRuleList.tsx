@@ -36,7 +36,7 @@ const mapDispatchToProps = {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-interface OwnProps extends GrafanaRouteComponentProps<{}, { state: string }> {}
+type OwnProps = GrafanaRouteComponentProps<{}, { state: string }>
 
 export type Props = OwnProps & ConnectedProps<typeof connector>;
 

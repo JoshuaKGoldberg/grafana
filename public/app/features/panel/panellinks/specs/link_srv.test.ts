@@ -426,7 +426,7 @@ describe('getDataFrameVars', () => {
   });
 
   describe('when called with multiple DataFrames', () => {
-    it('it should not return any suggestions', () => {
+    it('should not return any suggestions', () => {
       const frame1 = toDataFrame({
         name: 'server1',
         fields: [

@@ -145,7 +145,7 @@ describe('Graph', () => {
     });
 
     describe('in All Series mode', () => {
-      it('it renders all series summary regardless of mouse position', () => {
+      it('renders all series summary regardless of mouse position', () => {
         // Given
         const graphWithTooltip = (
           <Graph {...mockGraphProps(true)}>

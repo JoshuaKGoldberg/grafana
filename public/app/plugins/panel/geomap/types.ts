@@ -64,9 +64,7 @@ export const defaultView: MapViewConfig = {
 };
 
 /** Support hide from legend/tooltip */
-export interface GeomapFieldConfig extends HideableFieldConfig {
-  // nothing custom yet
-}
+export type GeomapFieldConfig = HideableFieldConfig
 
 export interface GeomapPanelOptions {
   view: MapViewConfig;

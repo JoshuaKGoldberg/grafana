@@ -91,7 +91,7 @@ export class AnnotationsWorker implements DashboardQueryRunnerWorker {
   }
 
   private static getAnnotationsToProcessFilter(annotation: AnnotationQuery): boolean {
-    return annotation.enable && !Boolean(annotation.snapshotData);
+    return annotation.enable && !annotation.snapshotData;
   }
 
   publicDashboardViewMode(dashboard: DashboardModel): boolean {

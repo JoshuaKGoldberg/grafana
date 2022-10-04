@@ -16,7 +16,7 @@ interface Props {
 export const PermissionList = ({ title, items, compareKey, permissionLevels, canSet, onRemove, onChange }: Props) => {
   const computed = useMemo(() => {
     const keep: { [key: string]: ResourcePermission } = {};
-    for (let item of items) {
+    for (const item of items) {
       const key = item[compareKey]!;
       if (!keep[key]) {
         keep[key] = item;

@@ -1,11 +1,11 @@
 // Safari < 14 does not have mql.addEventListener(), but uses the old spec mql.addListener()
 
-let oMatchMedia = window.matchMedia;
+const oMatchMedia = window.matchMedia;
 
 type MqlListener = (this: MediaQueryList, ev: MediaQueryListEvent) => any;
 
 window.matchMedia = (mediaQueryString) => {
-  let mql = oMatchMedia(mediaQueryString);
+  const mql = oMatchMedia(mediaQueryString);
 
   if (!mql.addEventListener) {
     // @ts-ignore

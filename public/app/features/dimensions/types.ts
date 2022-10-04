@@ -87,7 +87,7 @@ export const defaultTextConfig: TextDimensionConfig = Object.freeze({
 });
 
 /** Use the color value from field configs */
-export interface ColorDimensionConfig extends BaseDimensionConfig<string> {}
+export type ColorDimensionConfig = BaseDimensionConfig<string>
 
 /** Places that use the value */
 export interface ResourceDimensionOptions {

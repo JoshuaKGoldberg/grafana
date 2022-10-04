@@ -224,7 +224,7 @@ function cachingDisplayProcessor(disp: DisplayProcessor, maxCacheSize = 2500): D
   }
 
   return (value: any, decimals?: DecimalCount) => {
-    let cache = caches.get(decimals ?? -1)!;
+    const cache = caches.get(decimals ?? -1)!;
 
     let v = cache.get(value);
 

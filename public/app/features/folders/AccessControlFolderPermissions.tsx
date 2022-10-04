@@ -11,7 +11,7 @@ import { AccessControlAction, StoreState } from 'app/types';
 import { getFolderByUid } from './state/actions';
 import { getLoadingNav } from './state/navModel';
 
-interface RouteProps extends GrafanaRouteComponentProps<{ uid: string }> {}
+type RouteProps = GrafanaRouteComponentProps<{ uid: string }>
 
 function mapStateToProps(state: StoreState, props: RouteProps) {
   const uid = props.match.params.uid;

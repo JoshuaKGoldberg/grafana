@@ -18,7 +18,7 @@ jest.mock('app/features/dashboard/services/TimeSrv', () => ({
 
 describe('getFieldLinksSupplier', () => {
   let originalLinkSrv: LinkService;
-  let templateSrv = new TemplateSrv();
+  const templateSrv = new TemplateSrv();
   beforeAll(() => {
     const linkService = new LinkSrv();
     originalLinkSrv = getLinkSrv();

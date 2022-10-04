@@ -47,7 +47,7 @@ export interface HeatmapData {
 }
 
 export function prepareHeatmapData(data: PanelData, options: PanelOptions, theme: GrafanaTheme2): HeatmapData {
-  let frames = data.series;
+  const frames = data.series;
   if (!frames?.length) {
     return {};
   }
@@ -117,7 +117,7 @@ const getSparseHeatmapData = (
   // cell value display
   const disp = updateFieldDisplay(frame.fields[3], options.cellValues, theme);
 
-  let [minValue, maxValue] = boundedMinMax(
+  const [minValue, maxValue] = boundedMinMax(
     frame.fields[3].values.toArray(),
     options.color.min,
     options.color.max,
@@ -211,12 +211,12 @@ const getDenseHeatmapData = (
 
   // below is literally copy/paste from the pathBuilder code in utils.ts
   // detect x and y bin qtys by detecting layout repetition in x & y data
-  let yBinQty = dlen - ys.lastIndexOf(ys[0]);
-  let xBinQty = dlen / yBinQty;
-  let yBinIncr = ys[1] - ys[0];
-  let xBinIncr = xs[yBinQty] - xs[0];
+  const yBinQty = dlen - ys.lastIndexOf(ys[0]);
+  const xBinQty = dlen / yBinQty;
+  const yBinIncr = ys[1] - ys[0];
+  const xBinIncr = xs[yBinQty] - xs[0];
 
-  let [minValue, maxValue] = boundedMinMax(
+  const [minValue, maxValue] = boundedMinMax(
     valueField.values.toArray(),
     options.color.min,
     options.color.max,

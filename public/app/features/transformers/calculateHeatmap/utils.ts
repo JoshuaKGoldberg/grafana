@@ -5,18 +5,18 @@ const { abs, pow } = Math;
 export const fixedDec = new Map();
 
 export function genIncrs(base: number, minExp: number, maxExp: number, mults: number[]) {
-  let incrs = [];
+  const incrs = [];
 
-  let multDec = mults.map(guessDecimals);
+  const multDec = mults.map(guessDecimals);
 
   for (let exp = minExp; exp < maxExp; exp++) {
-    let expa = abs(exp);
-    let mag = roundDecimals(pow(base, exp), expa);
+    const expa = abs(exp);
+    const mag = roundDecimals(pow(base, exp), expa);
 
     for (let i = 0; i < mults.length; i++) {
-      let _incr = mults[i] * mag;
-      let dec = (_incr >= 0 && exp >= 0 ? 0 : expa) + (exp >= multDec[i] ? 0 : multDec[i]);
-      let incr = roundDecimals(_incr, dec);
+      const _incr = mults[i] * mag;
+      const dec = (_incr >= 0 && exp >= 0 ? 0 : expa) + (exp >= multDec[i] ? 0 : multDec[i]);
+      const incr = roundDecimals(_incr, dec);
       incrs.push(incr);
       fixedDec.set(incr, dec);
     }

@@ -298,7 +298,7 @@ const handleTypeahead = async (
       const searchFunctionType =
         group.searchFunctionType || (group.prefixMatch ? SearchFunctionType.Prefix : SearchFunctionType.Word);
       const searchFunction = SearchFunctionMap[searchFunctionType];
-      let newGroup = { ...group };
+      const newGroup = { ...group };
       if (prefix) {
         // Filter groups based on prefix
         if (!group.skipFilter) {

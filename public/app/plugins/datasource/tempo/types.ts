@@ -48,7 +48,7 @@ export interface TempoQuery extends DataQuery {
   serviceMapQuery?: string;
 }
 
-export interface MyDataSourceOptions extends DataSourceJsonData {}
+export type MyDataSourceOptions = DataSourceJsonData
 
 export const defaultQuery: Partial<TempoQuery> = {};
 

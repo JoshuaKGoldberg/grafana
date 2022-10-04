@@ -44,7 +44,7 @@ export function getHighlighterExpressionsFromQuery(input: string): string[] {
     },
   });
 
-  for (let filter of filters) {
+  for (const filter of filters) {
     const pipeExact = filter.getChild(Filter)?.getChild(PipeExact);
     const pipeMatch = filter.getChild(Filter)?.getChild(PipeMatch);
     const string = filter.getChild(String);

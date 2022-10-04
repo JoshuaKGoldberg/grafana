@@ -58,7 +58,7 @@ export const generateComponents: ComponentGenerator = async ({ details, path }) 
     return _template(template)({ ...details, name });
   };
   const filePath = `${path}/${name}`;
-  let paths = [];
+  const paths = [];
 
   fs.writeFileSync(`${filePath}.tsx`, getCompiled(componentTpl));
   paths.push(`${filePath}.tsx`);

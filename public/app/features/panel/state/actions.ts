@@ -18,7 +18,7 @@ import {
 
 export function initPanelState(panel: PanelModel): ThunkResult<void> {
   return async (dispatch, getStore) => {
-    let pluginToLoad = panel.type;
+    const pluginToLoad = panel.type;
     let plugin = getStore().plugins.panels[pluginToLoad];
 
     if (!plugin) {
@@ -83,7 +83,7 @@ export function changePanelPlugin({
       plugin = await dispatch(loadPanelPlugin(pluginId));
     }
 
-    let cleanUpKey = panel.key;
+    const cleanUpKey = panel.key;
 
     if (panel.type !== pluginId) {
       panel.changePlugin(plugin);

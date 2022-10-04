@@ -7,7 +7,7 @@ export interface PerformanceEventPayload {
   value: number;
 }
 
-export interface PerformanceEvent extends EchoEvent<EchoEventType.Performance, PerformanceEventPayload> {}
+export type PerformanceEvent = EchoEvent<EchoEventType.Performance, PerformanceEventPayload>
 
 export interface PerformanceBackendOptions {
   url?: string;

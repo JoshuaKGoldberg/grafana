@@ -10,7 +10,7 @@ import {
 import { FilterFramesByRefIdTransformerOptions } from '@grafana/data/src/transformations/transformers/filterByRefId';
 import { HorizontalGroup, FilterPill } from '@grafana/ui';
 
-interface FilterByRefIdTransformerEditorProps extends TransformerUIProps<FilterFramesByRefIdTransformerOptions> {}
+type FilterByRefIdTransformerEditorProps = TransformerUIProps<FilterFramesByRefIdTransformerOptions>
 
 interface FilterByRefIdTransformerEditorState {
   include: string;

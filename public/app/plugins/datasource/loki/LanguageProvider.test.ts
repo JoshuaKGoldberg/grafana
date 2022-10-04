@@ -207,7 +207,7 @@ describe('Language completion provider', () => {
         'attr-value',
         'context-labels',
       ]);
-      let result = await provider.provideCompletionItems(input);
+      const result = await provider.provideCompletionItems(input);
       expect(result.context).toBe('context-label-values');
       expect(result.suggestions).toEqual([
         {

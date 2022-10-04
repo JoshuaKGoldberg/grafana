@@ -11,7 +11,7 @@ import { VariableTextField } from '../editor/VariableTextField';
 import { VariableEditorProps } from '../editor/types';
 import { IntervalVariableModel } from '../types';
 
-export interface Props extends VariableEditorProps<IntervalVariableModel> {}
+export type Props = VariableEditorProps<IntervalVariableModel>
 
 export class IntervalVariableEditor extends PureComponent<Props> {
   onAutoChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -61,7 +61,7 @@ const propsToDiff: Array<string | PropDiffFn> = [
   (prev: BarChartProps, next: BarChartProps) => next.text?.valueSize === prev.text?.valueSize,
 ];
 
-interface Props extends PanelProps<PanelOptions> {}
+type Props = PanelProps<PanelOptions>
 
 export const BarChartPanel: React.FunctionComponent<Props> = ({
   data,

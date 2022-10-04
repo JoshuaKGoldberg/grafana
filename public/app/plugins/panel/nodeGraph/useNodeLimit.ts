@@ -157,7 +157,7 @@ function collectVisibleNodes(
   let stack = [...roots];
 
   while (Object.keys(visibleNodes).length < limit && stack.length > 0) {
-    let current = stack.shift()!;
+    const current = stack.shift()!;
 
     // We are already showing this node. This can happen because graphs can be cyclic
     if (visibleNodes[current!.id]) {
@@ -197,7 +197,7 @@ function collectMarkerStats(
     let count = 0;
     let stack = [marker];
     while (stack.length > 0 && count <= 101) {
-      let current = stack.shift()!;
+      const current = stack.shift()!;
 
       // We are showing this node so not going to count it as hidden.
       if (visibleNodes[current.id] || nodesToCount[current.id]) {

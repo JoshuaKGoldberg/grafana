@@ -40,7 +40,7 @@ ds.datasource.api.getMetrics = jest.fn().mockResolvedValue([
 ds.datasource.api.getDimensionKeys = jest
   .fn()
   .mockImplementation((_namespace: string, region: string, dimensionFilters?: Dimensions) => {
-    if (!!dimensionFilters) {
+    if (dimensionFilters) {
       return Promise.resolve([
         { label: 's4', value: 's4' },
         { label: 'v4', value: 'v4' },

@@ -18,7 +18,7 @@ export const DEFAULT_INTERVAL = '1min';
 
 export class PublicDashboardDataSource extends DataSourceApi<DataQuery, DataSourceJsonData, {}> {
   constructor(datasource: DataSourceRef | string | DataSourceApi | null) {
-    let meta = {} as DataSourcePluginMeta;
+    const meta = {} as DataSourcePluginMeta;
     if (PublicDashboardDataSource.isMixedDatasource(datasource)) {
       meta.mixed = true;
     }

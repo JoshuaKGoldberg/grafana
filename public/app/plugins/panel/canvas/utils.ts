@@ -8,7 +8,7 @@ import { Scene, SelectionParams } from '../../../features/canvas/runtime/scene';
 
 export function doSelect(scene: Scene, element: ElementState | FrameState) {
   try {
-    let selection: SelectionParams = { targets: [] };
+    const selection: SelectionParams = { targets: [] };
     if (element instanceof FrameState) {
       const targetElements: HTMLDivElement[] = [];
       targetElements.push(element?.div!);

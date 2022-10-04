@@ -302,7 +302,7 @@ export function operationWithRangeVectorRenderer(
   def: QueryBuilderOperationDef,
   innerExpr: string
 ) {
-  let rangeVector = (model.params ?? [])[0] ?? '5m';
+  const rangeVector = (model.params ?? [])[0] ?? '5m';
   return `${def.id}(${innerExpr}[${rangeVector}])`;
 }
 

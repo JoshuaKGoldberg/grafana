@@ -143,7 +143,7 @@ export class PanelQueryRunner {
           }
 
           // Apply field defaults and overrides
-          let fieldConfig = this.dataConfigSource.getFieldOverrideOptions();
+          const fieldConfig = this.dataConfigSource.getFieldOverrideOptions();
 
           if (fieldConfig != null && (isFirstPacket || !streamingPacketWithSameSchema)) {
             lastConfigRev = this.dataConfigSource.configRev!;

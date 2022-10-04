@@ -1088,7 +1088,7 @@ describe('PrometheusDatasource2', () => {
       };
 
       async function runAnnotationQuery(data: number[][]) {
-        let response = createAnnotationResponse();
+        const response = createAnnotationResponse();
         response.data.results['X'].frames[0].data.values = data;
 
         options.annotation.useValueForTime = false;

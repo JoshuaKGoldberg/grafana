@@ -786,7 +786,7 @@ describe('ElasticQueryBuilder', () => {
   });
 
   describe('Value casting for settings', () => {
-    it('correctly casts values in moving_avg ', () => {
+    it('correctly casts values in moving_avg', () => {
       const query = builder.build({
         refId: 'A',
         metrics: [
@@ -822,7 +822,7 @@ describe('ElasticQueryBuilder', () => {
       expect(movingAvg.settings.period).toBe(4);
     });
 
-    it('correctly casts values in serial_diff ', () => {
+    it('correctly casts values in serial_diff', () => {
       const query = builder.build({
         refId: 'A',
         metrics: [

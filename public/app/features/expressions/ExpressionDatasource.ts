@@ -36,7 +36,7 @@ export class ExpressionDatasourceApi extends DataSourceWithBackend<ExpressionQue
   }
 
   query(request: DataQueryRequest<ExpressionQuery>): Observable<DataQueryResponse> {
-    let targets = request.targets.map(async (query: ExpressionQuery): Promise<ExpressionQuery> => {
+    const targets = request.targets.map(async (query: ExpressionQuery): Promise<ExpressionQuery> => {
       const ds = await getDataSourceSrv().get(query.datasource);
 
       if (!ds.interpolateVariablesInQueries) {
@@ -46,7 +46,7 @@ export class ExpressionDatasourceApi extends DataSourceWithBackend<ExpressionQue
       return ds?.interpolateVariablesInQueries([query], request.scopedVars)[0] as ExpressionQuery;
     });
 
-    let sub = from(Promise.all(targets));
+    const sub = from(Promise.all(targets));
     return sub.pipe(mergeMap((t) => super.query({ ...request, targets: t })));
   }
 

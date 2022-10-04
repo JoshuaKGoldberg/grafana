@@ -8,7 +8,7 @@ import { ThemePicker } from './ThemePicker';
 import { ShareModalTabProps } from './types';
 import { buildIframeHtml } from './utils';
 
-interface Props extends ShareModalTabProps {}
+type Props = ShareModalTabProps
 
 interface State {
   useCurrentTimeRange: boolean;

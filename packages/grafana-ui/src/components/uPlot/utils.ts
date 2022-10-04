@@ -14,7 +14,7 @@ export function timeFormatToTemplate(f: string) {
 }
 
 const paddingSide: PaddingSide = (u, side, sidesWithAxes) => {
-  let hasCrossAxis = side % 2 ? sidesWithAxes[0] || sidesWithAxes[2] : sidesWithAxes[1] || sidesWithAxes[3];
+  const hasCrossAxis = side % 2 ? sidesWithAxes[0] || sidesWithAxes[2] : sidesWithAxes[1] || sidesWithAxes[3];
 
   return sidesWithAxes[side] || !hasCrossAxis ? 0 : 8;
 };
@@ -57,15 +57,15 @@ const enum StackDirection {
 // generates bands between adjacent group series
 /** @internal */
 export function getStackingBands(group: StackingGroup) {
-  let bands: uPlot.Band[] = [];
-  let { series, dir } = group;
-  let lastIdx = series.length - 1;
+  const bands: uPlot.Band[] = [];
+  const { series, dir } = group;
+  const lastIdx = series.length - 1;
 
-  let rSeries = series.slice().reverse();
+  const rSeries = series.slice().reverse();
 
   rSeries.forEach((si, i) => {
     if (i !== lastIdx) {
-      let nextIdx = rSeries[i + 1];
+      const nextIdx = rSeries[i + 1];
       bands.push({
         series: [si, nextIdx],
         // fill direction is inverted from stack direction
@@ -80,7 +80,7 @@ export function getStackingBands(group: StackingGroup) {
 // expects an AlignedFrame
 /** @internal */
 export function getStackingGroups(frame: DataFrame) {
-  let groups: Map<string, StackingGroup> = new Map();
+  const groups: Map<string, StackingGroup> = new Map();
 
   frame.fields.forEach(({ config, values }, i) => {
     // skip x or time field
@@ -88,7 +88,7 @@ export function getStackingGroups(frame: DataFrame) {
       return;
     }
 
-    let { custom } = config;
+    const { custom } = config;
 
     if (custom == null) {
       return;
@@ -100,13 +100,13 @@ export function getStackingGroups(frame: DataFrame) {
       return;
     }
 
-    let { stacking } = custom;
+    const { stacking } = custom;
 
     if (stacking == null) {
       return;
     }
 
-    let { mode: stackingMode, group: stackingGroup } = stacking;
+    const { mode: stackingMode, group: stackingGroup } = stacking;
 
     // not stacking
     if (stackingMode === StackingMode.None) {
@@ -114,10 +114,10 @@ export function getStackingGroups(frame: DataFrame) {
     }
 
     // will this be stacked up or down after any transforms applied
-    let vals = values.toArray();
-    let transform = custom.transform;
-    let firstValue = vals.find((v) => v != null);
-    let stackDir =
+    const vals = values.toArray();
+    const transform = custom.transform;
+    const firstValue = vals.find((v) => v != null);
+    const stackDir =
       transform === GraphTransform.Constant
         ? firstValue >= 0
           ? StackDirection.Pos
@@ -130,15 +130,15 @@ export function getStackingGroups(frame: DataFrame) {
         ? StackDirection.Pos
         : StackDirection.Neg;
 
-    let drawStyle = custom.drawStyle as GraphDrawStyle;
-    let drawStyle2 =
+    const drawStyle = custom.drawStyle as GraphDrawStyle;
+    const drawStyle2 =
       drawStyle === GraphDrawStyle.Bars
         ? (custom.barAlignment as BarAlignment)
         : drawStyle === GraphDrawStyle.Line
         ? (custom.lineInterpolation as LineInterpolation)
         : null;
 
-    let stackKey = `${stackDir}|${stackingMode}|${stackingGroup}|${buildScaleKey(config)}|${drawStyle}|${drawStyle2}`;
+    const stackKey = `${stackDir}|${stackingMode}|${stackingGroup}|${buildScaleKey(config)}|${drawStyle}|${drawStyle2}`;
 
     let group = groups.get(stackKey);
 
@@ -163,30 +163,30 @@ export function preparePlotData2(
   stackingGroups: StackingGroup[],
   onStackMeta?: (meta: StackMeta) => void
 ) {
-  let data = Array(frame.fields.length) as AlignedData;
+  const data = Array(frame.fields.length) as AlignedData;
 
-  let stacksQty = stackingGroups.length;
+  const stacksQty = stackingGroups.length;
 
-  let dataLen = frame.length;
-  let zeroArr = stacksQty > 0 ? Array(dataLen).fill(0) : [];
-  let falseArr = stacksQty > 0 ? Array(dataLen).fill(false) : [];
-  let accums = Array.from({ length: stacksQty }, () => zeroArr.slice());
+  const dataLen = frame.length;
+  const zeroArr = stacksQty > 0 ? Array(dataLen).fill(0) : [];
+  const falseArr = stacksQty > 0 ? Array(dataLen).fill(false) : [];
+  const accums = Array.from({ length: stacksQty }, () => zeroArr.slice());
 
-  let anyValsAtX = Array.from({ length: stacksQty }, () => falseArr.slice());
+  const anyValsAtX = Array.from({ length: stacksQty }, () => falseArr.slice());
 
   // figure out at which time indices each stacking group has any values
   // (needed to avoid absorbing initial accum 0s at unrelated joined timestamps)
   stackingGroups.forEach((group, groupIdx) => {
-    let groupValsAtX = anyValsAtX[groupIdx];
+    const groupValsAtX = anyValsAtX[groupIdx];
 
     group.series.forEach((seriesIdx) => {
-      let field = frame.fields[seriesIdx];
+      const field = frame.fields[seriesIdx];
 
       if (field.config.custom?.hideFrom?.viz) {
         return;
       }
 
-      let vals = field.values.toArray();
+      const vals = field.values.toArray();
 
       for (let i = 0; i < dataLen; i++) {
         if (vals[i] != null) {
@@ -208,7 +208,7 @@ export function preparePlotData2(
       return;
     }
 
-    let { custom } = field.config;
+    const { custom } = field.config;
 
     if (!custom || custom.hideFrom?.viz) {
       data[i] = vals;
@@ -217,8 +217,8 @@ export function preparePlotData2(
 
     // apply transforms
     if (custom.transform === GraphTransform.Constant) {
-      let firstValIdx = vals.findIndex((v) => v != null);
-      let firstVal = vals[firstValIdx];
+      const firstValIdx = vals.findIndex((v) => v != null);
+      const firstVal = vals[firstValIdx];
       vals = Array(vals.length).fill(undefined);
       vals[firstValIdx] = firstVal;
     } else {
@@ -233,19 +233,19 @@ export function preparePlotData2(
       }
     }
 
-    let stackingMode = custom.stacking?.mode;
+    const stackingMode = custom.stacking?.mode;
 
     if (!stackingMode || stackingMode === StackingMode.None) {
       data[i] = vals;
     } else {
-      let stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
+      const stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
 
-      let accum = accums[stackIdx];
-      let groupValsAtX = anyValsAtX[stackIdx];
-      let stacked = (data[i] = Array(dataLen));
+      const accum = accums[stackIdx];
+      const groupValsAtX = anyValsAtX[stackIdx];
+      const stacked = (data[i] = Array(dataLen));
 
       for (let i = 0; i < dataLen; i++) {
-        let v = vals[i];
+        const v = vals[i];
 
         if (v != null) {
           stacked[i] = accum[i] += v;
@@ -257,8 +257,8 @@ export function preparePlotData2(
   });
 
   if (onStackMeta) {
-    let accumsBySeriesIdx = data.map((vals, i) => {
-      let stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
+    const accumsBySeriesIdx = data.map((vals, i) => {
+      const stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
       return stackIdx !== -1 ? accums[stackIdx] : vals;
     });
 
@@ -273,17 +273,17 @@ export function preparePlotData2(
       return;
     }
 
-    let stackingMode = field.config.custom?.stacking?.mode;
+    const stackingMode = field.config.custom?.stacking?.mode;
 
     if (stackingMode === StackingMode.Percent) {
-      let stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
-      let accum = accums[stackIdx];
-      let group = stackingGroups[stackIdx];
+      const stackIdx = stackingGroups.findIndex((group) => group.series.indexOf(i) > -1);
+      const accum = accums[stackIdx];
+      const group = stackingGroups[stackIdx];
 
-      let stacked = data[i];
+      const stacked = data[i];
 
       for (let i = 0; i < dataLen; i++) {
-        let v = stacked[i];
+        const v = stacked[i];
 
         if (v != null) {
           // v / accum will always be pos, so properly (re)sign by group stacking dir

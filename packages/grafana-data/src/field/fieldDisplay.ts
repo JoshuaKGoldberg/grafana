@@ -249,7 +249,7 @@ function getSmartDisplayNameForRow(
   replaceVariables: InterpolateFunction,
   scopedVars: ScopedVars
 ): string {
-  let parts: string[] = [];
+  const parts: string[] = [];
   let otherNumericFields = 0;
 
   if (field.config.displayName) {

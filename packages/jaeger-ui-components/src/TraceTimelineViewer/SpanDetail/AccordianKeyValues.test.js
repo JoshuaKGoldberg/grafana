@@ -82,7 +82,7 @@ describe('AccordianKeyValues test', () => {
     expect(screen.getByTestId('AccordianKeyValues--header')).toBeInTheDocument();
   });
 
-  it('renders table correctly when passed data & is open ', () => {
+  it('renders table correctly when passed data & is open', () => {
     setupAccordian();
 
     expect(screen.getByRole('switch', { name: 'test accordian' })).toBeInTheDocument();

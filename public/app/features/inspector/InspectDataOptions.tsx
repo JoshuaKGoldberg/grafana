@@ -59,7 +59,7 @@ export const InspectDataOptions: FC<Props> = ({
   const selectableOptions = [...transformationOptions, ...choices];
 
   function getActiveString() {
-    let activeString = '';
+    const activeString = '';
 
     if (!data) {
       return activeString;

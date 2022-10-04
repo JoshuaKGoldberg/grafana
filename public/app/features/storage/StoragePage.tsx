@@ -33,7 +33,7 @@ interface QueryParams {
 const folderNameRegex = /^[a-z\d!\-_.*'() ]+$/;
 const folderNameMaxLength = 256;
 
-interface Props extends GrafanaRouteComponentProps<RouteParams, QueryParams> {}
+type Props = GrafanaRouteComponentProps<RouteParams, QueryParams>
 
 const getParentPath = (path: string) => {
   const lastSlashIdx = path.lastIndexOf('/');

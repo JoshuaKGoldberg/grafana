@@ -22,7 +22,7 @@ export function applyNullInsertThreshold(opts: NullInsertOptions): DataFrame {
     return opts.frame;
   }
 
-  let thorough = true;
+  const thorough = true;
   let { frame, refFieldName, refFieldPseudoMax, refFieldPseudoMin, insertMode } = opts;
 
   if (!insertMode) {
@@ -162,7 +162,7 @@ function nullInsertThreshold(
 
   const filledFieldValues: any[][] = [];
 
-  for (let fieldValues of frameValues) {
+  for (const fieldValues of frameValues) {
     let filledValues;
 
     if (fieldValues !== refValues) {

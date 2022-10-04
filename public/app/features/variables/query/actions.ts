@@ -163,7 +163,7 @@ export function hasSelfReferencingQuery(name: string, query: any): boolean {
 
   const flattened = flattenQuery(query);
 
-  for (let prop in flattened) {
+  for (const prop in flattened) {
     if (flattened.hasOwnProperty(prop)) {
       const value = flattened[prop];
       if (typeof value === 'string' && value.match(new RegExp('\\$' + name + '(/| |$)'))) {
@@ -192,7 +192,7 @@ export function flattenQuery(query: any): any {
     }
 
     const result = flattenQuery(value);
-    for (let childProp in result) {
+    for (const childProp in result) {
       if (result.hasOwnProperty(childProp)) {
         all[`${key}_${childProp}`] = result[childProp];
       }

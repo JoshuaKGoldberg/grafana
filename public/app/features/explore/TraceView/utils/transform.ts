@@ -5,7 +5,7 @@ export function transformDataFrames(frame?: DataFrame): Trace | null {
   if (!frame) {
     return null;
   }
-  let data: TraceResponse =
+  const data: TraceResponse =
     frame.fields.length === 1
       ? // For backward compatibility when we sent whole json response in a single field/value
         frame.fields[0].values.get(0)

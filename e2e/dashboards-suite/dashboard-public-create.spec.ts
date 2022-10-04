@@ -147,6 +147,6 @@ e2e.scenario({
 });
 
 const getPublicDashboardAPIUrl = (url: string): string => {
-  let accessToken = url.split('/').pop();
+  const accessToken = url.split('/').pop();
   return `/api/public/dashboards/${accessToken}`;
 };

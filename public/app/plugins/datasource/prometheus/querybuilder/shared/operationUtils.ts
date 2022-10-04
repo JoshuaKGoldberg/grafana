@@ -46,7 +46,7 @@ function rangeRendererWithParams(
     throw `Cannot render a function with params of length [${def.params.length}]`;
   }
 
-  let rangeVector = (model.params ?? [])[0] ?? '5m';
+  const rangeVector = (model.params ?? [])[0] ?? '5m';
 
   // Next frame the remaining parameters, but get rid of the first one because it's used to move the
   // instant vector into a range vector.

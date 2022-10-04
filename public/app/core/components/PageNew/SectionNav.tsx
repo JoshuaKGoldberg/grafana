@@ -13,7 +13,7 @@ export interface Props {
 export function SectionNav({ model }: Props) {
   const styles = useStyles2(getStyles);
 
-  if (!Boolean(model.main?.children?.length)) {
+  if (!model.main?.children?.length) {
     return null;
   }
 

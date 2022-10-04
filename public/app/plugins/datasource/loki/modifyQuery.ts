@@ -116,7 +116,7 @@ export function removeCommentsFromQuery(query: string): string {
   let newQuery = '';
   let prev = 0;
 
-  for (let lineCommentPosition of lineCommentPositions) {
+  for (const lineCommentPosition of lineCommentPositions) {
     const beforeComment = query.substring(prev, lineCommentPosition.from);
     const afterComment = query.substring(lineCommentPosition.to);
 

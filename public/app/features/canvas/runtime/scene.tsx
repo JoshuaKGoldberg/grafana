@@ -228,7 +228,7 @@ export class Scene {
 
   clearCurrentSelection(skipNextSelectionBroadcast = false) {
     this.skipNextSelectionBroadcast = skipNextSelectionBroadcast;
-    let event: MouseEvent = new MouseEvent('click');
+    const event: MouseEvent = new MouseEvent('click');
     this.selecto?.clickTarget(event, this.div);
   }
 
@@ -314,7 +314,7 @@ export class Scene {
   };
 
   private generateTargetElements = (rootElements: ElementState[]): HTMLDivElement[] => {
-    let targetElements: HTMLDivElement[] = [];
+    const targetElements: HTMLDivElement[] = [];
 
     const stack = [...rootElements];
     while (stack.length > 0) {

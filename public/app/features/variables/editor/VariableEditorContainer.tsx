@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch) => {
   };
 };
 
-interface OwnProps extends SettingsPageProps {}
+type OwnProps = SettingsPageProps
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

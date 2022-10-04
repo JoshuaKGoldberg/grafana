@@ -89,7 +89,7 @@ const CSVWaveEditor = (props: WaveProps) => {
 
 export class CSVWavesEditor extends PureComponent<WavesProps> {
   onChange = (index: number, wave?: CSVWave) => {
-    let waves = [...(this.props.waves ?? defaultCSVWaveQuery)];
+    const waves = [...(this.props.waves ?? defaultCSVWaveQuery)];
     if (wave) {
       waves[index] = { ...wave };
     } else {

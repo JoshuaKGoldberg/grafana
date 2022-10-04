@@ -13,7 +13,7 @@ import { OnPropChangeArguments, VariableEditorProps } from '../editor/types';
 import { changeVariableMultiValue } from '../state/actions';
 import { CustomVariableModel, VariableWithMultiSupport } from '../types';
 
-interface OwnProps extends VariableEditorProps<CustomVariableModel> {}
+type OwnProps = VariableEditorProps<CustomVariableModel>
 
 interface ConnectedProps {}
 

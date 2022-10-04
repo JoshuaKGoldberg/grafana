@@ -57,7 +57,7 @@ export function getPublicGeoJSONFiles(): Array<SelectableValue<string>> {
 // This will find all geojson files in the maps and gazetteer folders
 async function initGeojsonFiles() {
   const ds = await getGrafanaDatasource();
-  for (let folder of ['maps', 'gazetteer']) {
+  for (const folder of ['maps', 'gazetteer']) {
     ds.listFiles(folder).subscribe({
       next: (frame) => {
         frame.forEach((item) => {

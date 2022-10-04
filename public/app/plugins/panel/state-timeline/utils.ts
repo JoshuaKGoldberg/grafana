@@ -236,7 +236,7 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<TimelineOptions> = ({
   }
 
   if (sync && sync() !== DashboardCursorSync.Off) {
-    let cursor: Partial<uPlot.Cursor> = {};
+    const cursor: Partial<uPlot.Cursor> = {};
 
     cursor.sync = {
       key: '__global_',
@@ -289,7 +289,7 @@ export function unsetSameFutureValues(values: any[]): any[] | undefined {
   let clone: any[] | undefined = undefined;
 
   for (let i = 1; i < values.length; i++) {
-    let value = values[i];
+    const value = values[i];
 
     if (value === null) {
       prevVal = null;
@@ -308,7 +308,7 @@ export function unsetSameFutureValues(values: any[]): any[] | undefined {
 }
 
 function getSpanNulls(field: Field) {
-  let spanNulls = field.config.custom?.spanNulls;
+  const spanNulls = field.config.custom?.spanNulls;
 
   // magic value for join() to leave nulls alone instead of expanding null ranges
   // should be set to -1 when spanNulls = null|undefined|false|0, which is "retain nulls, without expanding"
@@ -338,7 +338,7 @@ export function mergeThresholdValues(field: Field, theme: GrafanaTheme2): Field 
   }
 
   let input = field.values.toArray();
-  const vals = new Array<String | undefined>(field.values.length);
+  const vals = new Array<string | undefined>(field.values.length);
   if (thresholds.mode === ThresholdsMode.Percentage) {
     const { min, max } = getFieldConfigWithMinMax(field);
     const delta = max! - min!;
@@ -391,15 +391,15 @@ export function prepareTimelineFields(
   let hasTimeseries = false;
   const frames: DataFrame[] = [];
 
-  for (let frame of series) {
+  for (const frame of series) {
     let isTimeseries = false;
     let changed = false;
-    let maybeSortedFrame = maybeSortFrame(
+    const maybeSortedFrame = maybeSortFrame(
       frame,
       frame.fields.findIndex((f) => f.type === FieldType.time)
     );
 
-    let nulledFrame = applyNullInsertThreshold({
+    const nulledFrame = applyNullInsertThreshold({
       frame: maybeSortedFrame,
       refFieldPseudoMin: timeRange.from.valueOf(),
       refFieldPseudoMax: timeRange.to.valueOf(),
@@ -523,11 +523,11 @@ export function getFieldLegendItem(fields: Field[], theme: GrafanaTheme2): VizLe
     return undefined; // eventually a color bar
   }
 
-  let stateColors: Map<string, string | undefined> = new Map();
+  const stateColors: Map<string, string | undefined> = new Map();
 
   fields.forEach((field) => {
     field.values.toArray().forEach((v) => {
-      let state = field.display!(v);
+      const state = field.display!(v);
       if (state.color) {
         stateColors.set(state.text, state.color!);
       }

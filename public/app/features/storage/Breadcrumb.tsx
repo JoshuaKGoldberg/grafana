@@ -23,7 +23,7 @@ export function Breadcrumb({ pathName, onPathChange, rootIcon }: Props) {
         </li>
       )}
       {paths.map((path, index) => {
-        let url = '/' + paths.slice(0, index + 1).join('/');
+        const url = '/' + paths.slice(0, index + 1).join('/');
         const onClickBreadcrumb = () => onPathChange(url);
         const isLastBreadcrumb = index === paths.length - 1;
         return (

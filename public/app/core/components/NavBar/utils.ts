@@ -55,7 +55,7 @@ export const enrichConfigItems = (items: NavModelItem[], location: Location<unkn
   }
 
   items.forEach((link) => {
-    let menuItems = link.children || [];
+    const menuItems = link.children || [];
 
     if (link.id === 'help') {
       link.children = [

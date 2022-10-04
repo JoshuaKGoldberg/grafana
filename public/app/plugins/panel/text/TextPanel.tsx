@@ -12,7 +12,7 @@ import config from 'app/core/config';
 // Types
 import { defaultCodeOptions, PanelOptions, TextMode } from './models.gen';
 
-export interface Props extends PanelProps<PanelOptions> {}
+export type Props = PanelProps<PanelOptions>
 
 interface State {
   html: string;

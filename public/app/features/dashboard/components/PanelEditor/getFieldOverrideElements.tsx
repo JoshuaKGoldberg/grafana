@@ -34,13 +34,13 @@ export function getFieldOverrideCategories(
   }
 
   const onOverrideChange = (index: number, override: any) => {
-    let overrides = cloneDeep(currentFieldConfig.overrides);
+    const overrides = cloneDeep(currentFieldConfig.overrides);
     overrides[index] = override;
     props.onFieldConfigsChange({ ...currentFieldConfig, overrides });
   };
 
   const onOverrideRemove = (overrideIndex: number) => {
-    let overrides = cloneDeep(currentFieldConfig.overrides);
+    const overrides = cloneDeep(currentFieldConfig.overrides);
     overrides.splice(overrideIndex, 1);
     props.onFieldConfigsChange({ ...currentFieldConfig, overrides });
   };

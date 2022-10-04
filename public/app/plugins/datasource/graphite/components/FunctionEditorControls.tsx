@@ -22,7 +22,7 @@ const FunctionDescription = React.lazy(async () => {
 
 const FunctionHelpButton = (props: { description?: string; name: string }) => {
   if (props.description) {
-    let tooltip = (
+    const tooltip = (
       <Suspense fallback={<span>Loading description...</span>}>
         <FunctionDescription description={props.description} />
       </Suspense>

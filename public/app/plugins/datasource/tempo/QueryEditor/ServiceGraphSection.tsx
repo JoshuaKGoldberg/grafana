@@ -114,7 +114,7 @@ export function ServiceGraphSection({
 
 function queryToFilter(query: string): AdHocVariableFilter[] {
   let match;
-  let filters: AdHocVariableFilter[] = [];
+  const filters: AdHocVariableFilter[] = [];
   const re = /([\w_]+)(=|!=|<|>|=~|!~)"(.*?)"/g;
   while ((match = re.exec(query)) !== null) {
     filters.push({

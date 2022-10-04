@@ -75,14 +75,14 @@ export function createTableFrame(
   const timeField = logsFrame.fields.find((f) => f.type === FieldType.time);
 
   // Going through all string fields to look for trace IDs
-  for (let field of logsFrame.fields) {
+  for (const field of logsFrame.fields) {
     let hasMatch = false;
     if (field.type === FieldType.string) {
       const values = field.values.toArray();
       for (let i = 0; i < values.length; i++) {
         const line = values[i];
         if (line) {
-          for (let traceRegex of traceRegexs) {
+          for (const traceRegex of traceRegexs) {
             const match = (line as string).match(traceRegex);
             if (match) {
               const traceId = match[1];
@@ -318,7 +318,7 @@ export function transformFromOTLP(
     return { error: { message: 'JSON is not valid OpenTelemetry format: ' + error }, data: [] };
   }
 
-  let data = [frame];
+  const data = [frame];
   if (nodeGraph) {
     data.push(...(createGraphFrames(frame) as MutableDataFrame[]));
   }
@@ -332,12 +332,12 @@ export function transformFromOTLP(
 export function transformToOTLP(data: MutableDataFrame): {
   batches: collectorTypes.opentelemetryProto.trace.v1.ResourceSpans[];
 } {
-  let result: { batches: collectorTypes.opentelemetryProto.trace.v1.ResourceSpans[] } = {
+  const result: { batches: collectorTypes.opentelemetryProto.trace.v1.ResourceSpans[] } = {
     batches: [],
   };
 
   // Lookup object to see which batch contains spans for which services
-  let services: { [key: string]: number } = {};
+  const services: { [key: string]: number } = {};
 
   for (let i = 0; i < data.length; i++) {
     const span = data.get(i);
@@ -358,7 +358,7 @@ export function transformToOTLP(data: MutableDataFrame): {
       });
     }
 
-    let batchIndex = services[span.serviceName];
+    const batchIndex = services[span.serviceName];
 
     // Populate resource attributes from service tags
     if (result.batches[batchIndex].resource!.attributes.length === 0) {
@@ -367,7 +367,7 @@ export function transformToOTLP(data: MutableDataFrame): {
 
     // Populate instrumentation library if it exists
     if (!result.batches[batchIndex].instrumentationLibrarySpans[0].instrumentationLibrary) {
-      let libraryName = span.tags.find((t: TraceKeyValuePair) => t.key === 'otel.library.name')?.value;
+      const libraryName = span.tags.find((t: TraceKeyValuePair) => t.key === 'otel.library.name')?.value;
       if (libraryName) {
         result.batches[batchIndex].instrumentationLibrarySpans[0].instrumentationLibrary = {
           name: libraryName,
@@ -485,9 +485,9 @@ function getOTLPEvents(logs: TraceLog[]): collectorTypes.opentelemetryProto.trac
     return undefined;
   }
 
-  let events: collectorTypes.opentelemetryProto.trace.v1.Span.Event[] = [];
+  const events: collectorTypes.opentelemetryProto.trace.v1.Span.Event[] = [];
   for (const log of logs) {
-    let event: collectorTypes.opentelemetryProto.trace.v1.Span.Event = {
+    const event: collectorTypes.opentelemetryProto.trace.v1.Span.Event = {
       timeUnixNano: log.timestamp * 1000000,
       attributes: [],
       droppedAttributesCount: 0,
@@ -511,9 +511,9 @@ function getOTLPReferences(
     return undefined;
   }
 
-  let links: collectorTypes.opentelemetryProto.trace.v1.Span.Link[] = [];
+  const links: collectorTypes.opentelemetryProto.trace.v1.Span.Link[] = [];
   for (const ref of references) {
-    let link: collectorTypes.opentelemetryProto.trace.v1.Span.Link = {
+    const link: collectorTypes.opentelemetryProto.trace.v1.Span.Link = {
       traceId: ref.traceID,
       spanId: ref.spanID,
       attributes: [],
@@ -539,7 +539,7 @@ export function transformTrace(response: DataQueryResponse, nodeGraph = false): 
     return emptyDataQueryResponse;
   }
 
-  let data = [...response.data];
+  const data = [...response.data];
   if (nodeGraph) {
     data.push(...createGraphFrames(frame));
   }

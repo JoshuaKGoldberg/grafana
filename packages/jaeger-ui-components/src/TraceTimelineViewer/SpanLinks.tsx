@@ -12,7 +12,7 @@ interface SpanLinksProps {
 const renderMenuItems = (links: SpanLinks, styles: ReturnType<typeof getStyles>, closeMenu: () => void) => {
   return (
     <>
-      {!!links.logLinks?.length ? (
+      {links.logLinks?.length ? (
         <MenuGroup label="Logs">
           {links.logLinks.map((link, i) => (
             <MenuItem
@@ -33,7 +33,7 @@ const renderMenuItems = (links: SpanLinks, styles: ReturnType<typeof getStyles>,
           ))}
         </MenuGroup>
       ) : null}
-      {!!links.metricLinks?.length ? (
+      {links.metricLinks?.length ? (
         <MenuGroup label="Metrics">
           {links.metricLinks.map((link, i) => (
             <MenuItem
@@ -54,7 +54,7 @@ const renderMenuItems = (links: SpanLinks, styles: ReturnType<typeof getStyles>,
           ))}
         </MenuGroup>
       ) : null}
-      {!!links.traceLinks?.length ? (
+      {links.traceLinks?.length ? (
         <MenuGroup label="Traces">
           {links.traceLinks.map((link, i) => (
             <MenuItem

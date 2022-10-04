@@ -52,7 +52,7 @@ describe('PromQueryBuilderOptions', () => {
 
     screen.getByTitle('Click to edit options').click();
 
-    let legendModeSelect = screen.getByText('Auto').parentElement!;
+    const legendModeSelect = screen.getByText('Auto').parentElement!;
     legendModeSelect.click();
 
     await selectOptionInTest(legendModeSelect as HTMLElement, 'Verbose');
@@ -68,7 +68,7 @@ describe('PromQueryBuilderOptions', () => {
 
     screen.getByTitle('Click to edit options').click();
 
-    let legendModeSelect = screen.getByText('Auto').parentElement!;
+    const legendModeSelect = screen.getByText('Auto').parentElement!;
     legendModeSelect.click();
 
     await selectOptionInTest(legendModeSelect as HTMLElement, 'Custom');

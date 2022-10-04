@@ -84,7 +84,7 @@ export function SaveToStorageForm(props: Props) {
     );
   }
 
-  let options = props.options;
+  const options = props.options;
   const workflows = item.value?.workflows ?? [];
   const canSave = saveModel.hasChanges || isNew || isCopy;
 

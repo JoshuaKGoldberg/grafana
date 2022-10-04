@@ -66,7 +66,7 @@ describe('Strict panel refresh', () => {
     });
 
     describe('when the dashboard has not been refreshed within the threshold', () => {
-      it(' then all panels should be refreshed', () => {
+      it('then all panels should be refreshed', () => {
         isRefreshOutsideThreshold = true;
         const { startRefreshMock } = getTestContext();
 

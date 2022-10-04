@@ -728,7 +728,7 @@ export class LokiDatasource
   }
 
   processError(err: FetchError, target: LokiQuery) {
-    let error: DataQueryError = cloneDeep(err);
+    const error: DataQueryError = cloneDeep(err);
     error.refId = target.refId;
 
     if (error.data && err.data.message.includes('escape') && target.expr.includes('\\')) {
@@ -815,7 +815,7 @@ function extractLevel(dataFrame: DataFrame): LogLevel {
 function getLogLevelFromLabels(labels: Labels): LogLevel {
   const labelNames = ['level', 'lvl', 'loglevel'];
   let levelLabel;
-  for (let labelName of labelNames) {
+  for (const labelName of labelNames) {
     if (labelName in labels) {
       levelLabel = labelName;
       break;

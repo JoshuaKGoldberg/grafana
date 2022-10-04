@@ -79,7 +79,7 @@ export class PlaylistSrv {
     this.locationListenerUnsub = locationService.getHistory().listen(this.locationUpdated);
 
     const urls: string[] = [];
-    let playlist = await getPlaylist(playlistUid);
+    const playlist = await getPlaylist(playlistUid);
     if (!playlist.items?.length) {
       // alert
       return;

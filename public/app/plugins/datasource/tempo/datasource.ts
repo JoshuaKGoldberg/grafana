@@ -336,7 +336,7 @@ export class TempoDatasource extends DataSourceWithBackend<TempoQuery, TempoJson
 
   getQueryDisplayText(query: TempoQuery) {
     if (query.queryType === 'nativeSearch') {
-      let result = [];
+      const result = [];
       for (const key of ['serviceName', 'spanName', 'search', 'minDuration', 'maxDuration', 'limit']) {
         if (query.hasOwnProperty(key) && query[key as keyof TempoQuery]) {
           result.push(`${startCase(key)}: ${query[key as keyof TempoQuery]}`);
@@ -386,7 +386,7 @@ export class TempoDatasource extends DataSourceWithBackend<TempoQuery, TempoJson
       throw new Error('Please enter a valid limit.');
     }
 
-    let searchQuery: SearchQueryParams = { tags, ...tempoQuery };
+    const searchQuery: SearchQueryParams = { tags, ...tempoQuery };
 
     if (timeRange) {
       searchQuery.start = timeRange.startTime;
@@ -480,9 +480,9 @@ function errorAndDurationQuery(
   datasourceUid: string,
   tempoDatasourceUid: string
 ) {
-  let apmMetrics = [];
+  const apmMetrics = [];
   let errorRateBySpanName = '';
-  let durationsBySpanName: string[] = [];
+  const durationsBySpanName: string[] = [];
   const spanNames = rateResponse.data[0][0]?.fields[1]?.values.toArray() ?? [];
 
   if (spanNames.length > 0) {
@@ -583,7 +583,7 @@ export function getFieldConfig(
 }
 
 export function makeTempoLink(title: string, serviceName: string, spanName: string, datasourceUid: string) {
-  let query = { queryType: 'nativeSearch' } as TempoQuery;
+  const query = { queryType: 'nativeSearch' } as TempoQuery;
   if (serviceName !== '') {
     query.serviceName = serviceName;
   }
@@ -626,7 +626,7 @@ function getApmTable(
   datasourceUid: string,
   tempoDatasourceUid: string
 ) {
-  let df: any = { fields: [] };
+  const df: any = { fields: [] };
   const rate = rateResponse.data[0]?.filter((x: { refId: string }) => {
     return x.refId === buildExpr(rateMetric, defaultTableFilter, request);
   });
@@ -681,7 +681,7 @@ function getApmTable(
   if (errorRate.length > 0 && errorRate[0].fields?.length > 2) {
     const errorRateNames = errorRate[0].fields[1]?.values.toArray() ?? [];
     const errorRateValues = errorRate[0].fields[2]?.values.toArray() ?? [];
-    let errorRateObj: any = {};
+    const errorRateObj: any = {};
     errorRateNames.map((name: string, index: number) => {
       errorRateObj[name] = { value: errorRateValues[index] };
     });
@@ -723,7 +723,7 @@ function getApmTable(
   }
 
   if (duration.length > 0 && duration[0].fields?.length > 1) {
-    let durationObj: any = {};
+    const durationObj: any = {};
     duration.map((d) => {
       const delimiter = d.refId?.includes('span_name=~"') ? 'span_name=~"' : 'span_name="';
       const name = d.refId?.split(delimiter)[1].split('"}')[0];
@@ -794,7 +794,7 @@ export function getRateAlignedValues(
   objToAlign: { [x: string]: { value: string } }
 ) {
   const rateNames = rateResp[0]?.fields[1]?.values.toArray() ?? [];
-  let values: string[] = [];
+  const values: string[] = [];
 
   for (let i = 0; i < rateNames.length; i++) {
     if (Object.keys(objToAlign).includes(rateNames[i])) {

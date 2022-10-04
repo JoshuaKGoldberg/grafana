@@ -25,7 +25,7 @@ export const ArcOptionsEditor = ({ value, onChange, context }: ArcOptionsEditorP
   };
 
   const updateField = <K extends keyof ArcOption>(idx: number, field: K, newValue: ArcOption[K]) => {
-    let arcs = value?.slice() ?? [];
+    const arcs = value?.slice() ?? [];
     arcs[idx][field] = newValue;
     onChange(arcs);
   };

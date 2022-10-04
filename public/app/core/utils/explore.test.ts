@@ -416,21 +416,21 @@ describe('refreshIntervalToSortOrder', () => {
 });
 
 describe('when buildQueryTransaction', () => {
-  it('it should calculate interval based on time range', () => {
+  it('should calculate interval based on time range', () => {
     const queries = [{ refId: 'A' }];
     const queryOptions = { maxDataPoints: 1000, minInterval: '15s' };
     const range = { from: dateTime().subtract(1, 'd'), to: dateTime(), raw: { from: '1h', to: '1h' } };
     const transaction = buildQueryTransaction(ExploreId.left, queries, queryOptions, range, false);
     expect(transaction.request.intervalMs).toEqual(60000);
   });
-  it('it should calculate interval taking minInterval into account', () => {
+  it('should calculate interval taking minInterval into account', () => {
     const queries = [{ refId: 'A' }];
     const queryOptions = { maxDataPoints: 1000, minInterval: '15s' };
     const range = { from: dateTime().subtract(1, 'm'), to: dateTime(), raw: { from: '1h', to: '1h' } };
     const transaction = buildQueryTransaction(ExploreId.left, queries, queryOptions, range, false);
     expect(transaction.request.intervalMs).toEqual(15000);
   });
-  it('it should calculate interval taking maxDataPoints into account', () => {
+  it('should calculate interval taking maxDataPoints into account', () => {
     const queries = [{ refId: 'A' }];
     const queryOptions = { maxDataPoints: 10, minInterval: '15s' };
     const range = { from: dateTime().subtract(1, 'd'), to: dateTime(), raw: { from: '1h', to: '1h' } };

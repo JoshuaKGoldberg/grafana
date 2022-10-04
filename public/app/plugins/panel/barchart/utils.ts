@@ -255,7 +255,7 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<BarChartOptionsEX> = ({
     }
   }
 
-  let stackingGroups = getStackingGroups(frame);
+  const stackingGroups = getStackingGroups(frame);
 
   builder.setStackingGroups(stackingGroups);
 
@@ -276,7 +276,7 @@ function getRotationPadding(frame: DataFrame, rotateLabel: number, valueMaxLengt
   const displayProcessor = frame.fields[0].display ?? ((v) => v);
   let maxLength = 0;
   for (let i = 0; i < values.length; i++) {
-    let size = measureText(
+    const size = measureText(
       shortenValue(formattedValueToString(displayProcessor(values.get(i))), valueMaxLength),
       fontSize
     );

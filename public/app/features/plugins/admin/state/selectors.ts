@@ -31,7 +31,7 @@ const findByKeyword = (searchBy: string) =>
     }
 
     return plugins.filter((plugin) => {
-      const fields: String[] = [];
+      const fields: string[] = [];
       if (plugin.name) {
         fields.push(plugin.name.toLowerCase());
       }

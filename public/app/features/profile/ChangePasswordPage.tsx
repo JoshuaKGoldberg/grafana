@@ -33,7 +33,7 @@ export function ChangePasswordPage({ loadUser, isUpdating, user, changePassword 
 
   return (
     <Page navId="profile/password">
-      <Page.Contents isLoading={!Boolean(user)}>
+      <Page.Contents isLoading={!user}>
         {user ? (
           <>
             <Page.OldNavOnly>

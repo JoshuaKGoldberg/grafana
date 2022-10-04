@@ -45,7 +45,7 @@ coreModule.directive('bsTypeahead', [
           items = isFunction(this.source) ? this.source(this.query, $.proxy(this.process, this)) : this.source;
           return items ? this.process(items) : this;
         };
-        if (!!attrs.matchAll) {
+        if (attrs.matchAll) {
           typeahead.matcher = function () {
             return true;
           };

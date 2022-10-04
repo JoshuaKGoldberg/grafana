@@ -84,12 +84,12 @@ export function quantizeScheme(opts: HeatmapColorOptions, theme: GrafanaTheme2):
     }
   } else {
     const scheme = colorSchemes.find((scheme) => scheme.name === options.scheme) ?? DEFAULT_SCHEME!;
-    let fnName = 'interpolate' + (scheme.name2 ?? scheme.name);
+    const fnName = 'interpolate' + (scheme.name2 ?? scheme.name);
     const interpolate: Interpolator = (d3ScaleChromatic as any)[fnName];
 
     for (let i = 0; i <= steps; i++) {
-      let rgbStr = interpolate(i / steps);
-      let rgb =
+      const rgbStr = interpolate(i / steps);
+      const rgb =
         rgbStr.indexOf('rgb') === 0
           ? '#' + [...rgbStr.matchAll(/\d+/g)].map((v) => (+v[0]).toString(16).padStart(2, '0')).join('')
           : rgbStr;

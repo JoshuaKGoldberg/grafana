@@ -21,7 +21,7 @@ export function getResourceDimension(
   if (mode === ResourceDimensionMode.Fixed) {
     const v = getPublicOrAbsoluteUrl(config.fixed!);
     return {
-      isAssumed: !Boolean(v),
+      isAssumed: !v,
       fixed: v,
       value: () => v,
       get: (i) => v,

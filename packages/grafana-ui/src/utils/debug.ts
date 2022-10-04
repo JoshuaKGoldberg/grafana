@@ -15,7 +15,7 @@ export function attachDebugger(key: string, thebugger?: any, logger?: Logger) {
   }
 
   // @ts-ignore
-  let debugGlobal = (typeof window !== 'undefined' && window['_debug']) ?? {};
+  const debugGlobal = (typeof window !== 'undefined' && window['_debug']) ?? {};
   debugGlobal[key] = completeDebugger;
   if (typeof window !== 'undefined') {
     // @ts-ignore

@@ -22,7 +22,7 @@ import { dispatch } from '../../../store/store';
 import { getFooterCells } from './footer';
 import { PanelOptions } from './models.gen';
 
-interface Props extends PanelProps<PanelOptions> {}
+type Props = PanelProps<PanelOptions>
 
 export class TablePanel extends Component<Props> {
   constructor(props: Props) {

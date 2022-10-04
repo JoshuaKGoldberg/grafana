@@ -482,7 +482,7 @@ describe('ElasticResponse', () => {
     });
   });
 
-  describe('with percentiles ', () => {
+  describe('with percentiles', () => {
     let result: {
       data: MockedResultData[];
     };
@@ -967,7 +967,7 @@ describe('ElasticResponse', () => {
     });
   });
 
-  describe('No group by time with percentiles ', () => {
+  describe('No group by time with percentiles', () => {
     let result: {
       data: MockedResultData[];
     };
@@ -1112,7 +1112,7 @@ describe('ElasticResponse', () => {
     });
   });
 
-  describe('with bucket_script ', () => {
+  describe('with bucket_script', () => {
     let result: {
       data: MockedResultData[];
     };

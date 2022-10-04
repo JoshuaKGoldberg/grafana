@@ -7,7 +7,7 @@ import { createDefaultConfigOptions } from './mocks';
 
 describe('ElasticDetails', () => {
   describe('Max concurrent Shard Requests', () => {
-    it('should render "Max concurrent Shard Requests" ', () => {
+    it('should render "Max concurrent Shard Requests"', () => {
       render(<ElasticDetails onChange={() => {}} value={createDefaultConfigOptions({ esVersion: '8.2.0' })} />);
       expect(screen.getByLabelText('Max concurrent Shard Requests')).toBeInTheDocument();
     });

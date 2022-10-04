@@ -24,7 +24,7 @@ import { prepareCandlestickFields } from './fields';
 import { defaultColors, CandlestickOptions, VizDisplayMode } from './models.gen';
 import { drawMarkers, FieldIndices } from './utils';
 
-interface CandlestickPanelProps extends PanelProps<CandlestickOptions> {}
+type CandlestickPanelProps = PanelProps<CandlestickOptions>
 
 export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
   data,
@@ -54,7 +54,7 @@ export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
     let tweakScale = (opts: ScaleProps, forField: Field) => opts;
     let tweakAxis = (opts: AxisProps, forField: Field) => opts;
 
-    let doNothing = {
+    const doNothing = {
       renderers: [],
       tweakScale,
       tweakAxis,
@@ -75,7 +75,7 @@ export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
 
     const { mode, candleStyle, colorStrategy } = options;
     const colors = { ...defaultColors, ...options.colors };
-    let { open, high, low, close, volume } = fieldMap; // names from matched fields
+    const { open, high, low, close, volume } = fieldMap; // names from matched fields
 
     if (open == null || close == null) {
       return doNothing;
@@ -89,12 +89,12 @@ export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
 
     // find volume field and set overrides
     if (volume != null && mode !== VizDisplayMode.Candles) {
-      let volumeField = info.volume!;
+      const volumeField = info.volume!;
 
       if (volumeField != null) {
         shouldRenderVolume = true;
 
-        let { fillOpacity } = volumeField.config.custom;
+        const { fillOpacity } = volumeField.config.custom;
 
         if (fillOpacity) {
           volumeAlpha = fillOpacity / 100;
@@ -112,9 +112,9 @@ export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
           tweakAxis = (opts: AxisProps, forField: Field) => {
             // we can't do forField === info.volume because of copies :(
             if (forField.name === info.volume?.name) {
-              let filter = (u: uPlot, splits: number[]) => {
-                let _splits = [];
-                let max = u.series[volumeIdx].max as number;
+              const filter = (u: uPlot, splits: number[]) => {
+                const _splits = [];
+                const max = u.series[volumeIdx].max as number;
 
                 for (let i = 0; i < splits.length; i++) {
                   _splits.push(splits[i]);
@@ -147,21 +147,21 @@ export const CandlestickPanel: React.FC<CandlestickPanelProps> = ({
       }
     }
 
-    let shouldRenderPrice = mode !== VizDisplayMode.Volume && high != null && low != null;
+    const shouldRenderPrice = mode !== VizDisplayMode.Volume && high != null && low != null;
 
     if (!shouldRenderPrice && !shouldRenderVolume) {
       return doNothing;
     }
 
     let fields: Record<string, string> = {};
-    let indicesOnly = [];
+    const indicesOnly = [];
 
     if (shouldRenderPrice) {
       fields = { open, high: high!, low: low!, close };
 
       // hide series from legend that are rendered as composite markers
-      for (let key in fields) {
-        let field = (info as any)[key] as Field;
+      for (const key in fields) {
+        const field = (info as any)[key] as Field;
         field.config = {
           ...field.config,
           custom: {

@@ -72,7 +72,7 @@ function getJoinMatcher(options: JoinOptions): FieldMatcher {
  */
 export function maybeSortFrame(frame: DataFrame, fieldIdx: number) {
   if (fieldIdx >= 0) {
-    let sortByField = frame.fields[fieldIdx];
+    const sortByField = frame.fields[fieldIdx];
 
     if (sortByField.type !== FieldType.string && !isLikelyAscendingVector(sortByField.values)) {
       frame = sortDataFrame(frame, fieldIdx);
@@ -92,7 +92,7 @@ export function joinDataFrames(options: JoinOptions): DataFrame | undefined {
   }
 
   if (options.frames.length === 1) {
-    let frame = options.frames[0];
+    const frame = options.frames[0];
     let frameCopy = frame;
 
     const joinFieldMatcher = getJoinMatcher(options);
@@ -131,7 +131,7 @@ export function joinDataFrames(options: JoinOptions): DataFrame | undefined {
     }
 
     if (options.keep) {
-      let fields = frameCopy.fields.filter(
+      const fields = frameCopy.fields.filter(
         (f, fieldIdx) => fieldIdx === joinIndex || options.keep!(f, frameCopy, options.frames)
       );
 
@@ -163,7 +163,7 @@ export function joinDataFrames(options: JoinOptions): DataFrame | undefined {
 
     const nullModesFrame: JoinNullMode[] = [NULL_REMOVE];
     let join: Field | undefined = undefined;
-    let fields: Field[] = [];
+    const fields: Field[] = [];
 
     for (let fieldIndex = 0; fieldIndex < frame.fields.length; fieldIndex++) {
       const field = frame.fields[fieldIndex];
@@ -177,7 +177,7 @@ export function joinDataFrames(options: JoinOptions): DataFrame | undefined {
         }
 
         // Support the standard graph span nulls field config
-        let spanNulls = field.config.custom?.spanNulls;
+        const spanNulls = field.config.custom?.spanNulls;
         nullModesFrame.push(spanNulls === true ? NULL_REMOVE : spanNulls === -1 ? NULL_RETAIN : NULL_EXPAND);
 
         let labels = field.labels ?? {};
@@ -264,7 +264,7 @@ type JoinNullMode = number; // NULL_IGNORE | NULL_RETAIN | NULL_EXPAND;
 // sets undefined values to nulls when adjacent to existing nulls (minesweeper)
 function nullExpand(yVals: Array<number | null>, nullIdxs: number[], alignedLen: number) {
   for (let i = 0, xi, lastNullIdx = -1; i < nullIdxs.length; i++) {
-    let nullIdx = nullIdxs[i];
+    const nullIdx = nullIdxs[i];
 
     if (nullIdx > lastNullIdx) {
       xi = nullIdx - 1;
@@ -291,9 +291,9 @@ export function join(tables: AlignedData[], nullModes?: number[][], mode: JoinMo
     xVals = new Set();
 
     for (let ti = 0; ti < tables.length; ti++) {
-      let t = tables[ti];
-      let xs = t[0];
-      let len = xs.length;
+      const t = tables[ti];
+      const xs = t[0];
+      const len = xs.length;
 
       for (let i = 0; i < len; i++) {
         xVals.add(xs[i]);
@@ -301,32 +301,32 @@ export function join(tables: AlignedData[], nullModes?: number[][], mode: JoinMo
     }
   }
 
-  let data = [Array.from(xVals).sort((a, b) => a - b)];
+  const data = [Array.from(xVals).sort((a, b) => a - b)];
 
-  let alignedLen = data[0].length;
+  const alignedLen = data[0].length;
 
-  let xIdxs = new Map();
+  const xIdxs = new Map();
 
   for (let i = 0; i < alignedLen; i++) {
     xIdxs.set(data[0][i], i);
   }
 
   for (let ti = 0; ti < tables.length; ti++) {
-    let t = tables[ti];
-    let xs = t[0];
+    const t = tables[ti];
+    const xs = t[0];
 
     for (let si = 1; si < t.length; si++) {
-      let ys = t[si];
+      const ys = t[si];
 
-      let yVals = Array(alignedLen).fill(undefined);
+      const yVals = Array(alignedLen).fill(undefined);
 
-      let nullMode = nullModes ? nullModes[ti][si] : NULL_RETAIN;
+      const nullMode = nullModes ? nullModes[ti][si] : NULL_RETAIN;
 
-      let nullIdxs = [];
+      const nullIdxs = [];
 
       for (let i = 0; i < ys.length; i++) {
-        let yVal = ys[i];
-        let alignedIdx = xIdxs.get(xs[i]);
+        const yVal = ys[i];
+        const alignedIdx = xIdxs.get(xs[i]);
 
         if (yVal === null) {
           if (nullMode !== NULL_REMOVE) {

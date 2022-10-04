@@ -22,9 +22,9 @@ export function toLineString(field: Field<Geometry | undefined>): LineString {
 export function calculateBearings(values: Array<Geometry | undefined>): number[] {
   const bearing = new Array(values.length);
   if (values.length > 1) {
-    let prev: number[] | undefined = getCenterPointWGS84(values[0]);
+    const prev: number[] | undefined = getCenterPointWGS84(values[0]);
     for (let i = 1; i < values.length; i++) {
-      let next: number[] | undefined = getCenterPointWGS84(values[i]);
+      const next: number[] | undefined = getCenterPointWGS84(values[i]);
       if (prev && next) {
         let degrees = (Math.atan2(next[0] - prev[0], next[1] - prev[1]) * 180) / Math.PI;
         if (degrees < 0.0) {

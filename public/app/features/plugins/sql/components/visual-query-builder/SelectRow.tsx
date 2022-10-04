@@ -24,7 +24,7 @@ export function SelectRow({ sql, columns, onSqlChange, functions }: SelectRowPro
 
   const onColumnChange = useCallback(
     (item: QueryEditorFunctionExpression, index: number) => (column: SelectableValue<string>) => {
-      let modifiedItem = { ...item };
+      const modifiedItem = { ...item };
       if (!item.parameters?.length) {
         modifiedItem.parameters = [{ type: QueryEditorExpressionType.FunctionParameter, name: column.value } as const];
       } else {

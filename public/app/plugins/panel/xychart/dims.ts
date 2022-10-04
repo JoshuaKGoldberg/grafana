@@ -34,7 +34,7 @@ export function getXYDimensions(cfg?: XYDimensionConfig, data?: DataFrame[]): XY
     };
   }
 
-  let frame = data[cfg.frame ?? 0];
+  const frame = data[cfg.frame ?? 0];
   if (!frame) {
     return { error: DimensionError.BadFrameSelection } as XYDimensions;
   }

@@ -26,7 +26,7 @@ import { prepareTimelineFields, prepareTimelineLegendItems } from './utils';
 
 const TOOLTIP_OFFSET = 10;
 
-interface TimelinePanelProps extends PanelProps<TimelineOptions> {}
+type TimelinePanelProps = PanelProps<TimelineOptions>
 
 /**
  * @alpha

@@ -93,7 +93,7 @@ export const TransformationOperationRow: React.FC<TransformationOperationRowProp
 };
 
 function prepMarkdown(uiConfig: TransformerRegistryItem<any>) {
-  let helpMarkdown = uiConfig.help ?? uiConfig.description;
+  const helpMarkdown = uiConfig.help ?? uiConfig.description;
 
   return `
 ${helpMarkdown}

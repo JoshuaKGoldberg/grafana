@@ -53,7 +53,7 @@ describe('SearchResultsGrid', () => {
     await waitFor(() => expect(screen.queryAllByRole('checkbox')).toHaveLength(0));
   });
 
-  it('should render checkboxes for editable results ', async () => {
+  it('should render checkboxes for editable results', async () => {
     const mockSelectionToggle = jest.fn();
     const mockSelection = jest.fn();
     render(<SearchResultsGrid {...baseProps} selection={mockSelection} selectionToggle={mockSelectionToggle} />);

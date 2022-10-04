@@ -13,7 +13,7 @@ import { ShareModalTabProps } from './types';
 
 const snapshotApiUrl = '/api/snapshots';
 
-interface Props extends ShareModalTabProps {}
+type Props = ShareModalTabProps
 
 interface State {
   isLoading: boolean;

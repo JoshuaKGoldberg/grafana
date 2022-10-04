@@ -22,7 +22,7 @@ export function ImportDashboardLibraryPanelsList({
 }: ImportDashboardLibraryPanelsListProps): ReactElement | null {
   const styles = useStyles2(getStyles);
 
-  if (!Boolean(inputs?.length)) {
+  if (!inputs?.length) {
     return null;
   }
 

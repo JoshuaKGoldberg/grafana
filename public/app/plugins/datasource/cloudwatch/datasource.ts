@@ -76,7 +76,7 @@ export class CloudWatchDatasource
   query(options: DataQueryRequest<CloudWatchQuery>): Observable<DataQueryResponse> {
     options = cloneDeep(options);
 
-    let queries = options.targets.filter(this.filterQuery);
+    const queries = options.targets.filter(this.filterQuery);
 
     const logQueries: CloudWatchLogsQuery[] = [];
     const metricsQueries: CloudWatchMetricsQuery[] = [];

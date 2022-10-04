@@ -240,7 +240,7 @@ export class QueryEditorRow<TQuery extends DataQuery> extends PureComponent<Prop
     }
 
     if (datasource) {
-      let QueryEditor = this.getReactQueryEditor(datasource);
+      const QueryEditor = this.getReactQueryEditor(datasource);
 
       if (QueryEditor) {
         return (

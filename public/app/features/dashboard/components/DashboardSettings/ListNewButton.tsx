@@ -4,7 +4,7 @@ import React, { ButtonHTMLAttributes } from 'react';
 import { GrafanaTheme } from '@grafana/data';
 import { Button, useStyles } from '@grafana/ui';
 
-export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
+export type Props = ButtonHTMLAttributes<HTMLButtonElement>
 
 export const ListNewButton: React.FC<Props> = ({ children, ...restProps }) => {
   const styles = useStyles(getStyles);

@@ -155,7 +155,7 @@ export interface LiveChannelAddress {
  */
 export function parseLiveChannelAddress(id?: string): LiveChannelAddress | undefined {
   if (id?.length) {
-    let parts = id.trim().split('/');
+    const parts = id.trim().split('/');
     if (parts.length >= 3) {
       return {
         scope: parts[0] as LiveChannelScope,

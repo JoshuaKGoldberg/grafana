@@ -56,7 +56,7 @@ export const UserInviteForm = () => {
             <FieldSet>
               <Field
                 invalid={!!errors.loginOrEmail}
-                error={!!errors.loginOrEmail ? 'Email or username is required' : undefined}
+                error={errors.loginOrEmail ? 'Email or username is required' : undefined}
                 label="Email or username"
               >
                 <Input {...register('loginOrEmail', { required: true })} placeholder="email@example.com" />

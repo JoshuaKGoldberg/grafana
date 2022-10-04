@@ -95,7 +95,7 @@ type ValueStop = [value: number, color: string];
 type ScaleValueStops = ValueStop[];
 
 export function scaleGradient(u: uPlot, scaleKey: string, scaleStops: ScaleValueStops, discrete = false) {
-  let scale = u.scales[scaleKey];
+  const scale = u.scales[scaleKey];
 
   // we want the stop below or at the scaleMax
   // and the stop below or at the scaleMin, else the stop above scaleMin
@@ -103,7 +103,7 @@ export function scaleGradient(u: uPlot, scaleKey: string, scaleStops: ScaleValue
   let maxStopIdx: number | null = null;
 
   for (let i = 0; i < scaleStops.length; i++) {
-    let stopVal = scaleStops[i][0];
+    const stopVal = scaleStops[i][0];
 
     if (stopVal <= scale.min! || minStopIdx == null) {
       minStopIdx = i;
@@ -131,10 +131,10 @@ export function scaleGradient(u: uPlot, scaleKey: string, scaleStops: ScaleValue
     maxStopVal = scale.max!;
   }
 
-  let minStopPos = Math.round(u.valToPos(minStopVal, scaleKey, true));
-  let maxStopPos = Math.round(u.valToPos(maxStopVal, scaleKey, true));
+  const minStopPos = Math.round(u.valToPos(minStopVal, scaleKey, true));
+  const maxStopPos = Math.round(u.valToPos(maxStopVal, scaleKey, true));
 
-  let range = minStopPos - maxStopPos;
+  const range = minStopPos - maxStopPos;
 
   if (range === 0) {
     return scaleStops[maxStopIdx!][1];
@@ -152,19 +152,19 @@ export function scaleGradient(u: uPlot, scaleKey: string, scaleStops: ScaleValue
     x1 = maxStopPos;
   }
 
-  let ctx = getCanvasContext();
+  const ctx = getCanvasContext();
 
-  let grd = ctx.createLinearGradient(x0, y0, x1, y1);
+  const grd = ctx.createLinearGradient(x0, y0, x1, y1);
 
   let prevColor: string;
 
   for (let i = minStopIdx!; i <= maxStopIdx!; i++) {
-    let s = scaleStops[i];
+    const s = scaleStops[i];
 
-    let stopPos =
+    const stopPos =
       i === minStopIdx ? minStopPos : i === maxStopIdx ? maxStopPos : Math.round(u.valToPos(s[0], scaleKey, true));
 
-    let pct = (minStopPos - stopPos) / range;
+    const pct = (minStopPos - stopPos) / range;
 
     if (discrete && i > minStopIdx!) {
       grd.addColorStop(pct, prevColor!);
@@ -177,7 +177,7 @@ export function scaleGradient(u: uPlot, scaleKey: string, scaleStops: ScaleValue
 }
 
 export function getDataRange(plot: uPlot, scaleKey: string) {
-  let sc = plot.scales[scaleKey];
+  const sc = plot.scales[scaleKey];
 
   let min = Infinity;
   let max = -Infinity;
@@ -186,7 +186,7 @@ export function getDataRange(plot: uPlot, scaleKey: string) {
     if (ser.show && ser.scale === scaleKey) {
       // uPlot skips finding data min/max when a scale has a pre-defined range
       if (ser.min == null) {
-        let data = plot.data[seriesIdx];
+        const data = plot.data[seriesIdx];
         for (let i = 0; i < data.length; i++) {
           if (data[i] != null) {
             min = Math.min(min, data[i]!);
@@ -220,7 +220,7 @@ export function getGradientRange(
   let max = hardMax ?? softMax ?? null;
 
   if (min == null || max == null) {
-    let [dataMin, dataMax] = getDataRange(u, scaleKey);
+    const [dataMin, dataMax] = getDataRange(u, scaleKey);
 
     min = min ?? dataMin ?? 0;
     max = max ?? dataMax ?? 100;
@@ -248,7 +248,7 @@ export function getScaleGradientFn(
   }
 
   return (plot: uPlot, seriesIdx: number) => {
-    let scaleKey = plot.series[seriesIdx].scale!;
+    const scaleKey = plot.series[seriesIdx].scale!;
 
     let gradient: CanvasGradient | string = '';
 

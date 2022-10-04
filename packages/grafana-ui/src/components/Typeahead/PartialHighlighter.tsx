@@ -28,19 +28,19 @@ function getStartIndices(parts: HighlightPart[], length: number): number[] {
 }
 
 export const PartialHighlighter = (props: Props) => {
-  let { highlightParts, text, highlightClassName } = props;
+  const { highlightParts, text, highlightClassName } = props;
 
   if (!highlightParts?.length) {
     return null;
   }
 
-  let children = [];
-  let indices = getStartIndices(highlightParts, text.length);
+  const children = [];
+  const indices = getStartIndices(highlightParts, text.length);
   let highlighted = highlightParts[0].start === 0;
 
   for (let i = 1; i < indices.length; i++) {
-    let start = indices[i - 1];
-    let end = indices[i];
+    const start = indices[i - 1];
+    const end = indices[i];
 
     children.push(
       createElement(

@@ -39,7 +39,7 @@ const mapDispatchToProps = {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export interface OwnProps extends VariableEditorProps<AdHocVariableModel> {}
+export type OwnProps = VariableEditorProps<AdHocVariableModel>
 
 type Props = OwnProps & ConnectedProps<typeof connector>;
 

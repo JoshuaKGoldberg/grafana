@@ -13,7 +13,7 @@ export interface SceneVariableState extends SceneObjectStatePlain {
   current: { value: string; text?: string };
 }
 
-export interface SceneVariable extends SceneObject<SceneVariableState> {}
+export type SceneVariable = SceneObject<SceneVariableState>
 
 export interface SceneVariableSetState extends SceneObjectStatePlain {
   variables: SceneVariable[];

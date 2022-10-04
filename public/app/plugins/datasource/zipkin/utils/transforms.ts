@@ -133,7 +133,7 @@ function valueToTag<T>(key: string, value: T): TraceKeyValuePair<T> | undefined 
  * Transforms data frame to Zipkin response
  */
 export const transformToZipkin = (data: MutableDataFrame): ZipkinSpan[] => {
-  let response: ZipkinSpan[] = [];
+  const response: ZipkinSpan[] = [];
 
   for (let i = 0; i < data.length; i++) {
     const span = data.get(i);

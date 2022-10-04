@@ -85,7 +85,7 @@ describe('getUrlSearchParams', () => {
     search: '?var1=a&var2=b&var2=c&var2=d&var3=a&var3=d&z',
   };
 
-  let expectedParams = {
+  const expectedParams = {
     var1: ['a'],
     var2: ['b', 'c', 'd'],
     var3: ['a', 'd'],

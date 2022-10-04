@@ -188,7 +188,7 @@ function getTransformsRow(saveModel: any): string {
 }
 
 function getDataRow(data: PanelData, frames: DataFrameJSON[]): string {
-  let frameCount = data.series.length ?? 0;
+  const frameCount = data.series.length ?? 0;
   let fieldCount = 0;
   let rowCount = 0;
   for (const frame of data.series) {

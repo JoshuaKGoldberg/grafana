@@ -20,7 +20,7 @@ describe('utils/colorManipulator', () => {
   beforeEach(() => (console.error = consoleErrorMock));
 
   describe('recomposeColor', () => {
-    it('converts a decomposed rgb color object to a string` ', () => {
+    it('converts a decomposed rgb color object to a string`', () => {
       expect(
         recomposeColor({
           type: 'rgb',
@@ -29,7 +29,7 @@ describe('utils/colorManipulator', () => {
       ).toEqual('rgb(255, 255, 255)');
     });
 
-    it('converts a decomposed rgba color object to a string` ', () => {
+    it('converts a decomposed rgba color object to a string`', () => {
       expect(
         recomposeColor({
           type: 'rgba',
@@ -38,7 +38,7 @@ describe('utils/colorManipulator', () => {
       ).toEqual('rgba(255, 255, 255, 0.5)');
     });
 
-    it('converts a decomposed CSS4 color object to a string` ', () => {
+    it('converts a decomposed CSS4 color object to a string`', () => {
       expect(
         recomposeColor({
           type: 'color',
@@ -48,7 +48,7 @@ describe('utils/colorManipulator', () => {
       ).toEqual('color(display-p3 0.5 0.3 0.2)');
     });
 
-    it('converts a decomposed hsl color object to a string` ', () => {
+    it('converts a decomposed hsl color object to a string`', () => {
       expect(
         recomposeColor({
           type: 'hsl',
@@ -57,7 +57,7 @@ describe('utils/colorManipulator', () => {
       ).toEqual('hsl(100, 50%, 25%)');
     });
 
-    it('converts a decomposed hsla color object to a string` ', () => {
+    it('converts a decomposed hsla color object to a string`', () => {
       expect(
         recomposeColor({
           type: 'hsla',
@@ -68,21 +68,21 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('hexToRgb', () => {
-    it('converts a short hex color to an rgb color` ', () => {
+    it('converts a short hex color to an rgb color`', () => {
       expect(hexToRgb('#9f3')).toEqual('rgb(153, 255, 51)');
     });
 
-    it('converts a long hex color to an rgb color` ', () => {
+    it('converts a long hex color to an rgb color`', () => {
       expect(hexToRgb('#a94fd3')).toEqual('rgb(169, 79, 211)');
     });
 
-    it('converts a long alpha hex color to an argb color` ', () => {
+    it('converts a long alpha hex color to an argb color`', () => {
       expect(hexToRgb('#111111f8')).toEqual('rgba(17, 17, 17, 0.973)');
     });
   });
 
   describe('rgbToHex', () => {
-    it('converts an rgb color to a hex color` ', () => {
+    it('converts an rgb color to a hex color`', () => {
       expect(rgbToHex('rgb(169, 79, 211)')).toEqual('#a94fd3');
     });
 
@@ -92,11 +92,11 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('hslToRgb', () => {
-    it('converts an hsl color to an rgb color` ', () => {
+    it('converts an hsl color to an rgb color`', () => {
       expect(hslToRgb('hsl(281, 60%, 57%)')).toEqual('rgb(169, 80, 211)');
     });
 
-    it('converts an hsla color to an rgba color` ', () => {
+    it('converts an hsla color to an rgba color`', () => {
       expect(hslToRgb('hsla(281, 60%, 57%, 0.5)')).toEqual('rgba(169, 80, 211, 0.5)');
     });
 

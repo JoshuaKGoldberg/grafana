@@ -16,7 +16,7 @@ import { ThresholdControlsPlugin } from './plugins/ThresholdControlsPlugin';
 import { TimeSeriesOptions } from './types';
 import { getTimezones, prepareGraphableFields } from './utils';
 
-interface TimeSeriesPanelProps extends PanelProps<TimeSeriesOptions> {}
+type TimeSeriesPanelProps = PanelProps<TimeSeriesOptions>
 
 export const TimeSeriesPanel: React.FC<TimeSeriesPanelProps> = ({
   data,

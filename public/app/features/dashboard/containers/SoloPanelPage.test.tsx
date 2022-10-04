@@ -93,7 +93,7 @@ function soloPanelPageScenario(description: string, scenarioFn: (ctx: ScenarioCo
           </GrafanaContext.Provider>
         );
 
-        let { rerender } = render(renderPage(props));
+        const { rerender } = render(renderPage(props));
 
         // prop updates will be submitted by rerendering the same component with different props
         ctx.rerender = (newProps?: Partial<Props>) => {

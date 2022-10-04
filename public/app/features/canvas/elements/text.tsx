@@ -33,7 +33,7 @@ const TextDisplay = (props: CanvasElementProps<TextConfig, TextData>) => {
 };
 
 const TextEdit = (props: CanvasElementProps<TextConfig, TextData>) => {
-  let { data, config } = props;
+  const { data, config } = props;
   const context = usePanelContext();
   let panelData: DataFrame[];
   panelData = context.instanceState?.scene?.data.series;

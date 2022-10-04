@@ -21,8 +21,8 @@ type WalkCb = (idx: number, offPx: number, dimPx: number) => void;
 
 function walk(rowHeight: number, yIdx: number | null, count: number, dim: number, draw: WalkCb) {
   distribute(count, rowHeight, laneDistr, yIdx, (i, offPct, dimPct) => {
-    let laneOffPx = dim * offPct;
-    let laneWidPx = dim * dimPct;
+    const laneOffPx = dim * offPct;
+    const laneWidPx = dim * dimPct;
 
     draw(i, laneOffPx, laneWidPx);
   });
@@ -82,7 +82,7 @@ export function getConfig(opts: TimelineCoreOptions) {
   const hoverMarks = Array(numSeries)
     .fill(null)
     .map(() => {
-      let mark = document.createElement('div');
+      const mark = document.createElement('div');
       mark.classList.add('bar-mark');
       mark.style.position = 'absolute';
       mark.style.background = 'rgba(255,255,255,0.2)';
@@ -159,7 +159,7 @@ export function getConfig(opts: TimelineCoreOptions) {
     };
 
     if (discrete) {
-      let fillStyle = fillColor;
+      const fillStyle = fillColor;
       let fillPath = fillPaths.get(fillStyle);
 
       if (fillPath == null) {
@@ -169,7 +169,7 @@ export function getConfig(opts: TimelineCoreOptions) {
       rect(fillPath, left, top, boxWidth, boxHeight);
 
       if (strokeWidth) {
-        let strokeStyle = valueColor;
+        const strokeStyle = valueColor;
         let strokePath = strokePaths.get(strokeStyle);
 
         if (strokePath == null) {
@@ -205,9 +205,9 @@ export function getConfig(opts: TimelineCoreOptions) {
       u,
       sidx,
       (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim, moveTo, lineTo, rect) => {
-        let strokeWidth = round((series.width || 0) * pxRatio);
+        const strokeWidth = round((series.width || 0) * pxRatio);
 
-        let discrete = isDiscrete(sidx);
+        const discrete = isDiscrete(sidx);
 
         u.ctx.save();
         rect(u.ctx, u.bbox.left, u.bbox.top, u.bbox.width, u.bbox.height);
@@ -216,10 +216,10 @@ export function getConfig(opts: TimelineCoreOptions) {
         walk(rowHeight, sidx - 1, numSeries, yDim, (iy, y0, height) => {
           if (mode === TimelineMode.Changes) {
             for (let ix = 0; ix < dataY.length; ix++) {
-              let yVal = dataY[ix];
+              const yVal = dataY[ix];
 
               if (yVal != null) {
-                let left = Math.round(valToPosX(dataX[ix], scaleX, xDim, xOff));
+                const left = Math.round(valToPosX(dataX[ix], scaleX, xDim, xOff));
 
                 let nextIx = ix;
                 while (
@@ -228,7 +228,7 @@ export function getConfig(opts: TimelineCoreOptions) {
                 ) {}
 
                 // to now (not to end of chart)
-                let right =
+                const right =
                   nextIx === dataY.length
                     ? xOff + xDim + strokeWidth
                     : Math.round(valToPosX(dataX[nextIx], scaleX, xDim, xOff));
@@ -253,16 +253,16 @@ export function getConfig(opts: TimelineCoreOptions) {
               }
             }
           } else if (mode === TimelineMode.Samples) {
-            let colWid = valToPosX(dataX[1], scaleX, xDim, xOff) - valToPosX(dataX[0], scaleX, xDim, xOff);
-            let gapWid = colWid * gapFactor;
-            let barWid = round(min(maxWidth, colWid - gapWid) - strokeWidth);
-            let xShift = barWid / 2;
+            const colWid = valToPosX(dataX[1], scaleX, xDim, xOff) - valToPosX(dataX[0], scaleX, xDim, xOff);
+            const gapWid = colWid * gapFactor;
+            const barWid = round(min(maxWidth, colWid - gapWid) - strokeWidth);
+            const xShift = barWid / 2;
             //let xShift = align === 1 ? 0 : align === -1 ? barWid : barWid / 2;
 
             for (let ix = idx0; ix <= idx1; ix++) {
               if (dataY[ix] != null) {
                 // TODO: all xPos can be pre-computed once for all series in aligned set
-                let left = valToPosX(dataX[ix], scaleX, xDim, xOff);
+                const left = valToPosX(dataX[ix], scaleX, xDim, xOff);
 
                 putBox(
                   u.ctx,
@@ -312,9 +312,9 @@ export function getConfig(opts: TimelineCoreOptions) {
             u,
             sidx,
             (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
-              let strokeWidth = round((series.width || 0) * pxRatio);
+              const strokeWidth = round((series.width || 0) * pxRatio);
 
-              let y = round(yOff + yMids[sidx - 1]);
+              const y = round(yOff + yMids[sidx - 1]);
 
               for (let ix = 0; ix < dataY.length; ix++) {
                 if (dataY[ix] != null) {
@@ -355,7 +355,7 @@ export function getConfig(opts: TimelineCoreOptions) {
         };
 
   const init = (u: uPlot) => {
-    let over = u.over;
+    const over = u.over;
     over.style.overflow = 'hidden';
     hoverMarks.forEach((m) => {
       over.appendChild(m);
@@ -376,7 +376,7 @@ export function getConfig(opts: TimelineCoreOptions) {
   };
 
   function setHoverMark(i: number, o: Rect | null) {
-    let h = hoverMarks[i];
+    const h = hoverMarks[i];
 
     if (o) {
       h.style.display = '';
@@ -400,7 +400,7 @@ export function getConfig(opts: TimelineCoreOptions) {
       let found: Rect | undefined;
 
       if (cx >= 0) {
-        let cy2 = yMids[i];
+        const cy2 = yMids[i];
 
         qt.get(cx, cy2, 1, 1, (o) => {
           if (pointWithin(cx, cy2, o.x, o.y, o.x + o.w, o.y + o.h)) {
@@ -459,8 +459,8 @@ export function getConfig(opts: TimelineCoreOptions) {
   const doHover = mode === TimelineMode.Changes ? hoverMulti : hoverOne;
 
   const setCursor = (u: uPlot) => {
-    let cx = round(u.cursor.left! * pxRatio);
-    let cy = round(u.cursor.top! * pxRatio);
+    const cx = round(u.cursor.left! * pxRatio);
+    const cy = round(u.cursor.top! * pxRatio);
 
     // if quadtree is empty, fill it
     if (!qt.o.length && qt.q == null) {
@@ -490,13 +490,13 @@ export function getConfig(opts: TimelineCoreOptions) {
     xSplits:
       mode === TimelineMode.Samples
         ? (u: uPlot, axisIdx: number, scaleMin: number, scaleMax: number, foundIncr: number, foundSpace: number) => {
-            let splits = [];
+            const splits = [];
 
-            let dataIncr = u.data[0][1] - u.data[0][0];
-            let skipFactor = ceil(foundIncr / dataIncr);
+            const dataIncr = u.data[0][1] - u.data[0][0];
+            const skipFactor = ceil(foundIncr / dataIncr);
 
             for (let i = 0; i < u.data[0].length; i += skipFactor) {
-              let v = u.data[0][i];
+              const v = u.data[0][i];
 
               if (v >= scaleMin && v <= scaleMax) {
                 splits.push(v);
@@ -514,14 +514,14 @@ export function getConfig(opts: TimelineCoreOptions) {
       let max = r.to.valueOf();
 
       if (mode === TimelineMode.Samples) {
-        let colWid = u.data[0][1] - u.data[0][0];
-        let scalePad = colWid / 2;
+        const colWid = u.data[0][1] - u.data[0][0];
+        const scalePad = colWid / 2;
 
         if (min <= u.data[0][0]) {
           min = u.data[0][0] - scalePad;
         }
 
-        let lastIdx = u.data[0].length - 1;
+        const lastIdx = u.data[0].length - 1;
 
         if (max >= u.data[0][lastIdx]) {
           max = u.data[0][lastIdx] + scalePad;

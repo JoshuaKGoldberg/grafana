@@ -7,7 +7,7 @@ import { LoginLayout, InnerBox } from '../Login/LoginLayout';
 
 import { ChangePassword } from './ChangePassword';
 
-export interface Props extends GrafanaRouteComponentProps<{}, { code: string }> {}
+export type Props = GrafanaRouteComponentProps<{}, { code: string }>
 
 export const ChangePasswordPage: FC<Props> = (props) => {
   return (

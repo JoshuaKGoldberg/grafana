@@ -19,7 +19,7 @@ interface DimensionLabels {
 const useDimensionLabels = (data: PanelData | undefined, query: AzureMonitorQuery) => {
   const [dimensionLabels, setDimensionLabels] = useState<DimensionLabels>({});
   useEffect(() => {
-    let labelsObj: DimensionLabels = {};
+    const labelsObj: DimensionLabels = {};
     if (data?.series?.length) {
       // Identify which series' in the dataframe are relevant to the current query
       const series: DataFrame[] = data.series.flat().filter((series) => series.refId === query.refId);

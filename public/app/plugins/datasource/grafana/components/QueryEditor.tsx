@@ -201,7 +201,7 @@ export class QueryEditor extends PureComponent<Props, State> {
   };
 
   renderMeasurementsQuery() {
-    let { channel, filter, buffer } = this.props.query;
+    const { channel, filter, buffer } = this.props.query;
     let { channels, channelFields } = this.state;
     let currentChannel = channels.find((c) => c.value === channel);
     if (channel && !currentChannel) {
@@ -310,7 +310,7 @@ export class QueryEditor extends PureComponent<Props, State> {
   };
 
   renderListPublicFiles() {
-    let { path } = this.props.query;
+    const { path } = this.props.query;
     let { folders } = this.state;
     if (!folders) {
       folders = [];

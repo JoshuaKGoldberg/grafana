@@ -75,7 +75,7 @@ function calculateFieldDisplayName(field: Field, frame?: DataFrame, allFrames?: 
     return displayName ?? TIME_SERIES_TIME_FIELD_NAME;
   }
 
-  let parts: string[] = [];
+  const parts: string[] = [];
   let frameNamesDiffer = false;
 
   if (allFrames && allFrames.length > 1) {
@@ -101,10 +101,10 @@ function calculateFieldDisplayName(field: Field, frame?: DataFrame, allFrames?: 
   }
 
   if (field.labels && frame) {
-    let singleLabelName = getSingleLabelName(allFrames ?? [frame]);
+    const singleLabelName = getSingleLabelName(allFrames ?? [frame]);
 
     if (!singleLabelName) {
-      let allLabels = formatLabels(field.labels);
+      const allLabels = formatLabels(field.labels);
       if (allLabels) {
         parts.push(allLabels);
         labelsAdded = true;

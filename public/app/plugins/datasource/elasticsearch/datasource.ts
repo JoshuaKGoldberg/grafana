@@ -636,7 +636,7 @@ export class ElasticDatasource
     let payload = '';
     const targets = this.interpolateVariablesInQueries(cloneDeep(options.targets), options.scopedVars);
     const sentTargets: ElasticsearchQuery[] = [];
-    let targetsContainsLogsQuery = targets.some((target) => hasMetricOfType(target, 'logs'));
+    const targetsContainsLogsQuery = targets.some((target) => hasMetricOfType(target, 'logs'));
 
     // add global adhoc filters to timeFilter
     const adhocFilters = this.templateSrv.getAdhocFilters(this.name);

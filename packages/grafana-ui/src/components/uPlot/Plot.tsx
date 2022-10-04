@@ -17,8 +17,8 @@ function sameConfig(prevProps: PlotProps, nextProps: PlotProps) {
 }
 
 function sameTimeRange(prevProps: PlotProps, nextProps: PlotProps) {
-  let prevTime = prevProps.timeRange;
-  let nextTime = nextProps.timeRange;
+  const prevTime = prevProps.timeRange;
+  const nextTime = nextProps.timeRange;
 
   return (
     prevTime === nextTime ||
@@ -49,7 +49,7 @@ export class UPlotChart extends Component<PlotProps, UPlotChartState> {
   }
 
   reinitPlot() {
-    let { width, height, plotRef } = this.props;
+    const { width, height, plotRef } = this.props;
 
     this.state.plot?.destroy();
 
@@ -89,7 +89,7 @@ export class UPlotChart extends Component<PlotProps, UPlotChartState> {
   }
 
   componentDidUpdate(prevProps: PlotProps) {
-    let { plot } = this.state;
+    const { plot } = this.state;
 
     if (!sameDims(prevProps, this.props)) {
       plot?.setSize({

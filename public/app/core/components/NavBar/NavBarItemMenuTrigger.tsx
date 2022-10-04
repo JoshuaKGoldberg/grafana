@@ -158,7 +158,7 @@ export function NavBarItemMenuTrigger(props: NavBarItemMenuTriggerProps): ReactE
     overlayRef
   );
 
-  let { overlayProps: overlayPositionProps } = useOverlayPosition({
+  const { overlayProps: overlayPositionProps } = useOverlayPosition({
     targetRef: ref,
     overlayRef,
     placement: reverseMenuDirection ? 'right bottom' : 'right top',

@@ -332,7 +332,7 @@ export function FolderPicker(props: Props) {
           inputValue={inputValue}
           onInputChange={onInputChange}
           value={folder}
-          allowCustomValue={enableCreateNew && !Boolean(customAdd)}
+          allowCustomValue={enableCreateNew && !customAdd}
           loadOptions={debouncedSearch}
           onChange={onFolderChange}
           onCreateOption={createNewFolder}

@@ -49,7 +49,7 @@ describe('LogDetails', () => {
     });
   });
   describe('when row entry has parsable fields', () => {
-    it('should render heading ', () => {
+    it('should render heading', () => {
       setup(undefined, { entry: 'test=successful' });
       expect(screen.getAllByTitle('Ad-hoc statistics')).toHaveLength(1);
     });

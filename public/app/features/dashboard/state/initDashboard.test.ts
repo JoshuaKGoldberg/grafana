@@ -256,7 +256,7 @@ describeInitScenario('Initializing new dashboard', (ctx) => {
     expect(ctx.actions[0].type).toBe(dashboardInitFetching.type);
   });
 
-  it('Should send action dashboardInitServices ', () => {
+  it('Should send action dashboardInitServices', () => {
     expect(ctx.actions[1].type).toBe(dashboardInitServices.type);
   });
 
@@ -391,7 +391,7 @@ describeInitScenario('Initializing existing dashboard', (ctx) => {
     expect(ctx.actions[0].type).toBe(dashboardInitFetching.type);
   });
 
-  it('Should send action dashboardInitServices ', () => {
+  it('Should send action dashboardInitServices', () => {
     expect(ctx.actions[1].type).toBe(dashboardInitServices.type);
   });
 
@@ -426,7 +426,7 @@ describeInitScenario('Initializing previously canceled dashboard initialization'
     expect(ctx.actions[0].type).toBe(dashboardInitFetching.type);
   });
 
-  it('Should send action dashboardInitServices ', () => {
+  it('Should send action dashboardInitServices', () => {
     expect(ctx.actions[1].type).toBe(dashboardInitServices.type);
   });
 

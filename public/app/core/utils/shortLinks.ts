@@ -12,7 +12,7 @@ function buildHostUrl() {
 }
 
 function getRelativeURLPath(url: string) {
-  let path = url.replace(buildHostUrl(), '');
+  const path = url.replace(buildHostUrl(), '');
   return path.startsWith('/') ? path.substring(1, path.length) : path;
 }
 

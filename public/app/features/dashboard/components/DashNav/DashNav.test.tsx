@@ -16,7 +16,7 @@ import { DashNav } from './DashNav';
 
 describe('Public dashboard title tag', () => {
   it('will be rendered when publicDashboardEnabled set to true in dashboard meta', async () => {
-    let dashboard = new DashboardModel({}, { publicDashboardEnabled: false });
+    const dashboard = new DashboardModel({}, { publicDashboardEnabled: false });
 
     const store = configureStore();
     const context = getGrafanaContextMock();

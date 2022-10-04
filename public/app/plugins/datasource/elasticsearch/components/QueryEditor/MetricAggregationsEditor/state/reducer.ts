@@ -43,7 +43,7 @@ export const reducer = (state: ElasticsearchQuery['metrics'], action: Action): E
       .filter((metric) =>
         // When the new metric type is `isSingleMetric` we remove all other metrics from the query
         // leaving only the current one.
-        !!metricAggregationConfig[action.payload.type].isSingleMetric ? metric.id === action.payload.id : true
+        metricAggregationConfig[action.payload.type].isSingleMetric ? metric.id === action.payload.id : true
       )
       .map((metric) => {
         if (metric.id !== action.payload.id) {

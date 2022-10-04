@@ -27,7 +27,7 @@ const navModel = {
   },
 };
 
-export interface Props extends GrafanaRouteComponentProps<{ code: string }> {}
+export type Props = GrafanaRouteComponentProps<{ code: string }>
 
 export const SignupInvitedPage: FC<Props> = ({ match }) => {
   const code = match.params.code;

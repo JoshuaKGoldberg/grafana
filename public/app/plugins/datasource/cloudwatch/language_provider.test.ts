@@ -20,7 +20,7 @@ import { GetLogGroupFieldsResponse } from './types';
 const fields = ['field1', '@message'];
 
 describe('CloudWatchLanguageProvider', () => {
-  it('should suggest ', async () => {
+  it('should suggest', async () => {
     await runSuggestionTest('stats count(\\)', [fields]);
     // Make sure having a field prefix does not brake anything
     await runSuggestionTest('stats count(@mess\\)', [fields]);

@@ -50,7 +50,7 @@ export function getScaledDimensionForField(
 
     // quadratic scaling (px area)
     scaled = (percent: number) => {
-      let area = minArea + deltaArea * percent;
+      const area = minArea + deltaArea * percent;
       return Math.sqrt(area / Math.PI) * 2;
     };
   }
@@ -93,7 +93,7 @@ export function validateScaleOptions(options?: ScaleDimensionOptions): ScaleDime
 
 /** Mutates and will return a valid version */
 export function validateScaleConfig(copy: ScaleDimensionConfig, options: ScaleDimensionOptions): ScaleDimensionConfig {
-  let { min, max } = validateScaleOptions(options);
+  const { min, max } = validateScaleOptions(options);
   if (!copy) {
     copy = {} as any;
   }

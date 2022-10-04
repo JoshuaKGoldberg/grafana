@@ -45,7 +45,7 @@ export const StyleRuleEditor: FC<StandardEditorProps<FeatureStyleConfig, any, un
     if (key && feats && value.check?.operation === ComparisonOperation.EQ) {
       return getUniqueFeatureValues(feats, key).map((v) => {
         let newValue;
-        let isNewValueNumber = !isNaN(Number(v));
+        const isNewValueNumber = !isNaN(Number(v));
 
         if (isNewValueNumber) {
           newValue = {

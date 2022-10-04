@@ -103,7 +103,7 @@ export function AnnotationMarker({ annotation, timeZone, width }: Props) {
 
   const isRegionAnnotation = Boolean(annotation.isRegion) && width > MIN_REGION_ANNOTATION_WIDTH;
 
-  let left = `${width / 2}px`;
+  const left = `${width / 2}px`;
   let marker = (
     <div
       className={commonStyles(annotation).markerTriangle}

@@ -33,8 +33,8 @@ interface AppWrapperState {
 }
 
 /** Used by enterprise */
-let bodyRenderHooks: ComponentType[] = [];
-let pageBanners: ComponentType[] = [];
+const bodyRenderHooks: ComponentType[] = [];
+const pageBanners: ComponentType[] = [];
 
 export function addBodyRenderHook(fn: ComponentType) {
   bodyRenderHooks.push(fn);

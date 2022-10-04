@@ -64,11 +64,11 @@ describe('<TraceTimelineViewer>', () => {
       .dive();
   });
 
-  it('it does not explode', () => {
+  it('does not explode', () => {
     expect(wrapper).toBeDefined();
   });
 
-  it('it sets up actions', () => {
+  it('sets up actions', () => {
     const headerRow = wrapper.find(TimelineHeaderRow);
     headerRow.props().onCollapseAll();
     headerRow.props().onExpandAll();

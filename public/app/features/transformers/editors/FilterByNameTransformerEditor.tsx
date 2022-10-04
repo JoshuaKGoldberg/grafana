@@ -13,7 +13,7 @@ import {
 import { FilterFieldsByNameTransformerOptions } from '@grafana/data/src/transformations/transformers/filterByName';
 import { Field, Input, FilterPill, HorizontalGroup } from '@grafana/ui';
 
-interface FilterByNameTransformerEditorProps extends TransformerUIProps<FilterFieldsByNameTransformerOptions> {}
+type FilterByNameTransformerEditorProps = TransformerUIProps<FilterFieldsByNameTransformerOptions>
 
 interface FilterByNameTransformerEditorState {
   include: string[];

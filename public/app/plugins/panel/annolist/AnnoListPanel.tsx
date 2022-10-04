@@ -28,7 +28,7 @@ interface UserInfo {
   email?: string;
 }
 
-export interface Props extends PanelProps<PanelOptions> {}
+export type Props = PanelProps<PanelOptions>
 interface State {
   annotations: AnnotationEvent[];
   timeInfo: string;

@@ -264,7 +264,7 @@ describe('duration', () => {
     ${67910400000}      | ${'2y 1mo 3w 5d'}
     ${40420800000}      | ${'1y 3mo 1w 5d'}
     ${9007199254740991} | ${'285616y 5mo 1d'}
-  `(' function should format $value ms to $expected', ({ value, expected }) => {
+  `('function should format $value ms to $expected', ({ value, expected }) => {
     const result = fmtDuration(value);
     expect(result).toEqual(expected);
   });

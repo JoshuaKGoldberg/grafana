@@ -59,7 +59,7 @@ export class ElasticQueryBuilder {
       // if metric ref, look it up and add it to this agg level
       const metricId = convertOrderByToMetricId(aggDef.settings.orderBy);
       if (metricId) {
-        for (let metric of target.metrics || []) {
+        for (const metric of target.metrics || []) {
           if (metric.id === metricId) {
             if (metric.type === 'count') {
               queryNode.terms.order = { _count: aggDef.settings.order };
@@ -126,7 +126,7 @@ export class ElasticQueryBuilder {
   getFiltersAgg(aggDef: Filters) {
     const filterObj: Record<string, { query_string: { query: string; analyze_wildcard: boolean } }> = {};
 
-    for (let { query, label } of aggDef.settings?.filters || []) {
+    for (const { query, label } of aggDef.settings?.filters || []) {
       filterObj[label || query] = {
         query_string: {
           query: query,

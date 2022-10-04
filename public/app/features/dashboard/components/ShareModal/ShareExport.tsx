@@ -12,7 +12,7 @@ import { ShowModalReactEvent } from 'app/types/events';
 import { ViewJsonModal } from './ViewJsonModal';
 import { ShareModalTabProps } from './types';
 
-interface Props extends ShareModalTabProps {}
+type Props = ShareModalTabProps
 
 interface State {
   shareExternally: boolean;

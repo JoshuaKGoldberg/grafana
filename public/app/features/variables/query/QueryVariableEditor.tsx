@@ -50,7 +50,7 @@ const mapDispatchToProps = {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export interface OwnProps extends VariableEditorProps<QueryVariableModel> {}
+export type OwnProps = VariableEditorProps<QueryVariableModel>
 
 export type Props = OwnProps & ConnectedProps<typeof connector>;
 

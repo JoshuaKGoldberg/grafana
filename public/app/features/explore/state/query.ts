@@ -795,7 +795,7 @@ export const queryReducer = (state: ExploreItemState, action: AnyAction): Explor
   }
 
   if (storeLogsVolumeDataProviderAction.match(action)) {
-    let { logsVolumeDataProvider } = action.payload;
+    const { logsVolumeDataProvider } = action.payload;
     if (state.logsVolumeDataSubscription) {
       state.logsVolumeDataSubscription.unsubscribe();
     }
@@ -822,7 +822,7 @@ export const queryReducer = (state: ExploreItemState, action: AnyAction): Explor
   }
 
   if (updateLogsVolumeDataAction.match(action)) {
-    let { logsVolumeData } = action.payload;
+    const { logsVolumeData } = action.payload;
 
     return {
       ...state,

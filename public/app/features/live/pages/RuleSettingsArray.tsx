@@ -26,7 +26,7 @@ export const RuleSettingsArray = ({ onChange, value, ruleType, entitiesInfo }: P
     }
   };
   // create array of value.length + 1
-  let indexArr: Array<SelectableValue<number>> = [];
+  const indexArr: Array<SelectableValue<number>> = [];
   for (let i = 0; i <= arr.length; i++) {
     indexArr.push({
       label: `${ruleType}: ${i}`,

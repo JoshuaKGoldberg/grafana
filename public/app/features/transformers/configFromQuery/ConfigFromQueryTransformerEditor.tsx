@@ -15,7 +15,7 @@ import { FieldToConfigMappingEditor } from '../fieldToConfigMapping/FieldToConfi
 
 import { configFromDataTransformer, ConfigFromQueryTransformOptions } from './configFromQuery';
 
-export interface Props extends TransformerUIProps<ConfigFromQueryTransformOptions> {}
+export type Props = TransformerUIProps<ConfigFromQueryTransformOptions>
 
 export function ConfigFromQueryTransformerEditor({ input, onChange, options }: Props) {
   const styles = useStyles2(getStyles);

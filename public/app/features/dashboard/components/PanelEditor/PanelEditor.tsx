@@ -315,7 +315,7 @@ export class PanelEditorUnconnected extends PureComponent<Props> {
 
   renderEditorActions() {
     const size = config.featureToggles.topnav ? 'sm' : 'md';
-    let editorActions = [
+    const editorActions = [
       <Button
         onClick={this.onDiscard}
         title="Undo all changes"

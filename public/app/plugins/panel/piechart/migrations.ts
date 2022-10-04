@@ -11,7 +11,7 @@ export const PieChartPanelChangedHandler = (
   if (prevPluginId === 'grafana-piechart-panel' && prevOptions.angular) {
     const angular = prevOptions.angular;
     const overrides = [];
-    let options: PanelOptions = panel.options;
+    const options: PanelOptions = panel.options;
 
     // Migrate color overrides for series
     if (angular.aliasColors) {

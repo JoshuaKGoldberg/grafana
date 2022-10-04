@@ -125,7 +125,7 @@ export default class CloudMonitoringDatasource extends DataSourceWithBackend<
             .map((f) => f.meta?.custom?.labels)
             .filter((p) => !!p)
             .reduce((acc, labels) => {
-              for (let key in labels) {
+              for (const key in labels) {
                 if (!acc[key]) {
                   acc[key] = new Set<string>();
                 }
@@ -184,7 +184,7 @@ export default class CloudMonitoringDatasource extends DataSourceWithBackend<
     if (!serviceId) {
       return Promise.resolve([]);
     }
-    let { projectName: p, serviceId: s } = this.interpolateProps({ projectName, serviceId });
+    const { projectName: p, serviceId: s } = this.interpolateProps({ projectName, serviceId });
     return this.getResource(`slo-services/v3/projects/${p}/services/${s}/serviceLevelObjectives`);
   }
 

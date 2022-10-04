@@ -83,7 +83,7 @@ export function getDisplayProcessor(options?: DisplayProcessorOptions): DisplayP
       value = toUtc(value).valueOf();
     }
 
-    let numeric = isStringUnit ? NaN : anyToNumber(value);
+    const numeric = isStringUnit ? NaN : anyToNumber(value);
     let text: string | undefined;
     let prefix: string | undefined;
     let suffix: string | undefined;

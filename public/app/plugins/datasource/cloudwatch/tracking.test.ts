@@ -19,7 +19,7 @@ jest.mock('@grafana/runtime', () => {
 });
 
 describe('onDashboardLoadedHandler', () => {
-  it('should report a `grafana_ds_cloudwatch_dashboard_loaded` interaction ', () => {
+  it('should report a `grafana_ds_cloudwatch_dashboard_loaded` interaction', () => {
     handler(CloudWatchDashboardLoadedEvent);
     expect(reportInteraction).toHaveBeenCalledWith('grafana_ds_cloudwatch_dashboard_loaded', {
       dashboard_id: 'dashboard123',

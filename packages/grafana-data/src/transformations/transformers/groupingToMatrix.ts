@@ -74,7 +74,7 @@ export const groupingToMatrixTransformer: DataTransformerInfo<GroupingToMatrixTr
         });
 
         for (const columnName of columnValues) {
-          let values = [];
+          const values = [];
           for (const rowName of rowValues) {
             const value = matrixValues[columnName][rowName] ?? '';
             values.push(value);

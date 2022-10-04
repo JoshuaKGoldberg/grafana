@@ -7,7 +7,7 @@ function tip($compile: any) {
   return {
     restrict: 'E',
     link: (scope: any, elem: any, attrs: any) => {
-      let _t =
+      const _t =
         '<i class="grafana-tip fa fa-' +
         (attrs.icon || 'question-circle') +
         '" bs-tooltip="\'' +

@@ -19,7 +19,7 @@ const recoverRefIdMissing = (
   }
   // Previously selected value is missing from the new list.
   // Find the value that is in the new list but isn't in the old list
-  let changedTo = newRefIds.find((refId) => {
+  const changedTo = newRefIds.find((refId) => {
     return !oldRefIds.some((refId2) => {
       return refId === refId2;
     });

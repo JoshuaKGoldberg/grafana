@@ -40,7 +40,7 @@ describe('ConfigFromQueryTransformerEditor', () => {
   it('Should be able to select config frame by refId', async () => {
     setup();
 
-    let select = (await screen.findByText('Config query')).nextSibling!.firstChild!;
+    const select = (await screen.findByText('Config query')).nextSibling!.firstChild!;
     await fireEvent.keyDown(select, { keyCode: 40 });
     await selectOptionInTest(select as HTMLElement, 'A');
 

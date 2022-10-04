@@ -9,7 +9,7 @@ import { DEFAULT_FEED_URL } from './constants';
 import { PanelOptions } from './models.gen';
 import { useNewsFeed } from './useNewsFeed';
 
-interface NewsPanelProps extends PanelProps<PanelOptions> {}
+type NewsPanelProps = PanelProps<PanelOptions>
 
 export function NewsPanel(props: NewsPanelProps) {
   const {

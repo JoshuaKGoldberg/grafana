@@ -316,7 +316,7 @@ describe('GraphNG utils', () => {
       ],
     };
 
-    let aligndFrame = preparePlotFrame([df1, df2, df3], {
+    const aligndFrame = preparePlotFrame([df1, df2, df3], {
       x: fieldMatchers.get(FieldMatcherID.firstTimeField).get({}),
       y: fieldMatchers.get(FieldMatcherID.numeric).get({}),
     });

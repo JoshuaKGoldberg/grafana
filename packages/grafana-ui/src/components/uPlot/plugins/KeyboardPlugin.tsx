@@ -14,7 +14,7 @@ const KNOWN_KEYS = new Set(['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', '
 
 const initHook = (u: uPlot) => {
   let vizLayoutViz: HTMLElement | null = u.root.closest('[tabindex]');
-  let pressedKeys = new Set<string>();
+  const pressedKeys = new Set<string>();
   let dragStartX: number | null = null;
   let keysLastHandledAt: number | null = null;
 

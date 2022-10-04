@@ -40,7 +40,7 @@ const setup = (propOverrides) => {
 };
 
 describe('TracePageHeader test', () => {
-  it('should render a header ', () => {
+  it('should render a header', () => {
     setup();
 
     expect(screen.getByRole('banner')).toBeInTheDocument();

@@ -36,7 +36,7 @@ const removeOrgUser = async (orgUser: OrgUser, orgId: UrlQueryValue) => {
   return await getBackendSrv().delete('/api/orgs/' + orgId + '/users/' + orgUser.userId);
 };
 
-interface Props extends GrafanaRouteComponentProps<{ id: string }> {}
+type Props = GrafanaRouteComponentProps<{ id: string }>
 
 export default function AdminEditOrgPage({ match }: Props) {
   const orgId = parseInt(match.params.id, 10);

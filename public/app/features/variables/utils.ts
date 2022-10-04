@@ -216,7 +216,7 @@ export interface UrlQueryType {
   removed?: boolean;
 }
 
-export interface ExtendedUrlQueryMap extends Record<string, UrlQueryType> {}
+export type ExtendedUrlQueryMap = Record<string, UrlQueryType>
 
 export function findTemplateVarChanges(query: UrlQueryMap, old: UrlQueryMap): ExtendedUrlQueryMap | undefined {
   let count = 0;
@@ -227,8 +227,8 @@ export function findTemplateVarChanges(query: UrlQueryMap, old: UrlQueryMap): Ex
       continue;
     }
 
-    let oldValue = getUrlValueForComparison(old[key]);
-    let newValue = getUrlValueForComparison(query[key]);
+    const oldValue = getUrlValueForComparison(old[key]);
+    const newValue = getUrlValueForComparison(query[key]);
 
     if (!isEqual(newValue, oldValue)) {
       changes[key] = { value: query[key] };

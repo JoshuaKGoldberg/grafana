@@ -66,7 +66,7 @@ function getBooleanScaleCalculator(field: Field, theme: GrafanaTheme2): ScaleCal
   }
 
   return (value: number) => {
-    return Boolean(value) ? trueValue : falseValue;
+    return value ? trueValue : falseValue;
   };
 }
 
@@ -106,7 +106,7 @@ export function getMinMaxAndDelta(field: Field): NumericRange {
  */
 export function getFieldConfigWithMinMax(field: Field, local?: boolean): FieldConfig {
   const { config } = field;
-  let { min, max } = config;
+  const { min, max } = config;
 
   if (isNumber(min) && isNumber(max)) {
     return config;

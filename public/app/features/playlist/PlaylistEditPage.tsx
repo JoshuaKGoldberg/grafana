@@ -14,7 +14,7 @@ export interface RouteParams {
   uid: string;
 }
 
-interface Props extends GrafanaRouteComponentProps<RouteParams> {}
+type Props = GrafanaRouteComponentProps<RouteParams>
 
 export const PlaylistEditPage = ({ match }: Props) => {
   const playlist = useAsync(() => getPlaylist(match.params.uid), [match.params]);

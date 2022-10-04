@@ -10,7 +10,7 @@ import { useSpinner } from '../utils/useSpinner';
 
 import { Task, TaskRunner } from './task';
 
-interface Command extends Array<any> {}
+type Command = Array<any>
 const DEFAULT_EMAIL_ADDRESS = 'eng@grafana.com';
 const DEFAULT_USERNAME = 'CircleCI Automation';
 
@@ -92,7 +92,7 @@ const prepareRelease = ({ dryrun, verbose }: any) =>
       ['git', ['push', '-f', 'origin', `v${pluginJson.info.version}`]],
     ];
 
-    for (let line of githubPublishScript) {
+    for (const line of githubPublishScript) {
       const opts = line.length === 3 ? line[2] : {};
       const command = line[0];
       const args = line[1];
@@ -125,7 +125,7 @@ const prepareRelease = ({ dryrun, verbose }: any) =>
         const err: string = ex.message;
         if (opts['okOnError'] && Array.isArray(opts['okOnError'])) {
           let trueError = true;
-          for (let regex of opts['okOnError']) {
+          for (const regex of opts['okOnError']) {
             if (err.match(regex)) {
               trueError = false;
               break;

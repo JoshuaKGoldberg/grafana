@@ -23,7 +23,7 @@ interface RouteParams {
   pluginId: string;
 }
 
-interface Props extends GrafanaRouteComponentProps<RouteParams> {}
+type Props = GrafanaRouteComponentProps<RouteParams>
 
 interface State {
   loading: boolean;

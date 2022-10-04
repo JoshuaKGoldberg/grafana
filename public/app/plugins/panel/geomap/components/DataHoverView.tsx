@@ -28,7 +28,7 @@ export const DataHoverView = ({ data, rowIndex, columnIndex, sortOrder, mode }: 
     return null;
   }
 
-  const visibleFields = data.fields.filter((f) => !Boolean(f.config.custom?.hideFrom?.tooltip));
+  const visibleFields = data.fields.filter((f) => !f.config.custom?.hideFrom?.tooltip);
 
   if (visibleFields.length === 0) {
     return null;

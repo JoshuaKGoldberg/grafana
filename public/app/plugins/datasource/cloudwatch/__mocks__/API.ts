@@ -15,7 +15,7 @@ export function setupMockedAPI({
   variables?: CustomVariableModel[];
   mockGetVariableName?: boolean;
 } = {}) {
-  let templateService = variables ? setupMockedTemplateService(variables) : new TemplateSrv();
+  const templateService = variables ? setupMockedTemplateService(variables) : new TemplateSrv();
 
   const timeSrv = getTimeSrv();
   const api = new CloudWatchAPI(CloudWatchSettings, templateService);

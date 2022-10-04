@@ -275,7 +275,7 @@ export class CompletionProvider implements monacoTypes.languages.CompletionItemP
     const textUntilCaret = text.substring(0, offset);
 
     // Check if we're inside a span set
-    let isInSpanSet = textUntilCaret.lastIndexOf('{') > textUntilCaret.lastIndexOf('}');
+    const isInSpanSet = textUntilCaret.lastIndexOf('{') > textUntilCaret.lastIndexOf('}');
     if (isInSpanSet) {
       return this.getSituationInSpanSet(textUntilCaret);
     }

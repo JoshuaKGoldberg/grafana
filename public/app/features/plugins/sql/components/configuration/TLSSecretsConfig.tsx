@@ -12,7 +12,7 @@ import { InlineField, SecretTextArea } from '@grafana/ui';
 export interface Props<T extends DataSourceJsonData, S> {
   editorProps: DataSourcePluginOptionsEditorProps<T, S>;
   showCACert?: boolean;
-  secureJsonFields?: KeyValue<Boolean>;
+  secureJsonFields?: KeyValue<boolean>;
   labelWidth?: number;
 }
 

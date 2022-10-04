@@ -23,7 +23,7 @@ export const NONE = 'None';
 export const DURATION = 'Duration';
 export const TAG = 'Tag';
 
-interface Props extends DataSourcePluginOptionsEditorProps<SpanBarOptionsData> {}
+type Props = DataSourcePluginOptionsEditorProps<SpanBarOptionsData>
 
 export default function SpanBarSettings({ options, onOptionsChange }: Props) {
   const styles = useStyles(getStyles);

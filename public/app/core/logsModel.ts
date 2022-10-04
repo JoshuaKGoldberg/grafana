@@ -353,7 +353,7 @@ export function logSeriesToLogsModel(logSeries: DataFrame[]): LogsModel | undefi
   const allLabels: Labels[][] = [];
 
   // Find the fields we care about and collect all labels
-  let allSeries: LogFields[] = [];
+  const allSeries: LogFields[] = [];
 
   // We are sometimes passing data frames with no fields because we want to calculate correct meta stats.
   // Therefore we need to filter out series with no fields. These series are used only for meta stats calculation.
@@ -540,7 +540,7 @@ function getIdField(fieldCache: FieldCache): FieldWithIndex | undefined {
 
 // Used to add additional information to Line limit meta info
 function adjustMetaInfo(logsModel: LogsModel, visibleRangeMs?: number, requestedRangeMs?: number): LogsMetaItem[] {
-  let logsModelMeta = [...logsModel.meta!];
+  const logsModelMeta = [...logsModel.meta!];
 
   const limitIndex = logsModelMeta.findIndex((meta) => meta.label === LIMIT_LABEL);
   const limit = limitIndex >= 0 && logsModelMeta[limitIndex]?.value;

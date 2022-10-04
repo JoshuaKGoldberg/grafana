@@ -129,7 +129,7 @@ describe('Plugin details page', () => {
     });
 
     // We are doing this very basic test to see if the API fetching and data-munging is working correctly from a high-level.
-    it('(SMOKE TEST) - should fetch and merge the remote and local plugin API responses correctly ', async () => {
+    it('(SMOKE TEST) - should fetch and merge the remote and local plugin API responses correctly', async () => {
       const id = 'smoke-test-plugin';
 
       mockPluginApis({

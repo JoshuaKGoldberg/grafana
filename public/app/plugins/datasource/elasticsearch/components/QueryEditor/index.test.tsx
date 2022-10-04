@@ -32,7 +32,7 @@ describe('QueryEditor', () => {
 
       render(<QueryEditor query={query} datasource={datasourceMock} onChange={onChange} onRunQuery={noop} />);
 
-      let aliasField = screen.getByLabelText('Alias') as HTMLInputElement;
+      const aliasField = screen.getByLabelText('Alias') as HTMLInputElement;
 
       // The Query should have an alias field
       expect(aliasField).toBeInTheDocument();

@@ -75,7 +75,7 @@ const SilencesTable: FC<Props> = ({ silences, alertManagerAlerts, alertManagerSo
               </Link>
             </div>
           </Authorize>
-          {!!items.length ? (
+          {items.length ? (
             <>
               <DynamicTable
                 items={items}

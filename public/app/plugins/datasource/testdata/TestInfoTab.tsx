@@ -6,7 +6,7 @@ import { LinkButton } from '@grafana/ui';
 
 // Types
 
-interface Props extends PluginConfigPageProps<DataSourcePluginMeta<DataSourceJsonData>> {}
+type Props = PluginConfigPageProps<DataSourcePluginMeta<DataSourceJsonData>>
 
 export class TestInfoTab extends PureComponent<Props> {
   constructor(props: Props) {

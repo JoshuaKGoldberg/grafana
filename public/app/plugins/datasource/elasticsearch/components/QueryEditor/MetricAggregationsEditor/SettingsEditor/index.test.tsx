@@ -116,7 +116,7 @@ describe('Settings Editor', () => {
         </ElasticsearchProvider>
       );
 
-      let settingsButtonEl = screen.getByRole('button');
+      const settingsButtonEl = screen.getByRole('button');
       fireEvent.click(settingsButtonEl);
 
       const unitSelectElement = screen.getByTestId('unit-select');

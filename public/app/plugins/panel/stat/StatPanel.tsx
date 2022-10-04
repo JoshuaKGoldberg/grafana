@@ -26,7 +26,7 @@ export class StatPanel extends PureComponent<PanelProps<PanelOptions>> {
     const { timeRange, options } = this.props;
     const { value, alignmentFactors, width, height, count, orientation } = valueProps;
     const { openMenu, targetClassName } = menuProps;
-    let sparkline = value.sparkline;
+    const sparkline = value.sparkline;
     if (sparkline) {
       sparkline.timeRange = timeRange;
     }
@@ -85,9 +85,9 @@ export class StatPanel extends PureComponent<PanelProps<PanelOptions>> {
 
     let globalRange: NumericRange | undefined = undefined;
 
-    for (let frame of data.series) {
-      for (let field of frame.fields) {
-        let { config } = field;
+    for (const frame of data.series) {
+      for (const field of frame.fields) {
+        const { config } = field;
         // mostly copied from fieldOverrides, since they are skipped during streaming
         // Set the Min/Max value automatically
         if (field.type === FieldType.number) {

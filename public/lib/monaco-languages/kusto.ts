@@ -47,7 +47,7 @@ const loadMonacoKusto = () => {
 };
 
 export default async function loadKusto() {
-  let promise = Promise.resolve();
+  const promise = Promise.resolve();
 
   for (const parallelScripts of scripts) {
     await promise;

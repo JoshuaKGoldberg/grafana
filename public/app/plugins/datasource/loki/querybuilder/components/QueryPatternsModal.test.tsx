@@ -112,7 +112,7 @@ describe('QueryPatternsModal', () => {
     });
   });
 
-  it('does not show create new query option if onAddQuery function is not provided ', async () => {
+  it('does not show create new query option if onAddQuery function is not provided', async () => {
     render(<QueryPatternsModal {...defaultProps} onAddQuery={undefined} />);
     await userEvent.click(screen.getByText('Log query starters'));
     expect(screen.getByText(queryPatterns.logQueryPatterns[0].name)).toBeInTheDocument();

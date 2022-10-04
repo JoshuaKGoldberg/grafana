@@ -151,7 +151,7 @@ describe('MetricStatEditor', () => {
       propsNamespaceMetrics.datasource.api.getMetrics = jest
         .fn()
         .mockImplementation((namespace: string, region: string) => {
-          let mockMetrics =
+          const mockMetrics =
             namespace === 'n1' && region === props.metricStat.region
               ? metrics
               : [{ value: 'oldNamespaceMetric', label: 'oldNamespaceMetric', text: 'oldNamespaceMetric' }];

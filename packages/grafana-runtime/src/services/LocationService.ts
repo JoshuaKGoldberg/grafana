@@ -127,7 +127,7 @@ export class HistoryWrapper implements LocationService {
  * Parses a location search string to an object
  * */
 export function locationSearchToObject(search: string | number): UrlQueryMap {
-  let queryString = typeof search === 'number' ? String(search) : search;
+  const queryString = typeof search === 'number' ? String(search) : search;
 
   if (queryString.length > 0) {
     if (queryString.startsWith('?')) {

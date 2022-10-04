@@ -20,7 +20,7 @@ export function getTextDimensionForField(
   const mode = config.mode ?? TextDimensionMode.Fixed;
   if (mode === TextDimensionMode.Fixed) {
     return {
-      isAssumed: !Boolean(v),
+      isAssumed: !v,
       fixed: v,
       value: () => v,
       get: (i) => v,
@@ -56,7 +56,7 @@ export function getTextDimensionForField(
     };
   }
 
-  let disp = (v: any) => formattedValueToString(field.display!(v));
+  const disp = (v: any) => formattedValueToString(field.display!(v));
   return {
     field,
     get: (i) => disp(field.values.get(i)),

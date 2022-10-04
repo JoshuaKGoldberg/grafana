@@ -36,7 +36,7 @@ const styles = {
   `,
 };
 
-interface RouteProps extends GrafanaRouteComponentProps<{}, ExploreQueryParams> {}
+type RouteProps = GrafanaRouteComponentProps<{}, ExploreQueryParams>
 interface OwnProps {}
 
 interface WrapperState {
@@ -77,11 +77,11 @@ class WrapperUnconnected extends PureComponent<Props, WrapperState> {
     const { left, right } = this.props.queryParams;
     this.props.resetExploreAction({});
 
-    if (Boolean(left)) {
+    if (left) {
       this.props.cleanupPaneAction({ exploreId: ExploreId.left });
     }
 
-    if (Boolean(right)) {
+    if (right) {
       this.props.cleanupPaneAction({ exploreId: ExploreId.right });
     }
 

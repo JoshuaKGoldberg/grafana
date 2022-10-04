@@ -70,7 +70,7 @@ describe('LabelFilters', () => {
     expect(onChange).toBeCalledWith([]);
   });
 
-  it('renders empty input when labels are deleted from outside ', async () => {
+  it('renders empty input when labels are deleted from outside', async () => {
     const { rerender } = setup({ labelsFilters: [{ label: 'foo', op: '=', value: 'bar' }] });
     expect(screen.getByText(/foo/)).toBeInTheDocument();
     expect(screen.getByText(/bar/)).toBeInTheDocument();

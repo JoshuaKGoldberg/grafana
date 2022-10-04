@@ -11,7 +11,7 @@ import { AlertsFolderView } from '../alerting/unified/AlertsFolderView';
 import { getFolderByUid } from './state/actions';
 import { getLoadingNav } from './state/navModel';
 
-export interface OwnProps extends GrafanaRouteComponentProps<{ uid: string }> {}
+export type OwnProps = GrafanaRouteComponentProps<{ uid: string }>
 
 const FolderAlerting = ({ match }: OwnProps) => {
   const dispatch = useDispatch();

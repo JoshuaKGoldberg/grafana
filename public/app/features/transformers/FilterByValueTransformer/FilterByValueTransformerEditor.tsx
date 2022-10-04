@@ -64,7 +64,7 @@ export const FilterByValueTransformerEditor: React.FC<TransformerUIProps<FilterB
 
   const onDeleteFilter = useCallback(
     (index: number) => {
-      let filters = cloneDeep(options.filters);
+      const filters = cloneDeep(options.filters);
       filters.splice(index, 1);
       onChange({ ...options, filters });
     },
@@ -73,7 +73,7 @@ export const FilterByValueTransformerEditor: React.FC<TransformerUIProps<FilterB
 
   const onChangeFilter = useCallback(
     (filter: FilterByValueFilter, index: number) => {
-      let filters = cloneDeep(options.filters);
+      const filters = cloneDeep(options.filters);
       filters[index] = filter;
       onChange({ ...options, filters });
     },

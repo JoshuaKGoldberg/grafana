@@ -90,7 +90,7 @@ function getScatterSeries(
 ): ScatterSeries {
   const frame = frames[frameIndex];
   const y = frame.fields[yIndex];
-  let state = y.state ?? {};
+  const state = y.state ?? {};
   state.seriesIndex = seriesIndex;
   y.state = state;
 
@@ -128,7 +128,7 @@ function getScatterSeries(
   // Size configs
   //----------------
   let pointSizeHints = dims.pointSizeConfig;
-  let pointSizeFixed = dims.pointSizeConfig?.fixed ?? y.config.custom?.pointSize?.fixed ?? 5;
+  const pointSizeFixed = dims.pointSizeConfig?.fixed ?? y.config.custom?.pointSize?.fixed ?? 5;
   let pointSize: DimensionValues<number> = () => pointSizeFixed;
   if (dims.pointSizeIndex) {
     pointSize = (frame) => {
@@ -323,7 +323,7 @@ const prepConfig = (
           arc
         ) => {
           const scatterInfo = scatterSeries[seriesIdx - 1];
-          let d = u.data[seriesIdx] as unknown as FacetSeries;
+          const d = u.data[seriesIdx] as unknown as FacetSeries;
 
           let showLine = scatterInfo.showLine;
           let showPoints = scatterInfo.showPoints === VisibilityMode.Always;
@@ -336,7 +336,7 @@ const prepConfig = (
             showLine = true;
           }
 
-          let strokeWidth = 1;
+          const strokeWidth = 1;
 
           u.ctx.save();
 
@@ -347,37 +347,37 @@ const prepConfig = (
           u.ctx.strokeStyle = (series.stroke as any)();
           u.ctx.lineWidth = strokeWidth;
 
-          let deg360 = 2 * Math.PI;
+          const deg360 = 2 * Math.PI;
 
-          let xKey = scaleX.key!;
-          let yKey = scaleY.key!;
+          const xKey = scaleX.key!;
+          const yKey = scaleY.key!;
 
-          let pointHints = scatterInfo.hints.pointSize;
+          const pointHints = scatterInfo.hints.pointSize;
           const colorByValue = scatterInfo.hints.pointColor.mode.isByValue;
 
-          let maxSize = (pointHints.max ?? pointHints.fixed) * devicePixelRatio;
+          const maxSize = (pointHints.max ?? pointHints.fixed) * devicePixelRatio;
 
           // todo: this depends on direction & orientation
           // todo: calc once per redraw, not per path
-          let filtLft = u.posToVal(-maxSize / 2, xKey);
-          let filtRgt = u.posToVal(u.bbox.width / devicePixelRatio + maxSize / 2, xKey);
-          let filtBtm = u.posToVal(u.bbox.height / devicePixelRatio + maxSize / 2, yKey);
-          let filtTop = u.posToVal(-maxSize / 2, yKey);
+          const filtLft = u.posToVal(-maxSize / 2, xKey);
+          const filtRgt = u.posToVal(u.bbox.width / devicePixelRatio + maxSize / 2, xKey);
+          const filtBtm = u.posToVal(u.bbox.height / devicePixelRatio + maxSize / 2, yKey);
+          const filtTop = u.posToVal(-maxSize / 2, yKey);
 
-          let sizes = opts.disp.size.values(u, seriesIdx);
-          let pointColors = opts.disp.color.values(u, seriesIdx);
-          let pointAlpha = opts.disp.color.alpha(u, seriesIdx);
+          const sizes = opts.disp.size.values(u, seriesIdx);
+          const pointColors = opts.disp.color.values(u, seriesIdx);
+          const pointAlpha = opts.disp.color.alpha(u, seriesIdx);
 
-          let linePath: Path2D | null = showLine ? new Path2D() : null;
+          const linePath: Path2D | null = showLine ? new Path2D() : null;
 
           for (let i = 0; i < d[0].length; i++) {
-            let xVal = d[0][i];
-            let yVal = d[1][i];
-            let size = sizes[i] * devicePixelRatio;
+            const xVal = d[0][i];
+            const yVal = d[1][i];
+            const size = sizes[i] * devicePixelRatio;
 
             if (xVal >= filtLft && xVal <= filtRgt && yVal >= filtBtm && yVal <= filtTop) {
-              let cx = valToPosX(xVal, scaleX, xDim, xOff);
-              let cy = valToPosY(yVal, scaleY, yDim, yOff);
+              const cx = valToPosX(xVal, scaleX, xDim, xOff);
+              const cy = valToPosY(yVal, scaleY, yDim, yOff);
 
               if (showLine) {
                 linePath!.lineTo(cx, cy);
@@ -409,7 +409,7 @@ const prepConfig = (
           }
 
           if (showLine) {
-            let frame = scatterInfo.frame(getData());
+            const frame = scatterInfo.frame(getData());
             u.ctx.strokeStyle = scatterInfo.lineColor(frame);
             u.ctx.lineWidth = scatterInfo.lineWidth * devicePixelRatio;
 
@@ -434,7 +434,7 @@ const prepConfig = (
     return drawBubbles;
   }
 
-  let drawBubbles = drawBubblesFactory({
+  const drawBubbles = drawBubblesFactory({
     disp: {
       size: {
         //unit: 3, // raw CSS pixels
@@ -471,18 +471,18 @@ const prepConfig = (
         hRect = null;
 
         let dist = Infinity;
-        let cx = u.cursor.left! * devicePixelRatio;
-        let cy = u.cursor.top! * devicePixelRatio;
+        const cx = u.cursor.left! * devicePixelRatio;
+        const cy = u.cursor.top! * devicePixelRatio;
 
         qt.get(cx, cy, 1, 1, (o) => {
           if (pointWithin(cx, cy, o.x, o.y, o.x + o.w, o.y + o.h)) {
-            let ocx = o.x + o.w / 2;
-            let ocy = o.y + o.h / 2;
+            const ocx = o.x + o.w / 2;
+            const ocy = o.y + o.h / 2;
 
-            let dx = ocx - cx;
-            let dy = ocy - cy;
+            const dx = ocx - cx;
+            const dy = ocy - cy;
 
-            let d = Math.sqrt(dx ** 2 + dy ** 2);
+            const d = Math.sqrt(dx ** 2 + dy ** 2);
 
             // test against radius for actual hover
             if (d <= o.w / 2) {
@@ -581,7 +581,7 @@ const prepConfig = (
   builder.setMode(2);
 
   const frames = getData();
-  let xField = scatterSeries[0].x(scatterSeries[0].frame(frames));
+  const xField = scatterSeries[0].x(scatterSeries[0].frame(frames));
 
   builder.addScale({
     scaleKey: 'x',
@@ -592,7 +592,7 @@ const prepConfig = (
   });
 
   // why does this fall back to '' instead of null or undef?
-  let xAxisLabel = xField.config.custom.axisLabel;
+  const xAxisLabel = xField.config.custom.axisLabel;
 
   builder.addAxis({
     scaleKey: 'x',
@@ -607,15 +607,15 @@ const prepConfig = (
   });
 
   scatterSeries.forEach((s, si) => {
-    let frame = s.frame(frames);
-    let field = s.y(frame);
+    const frame = s.frame(frames);
+    const field = s.y(frame);
 
     const lineColor = s.lineColor(frame);
     const pointColor = asSingleValue(frame, s.pointColor) as string;
     //const lineColor = s.lineColor(frame);
     //const lineWidth = s.lineWidth;
 
-    let scaleKey = field.config.unit ?? 'y';
+    const scaleKey = field.config.unit ?? 'y';
 
     builder.addScale({
       scaleKey,
@@ -626,7 +626,7 @@ const prepConfig = (
 
     if (field.config.custom?.axisPlacement !== AxisPlacement.Hidden) {
       // why does this fall back to '' instead of null or undef?
-      let yAxisLabel = field.config.custom?.axisLabel;
+      const yAxisLabel = field.config.custom?.axisLabel;
 
       builder.addAxis({
         scaleKey,

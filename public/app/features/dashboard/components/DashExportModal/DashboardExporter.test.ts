@@ -362,7 +362,7 @@ describe('given dashboard with repeated panels', () => {
 });
 
 function getStubInstanceSettings(v: string | DataSourceRef): DataSourceInstanceSettings {
-  let key = (v as DataSourceRef)?.type ?? v;
+  const key = (v as DataSourceRef)?.type ?? v;
   return (stubs[(key as any) ?? 'gfdb'] ?? stubs['gfdb']) as any;
 }
 

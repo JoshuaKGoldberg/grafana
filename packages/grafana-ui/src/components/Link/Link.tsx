@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { locationUtil, textUtil } from '@grafana/data';
 
-export interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {}
+export type Props = AnchorHTMLAttributes<HTMLAnchorElement>
 
 /**
  * @alpha

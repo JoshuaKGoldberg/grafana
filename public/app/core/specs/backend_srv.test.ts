@@ -255,7 +255,7 @@ describe('backendSrv', () => {
 
     describe('when showing error alert', () => {
       describe('when showErrorAlert is undefined and url is a normal api call', () => {
-        it('It should emit alert event for normal api errors', async () => {
+        it('should emit alert event for normal api errors', async () => {
           const { backendSrv, appEventsMock } = getTestContext({});
           backendSrv.showErrorAlert(
             {

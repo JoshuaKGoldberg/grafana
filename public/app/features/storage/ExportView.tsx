@@ -99,7 +99,7 @@ export const ExportView = ({ onPathChange }: Props) => {
       const exclude: Record<string, boolean> = {};
       if (k === '*') {
         if (!v) {
-          for (let exp of serverOptions.value.exporters) {
+          for (const exp of serverOptions.value.exporters) {
             exclude[exp.key] = true;
           }
         }
@@ -107,7 +107,7 @@ export const ExportView = ({ onPathChange }: Props) => {
         return;
       }
 
-      for (let exp of serverOptions.value.exporters) {
+      for (const exp of serverOptions.value.exporters) {
         let val = body.exclude?.[exp.key];
         if (k === exp.key) {
           val = !v;
@@ -160,7 +160,7 @@ export const ExportView = ({ onPathChange }: Props) => {
         </div>
       )}
 
-      {!Boolean(status?.running) && (
+      {!status?.running && (
         <div>
           <h3>Export grafana instance</h3>
           <Field label="Format">

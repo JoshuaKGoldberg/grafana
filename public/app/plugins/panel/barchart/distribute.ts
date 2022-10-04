@@ -12,7 +12,7 @@ export type Each = (idx: number, offPct: number, dimPct: number) => void;
  * @internal
  */
 export function distribute(numItems: number, sizeFactor: number, justify: number, onlyIdx: number | null, each: Each) {
-  let space = 1 - sizeFactor;
+  const space = 1 - sizeFactor;
 
   /* eslint-disable no-multi-spaces */
   // prettier-ignore
@@ -27,15 +27,15 @@ export function distribute(numItems: number, sizeFactor: number, justify: number
   }
 
   // prettier-ignore
-  let offs = (
+  const offs = (
     justify === SPACE_BETWEEN ? 0       :
     justify === SPACE_AROUND  ? gap / 2 :
     justify === SPACE_EVENLY  ? gap     : 0
   );
   /* eslint-enable */
 
-  let iwid = sizeFactor / numItems;
-  let _iwid = roundDecimals(iwid, 6);
+  const iwid = sizeFactor / numItems;
+  const _iwid = roundDecimals(iwid, 6);
 
   if (onlyIdx == null) {
     for (let i = 0; i < numItems; i++) {

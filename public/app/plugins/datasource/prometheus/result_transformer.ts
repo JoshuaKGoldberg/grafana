@@ -106,7 +106,7 @@ export function transformV2(
   const heatmapResultsGroupedByQuery = groupBy<DataFrame>(heatmapResults, (h) => h.refId);
 
   // Initialize empty array to push grouped histogram frames to
-  let processedHeatmapResultsGroupedByQuery: DataFrame[][] = [];
+  const processedHeatmapResultsGroupedByQuery: DataFrame[][] = [];
 
   // Iterate through every query in this heatmap
   for (const query in heatmapResultsGroupedByQuery) {
@@ -586,7 +586,7 @@ function mergeHeatmapFrames(frames: DataFrame[]): DataFrame[] {
 
   const timeField = frames[0].fields.find((field) => field.type === FieldType.time)!;
   const countFields = frames.map((frame) => {
-    let field = frame.fields.find((field) => field.type === FieldType.number)!;
+    const field = frame.fields.find((field) => field.type === FieldType.number)!;
 
     return {
       ...field,

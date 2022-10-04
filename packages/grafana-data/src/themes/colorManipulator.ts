@@ -224,7 +224,7 @@ export function getContrastRatio(foreground: string, background: string, canvas?
 export function getLuminance(color: string, background?: string) {
   const parts = decomposeColor(color);
 
-  let rgb = parts.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : parts.values;
+  const rgb = parts.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : parts.values;
 
   if (background && parts.type === 'rgba') {
     const backgroundParts = decomposeColor(background);

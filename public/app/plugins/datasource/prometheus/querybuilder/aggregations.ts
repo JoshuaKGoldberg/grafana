@@ -57,6 +57,6 @@ function operationWithRangeVectorRenderer(
   def: QueryBuilderOperationDef,
   innerExpr: string
 ) {
-  let rangeVector = (model.params ?? [])[0] ?? '$__interval';
+  const rangeVector = (model.params ?? [])[0] ?? '$__interval';
   return `${def.id}(${innerExpr}[${rangeVector}])`;
 }

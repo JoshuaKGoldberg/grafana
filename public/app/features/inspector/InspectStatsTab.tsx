@@ -16,7 +16,7 @@ export const InspectStatsTab: React.FC<InspectStatsTabProps> = ({ data, timeZone
     return null;
   }
 
-  let stats: QueryResultMetaStat[] = [];
+  const stats: QueryResultMetaStat[] = [];
 
   const requestTime = data.request.endTime ? data.request.endTime - data.request.startTime : -1;
   const processingTime = data.timings?.dataProcessingTime || -1;

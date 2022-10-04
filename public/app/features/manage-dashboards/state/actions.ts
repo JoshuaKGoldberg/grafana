@@ -137,7 +137,7 @@ export function importDashboard(importDashboardForm: ImportDashboardDTO): ThunkR
     const dashboard = getState().importDashboard.dashboard;
     const inputs = getState().importDashboard.inputs;
 
-    let inputsToPersist = [] as any[];
+    const inputsToPersist = [] as any[];
     importDashboardForm.dataSources?.forEach((dataSource: DataSourceInstanceSettings, index: number) => {
       const input = inputs.dataSources[index];
       inputsToPersist.push({

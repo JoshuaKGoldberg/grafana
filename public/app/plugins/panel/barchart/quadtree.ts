@@ -33,7 +33,7 @@ export class Quadtree {
   }
 
   split() {
-    let t = this,
+    const t = this,
       x = t.x,
       y = t.y,
       w = t.w / 2,
@@ -54,7 +54,7 @@ export class Quadtree {
 
   // invokes callback with index of each overlapping quad
   quads(x: number, y: number, w: number, h: number, cb: (q: Quadtree) => void) {
-    let t = this,
+    const t = this,
       q = t.q!,
       hzMid = t.x + t.w / 2,
       vtMid = t.y + t.h / 2,
@@ -74,14 +74,14 @@ export class Quadtree {
   }
 
   add(o: Rect) {
-    let t = this;
+    const t = this;
 
     if (t.q != null) {
       t.quads(o.x, o.y, o.w, o.h, (q) => {
         q.add(o);
       });
     } else {
-      let os = t.o;
+      const os = t.o;
 
       os.push(o);
 
@@ -89,7 +89,7 @@ export class Quadtree {
         t.split();
 
         for (let i = 0; i < os.length; i++) {
-          let oi = os[i];
+          const oi = os[i];
 
           t.quads(oi.x, oi.y, oi.w, oi.h, (q) => {
             q.add(oi);
@@ -102,8 +102,8 @@ export class Quadtree {
   }
 
   get(x: number, y: number, w: number, h: number, cb: (o: Rect) => void) {
-    let t = this;
-    let os = t.o;
+    const t = this;
+    const os = t.o;
 
     for (let i = 0; i < os.length; i++) {
       cb(os[i]);

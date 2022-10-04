@@ -172,7 +172,7 @@ export default class StandardAnnotationQueryEditor extends PureComponent<Props, 
     const { response } = this.state;
 
     // Find the annotation runner
-    let QueryEditor = datasource.annotations?.QueryEditor || datasource.components?.QueryEditor;
+    const QueryEditor = datasource.annotations?.QueryEditor || datasource.components?.QueryEditor;
     if (!QueryEditor) {
       return <div>Annotations are not supported. This datasource needs to export a QueryEditor</div>;
     }

@@ -388,7 +388,7 @@ export function getOperationDefinitions(): QueryBuilderOperationDef[] {
         `${innerExpr} | unwrap ${op.params[1] ? `${op.params[1]}(${op.params[0]})` : op.params[0]}`,
       addOperationHandler: addLokiOperation,
       explainHandler: (op) => {
-        let label = String(op.params[0]).length > 0 ? op.params[0] : '<label>';
+        const label = String(op.params[0]).length > 0 ? op.params[0] : '<label>';
         return `Use the extracted label \`${label}\` as sample values instead of log lines for the subsequent range aggregation.${
           op.params[1]
             ? ` Conversion function \`${op.params[1]}\` wrapping \`${label}\` will attempt to convert this label from a specific format (e.g. 3k, 500ms).`
@@ -436,7 +436,7 @@ function createRangeOperation(name: string): QueryBuilderOperationDef {
     renderer,
     addOperationHandler: addLokiOperation,
     explainHandler: (op, def) => {
-      let opDocs = FUNCTIONS.find((x) => x.insertText === op.id)?.documentation ?? '';
+      const opDocs = FUNCTIONS.find((x) => x.insertText === op.id)?.documentation ?? '';
 
       if (op.params[0] === '$__interval') {
         return `${opDocs} \`$__interval\` is variable that will be replaced with a calculated interval based on **Max data points**,  **Min interval** and query time range. You find these options you find under **Query options** at the right of the data source select dropdown.`;
@@ -460,7 +460,7 @@ function operationWithRangeVectorRenderer(
   def: QueryBuilderOperationDef,
   innerExpr: string
 ) {
-  let rangeVector = (model.params ?? [])[0] ?? '$__interval';
+  const rangeVector = (model.params ?? [])[0] ?? '$__interval';
   return `${def.id}(${innerExpr} [${rangeVector}])`;
 }
 

@@ -21,7 +21,7 @@ interface RendererOpts {
 }
 
 export function drawMarkers(opts: RendererOpts) {
-  let { mode, candleStyle, fields, colorStrategy, upColor, downColor, flatColor, volumeAlpha, flatAsUp = true } = opts;
+  const { mode, candleStyle, fields, colorStrategy, upColor, downColor, flatColor, volumeAlpha, flatAsUp = true } = opts;
 
   const drawPrice = mode !== VizDisplayMode.Volume && fields.high != null && fields.low != null;
   const asCandles = drawPrice && candleStyle === CandleStyle.Candles;
@@ -31,7 +31,7 @@ export function drawMarkers(opts: RendererOpts) {
     return priceDir > 0 ? upPath : priceDir < 0 ? downPath : flatAsUp ? upPath : flatPath;
   }
 
-  let tIdx = 0,
+  const tIdx = 0,
     oIdx = fields.open,
     hIdx = fields.high,
     lIdx = fields.low,
@@ -56,25 +56,25 @@ export function drawMarkers(opts: RendererOpts) {
       flatPathVol = new Path2D();
     }
 
-    let hollowPath = new Path2D();
+    const hollowPath = new Path2D();
 
-    let ctx = u.ctx;
+    const ctx = u.ctx;
 
-    let tData = u.data[tIdx!];
+    const tData = u.data[tIdx!];
 
-    let oData = u.data[oIdx!];
-    let cData = u.data[cIdx!];
+    const oData = u.data[oIdx!];
+    const cData = u.data[cIdx!];
 
-    let hData = drawPrice ? u.data[hIdx!] : null;
-    let lData = drawPrice ? u.data[lIdx!] : null;
-    let vData = drawVolume ? u.data[vIdx!] : null;
+    const hData = drawPrice ? u.data[hIdx!] : null;
+    const lData = drawPrice ? u.data[lIdx!] : null;
+    const vData = drawVolume ? u.data[vIdx!] : null;
 
-    let zeroPx = vIdx != null ? Math.round(u.valToPos(0, u.series[vIdx!].scale!, true)) : null;
+    const zeroPx = vIdx != null ? Math.round(u.valToPos(0, u.series[vIdx!].scale!, true)) : null;
 
-    let [idx0, idx1] = u.series[0].idxs!;
+    const [idx0, idx1] = u.series[0].idxs!;
 
-    let dataX = u.data[0];
-    let dataY = oData;
+    const dataX = u.data[0];
+    const dataY = oData;
 
     let colWidth = u.bbox.width;
 
@@ -87,7 +87,7 @@ export function drawMarkers(opts: RendererOpts) {
       for (let i = 0, minDelta = Infinity; i < dataX.length; i++) {
         if (dataY[i] !== undefined) {
           if (prevIdx != null) {
-            let delta = Math.abs(dataX[i] - dataX[prevIdx]);
+            const delta = Math.abs(dataX[i] - dataX[prevIdx]);
 
             if (delta < minDelta) {
               minDelta = delta;
@@ -100,7 +100,7 @@ export function drawMarkers(opts: RendererOpts) {
       }
     }
 
-    let barWidth = Math.round(0.6 * colWidth);
+    const barWidth = Math.round(0.6 * colWidth);
 
     let stickWidth = 2;
     let outlineWidth = 2;
@@ -109,19 +109,19 @@ export function drawMarkers(opts: RendererOpts) {
       stickWidth = outlineWidth = 1;
     }
 
-    let halfWidth = Math.floor(barWidth / 2);
+    const halfWidth = Math.floor(barWidth / 2);
 
     for (let i = idx0; i <= idx1; i++) {
-      let tPx = Math.round(u.valToPos(tData[i]!, 'x', true));
+      const tPx = Math.round(u.valToPos(tData[i]!, 'x', true));
 
       // current close vs prior close
-      let interDir = i === idx0 ? 0 : Math.sign(cData[i]! - cData[i - 1]!);
+      const interDir = i === idx0 ? 0 : Math.sign(cData[i]! - cData[i - 1]!);
       // current close vs current open
-      let intraDir = Math.sign(cData[i]! - oData[i]!);
+      const intraDir = Math.sign(cData[i]! - oData[i]!);
 
       // volume
       if (drawVolume) {
-        let outerPath = selectPath(
+        const outerPath = selectPath(
           colorStrategy === ColorStrategy.CloseClose ? interDir : intraDir,
           flatPathVol as Path2D,
           upPathVol as Path2D,
@@ -129,12 +129,12 @@ export function drawMarkers(opts: RendererOpts) {
           i === idx0 && ColorStrategy.CloseClose ? false : flatAsUp
         );
 
-        let vPx = Math.round(u.valToPos(vData![i]!, u.series[vIdx!].scale!, true));
+        const vPx = Math.round(u.valToPos(vData![i]!, u.series[vIdx!].scale!, true));
         outerPath.rect(tPx - halfWidth, vPx, barWidth, zeroPx! - vPx);
       }
 
       if (drawPrice) {
-        let outerPath = selectPath(
+        const outerPath = selectPath(
           colorStrategy === ColorStrategy.CloseClose ? interDir : intraDir,
           flatPath as Path2D,
           upPath as Path2D,
@@ -143,18 +143,18 @@ export function drawMarkers(opts: RendererOpts) {
         );
 
         // stick
-        let hPx = Math.round(u.valToPos(hData![i]!, u.series[hIdx!].scale!, true));
-        let lPx = Math.round(u.valToPos(lData![i]!, u.series[lIdx!].scale!, true));
+        const hPx = Math.round(u.valToPos(hData![i]!, u.series[hIdx!].scale!, true));
+        const lPx = Math.round(u.valToPos(lData![i]!, u.series[lIdx!].scale!, true));
         outerPath.rect(tPx - Math.floor(stickWidth / 2), hPx, stickWidth, lPx - hPx);
 
-        let oPx = Math.round(u.valToPos(oData[i]!, u.series[oIdx!].scale!, true));
-        let cPx = Math.round(u.valToPos(cData[i]!, u.series[cIdx!].scale!, true));
+        const oPx = Math.round(u.valToPos(oData[i]!, u.series[oIdx!].scale!, true));
+        const cPx = Math.round(u.valToPos(cData[i]!, u.series[cIdx!].scale!, true));
 
         if (asCandles) {
           // rect
-          let top = Math.min(oPx, cPx);
-          let btm = Math.max(oPx, cPx);
-          let hgt = Math.max(1, btm - top);
+          const top = Math.min(oPx, cPx);
+          const btm = Math.max(oPx, cPx);
+          const hgt = Math.max(1, btm - top);
           outerPath.rect(tPx - halfWidth, top, barWidth, hgt);
 
           if (colorStrategy === ColorStrategy.CloseClose) {

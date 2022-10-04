@@ -3,7 +3,7 @@ import React from 'react';
 import { GrafanaRouteComponentProps } from 'app/core/navigation/types';
 import { EditDataSource } from 'app/features/datasources/components/EditDataSource';
 
-export interface Props extends GrafanaRouteComponentProps<{ uid: string }> {}
+export type Props = GrafanaRouteComponentProps<{ uid: string }>
 
 export function DataSourcesEdit(props: Props) {
   const uid = props.match.params.uid;

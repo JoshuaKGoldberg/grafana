@@ -134,7 +134,7 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
         u.axes.forEach((a) => {
           if (a.side === 2) {
             //@ts-ignore
-            let cssBaseline: number = a._pos + a._size;
+            const cssBaseline: number = a._pos + a._size;
             u.ctx.fillText(timeZones[i], u.bbox.left, cssBaseline * uPlot.pxRatio);
             i++;
           }
@@ -165,7 +165,7 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
     });
   }
 
-  let customRenderedFields =
+  const customRenderedFields =
     renderers?.flatMap((r) => Object.values(r.fieldMap).filter((name) => r.indicesOnly.indexOf(name) === -1)) ?? [];
 
   let indexByName: Map<string, number> | undefined;
@@ -291,9 +291,9 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
 
     if (customConfig.spanNulls !== true) {
       pointsFilter = (u, seriesIdx, show, gaps) => {
-        let filtered = [];
+        const filtered = [];
 
-        let series = u.series[seriesIdx];
+        const series = u.series[seriesIdx];
 
         if (!show && gaps && gaps.length) {
           const [firstIdx, lastIdx] = series.idxs!;
@@ -308,8 +308,8 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
 
           // show single points between consecutive gaps that share end/start
           for (let i = 0; i < gaps.length; i++) {
-            let thisGap = gaps[i];
-            let nextGap = gaps[i + 1];
+            const thisGap = gaps[i];
+            const nextGap = gaps[i + 1];
 
             if (nextGap && thisGap[1] === nextGap[0]) {
               // approx when data density is > 1pt/px, since gap start/end pixels are rounded
@@ -372,10 +372,10 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
           // the data we want the line renderer to pull is x at each plot edge with paired flat y values
 
           const r = getTimeRange();
-          let xData = [r.from.valueOf(), r.to.valueOf()];
-          let firstY = _data[seriesIdx].find((v: number | null | undefined) => v != null);
-          let yData = [firstY, firstY];
-          let fauxData = _data.slice();
+          const xData = [r.from.valueOf(), r.to.valueOf()];
+          const firstY = _data[seriesIdx].find((v: number | null | undefined) => v != null);
+          const yData = [firstY, firstY];
+          const fauxData = _data.slice();
           fauxData[0] = xData;
           fauxData[seriesIdx] = yData;
 
@@ -465,7 +465,7 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
     }
   }
 
-  let stackingGroups = getStackingGroups(frame);
+  const stackingGroups = getStackingGroups(frame);
 
   builder.setStackingGroups(stackingGroups);
 
@@ -474,10 +474,10 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
     if (!indexByName) {
       indexByName = getNamesToFieldIndex(frame, allFrames);
     }
-    let fieldIndices: Record<string, number> = {};
+    const fieldIndices: Record<string, number> = {};
 
-    for (let key in r.fieldMap) {
-      let dispName = r.fieldMap[key];
+    for (const key in r.fieldMap) {
+      const dispName = r.fieldMap[key];
       fieldIndices[key] = indexByName.get(dispName)!;
     }
 
@@ -489,11 +489,11 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
   // if hovered value is null, how far we may scan left/right to hover nearest non-null
   const hoverProximityPx = 15;
 
-  let cursor: Partial<uPlot.Cursor> = {
+  const cursor: Partial<uPlot.Cursor> = {
     // this scans left and right from cursor position to find nearest data index with value != null
     // TODO: do we want to only scan past undefined values, but halt at explicit null values?
     dataIdx: (self, seriesIdx, hoveredIdx, cursorXVal) => {
-      let seriesData = self.data[seriesIdx];
+      const seriesData = self.data[seriesIdx];
 
       if (seriesData[hoveredIdx] == null) {
         let nonNullLft = null,
@@ -514,14 +514,14 @@ export const preparePlotConfigBuilder: UPlotConfigPrepFn<{
           }
         }
 
-        let xVals = self.data[0];
+        const xVals = self.data[0];
 
-        let curPos = self.valToPos(cursorXVal, 'x');
-        let rgtPos = nonNullRgt == null ? Infinity : self.valToPos(xVals[nonNullRgt], 'x');
-        let lftPos = nonNullLft == null ? -Infinity : self.valToPos(xVals[nonNullLft], 'x');
+        const curPos = self.valToPos(cursorXVal, 'x');
+        const rgtPos = nonNullRgt == null ? Infinity : self.valToPos(xVals[nonNullRgt], 'x');
+        const lftPos = nonNullLft == null ? -Infinity : self.valToPos(xVals[nonNullLft], 'x');
 
-        let lftDelta = curPos - lftPos;
-        let rgtDelta = rgtPos - curPos;
+        const lftDelta = curPos - lftPos;
+        const rgtDelta = rgtPos - curPos;
 
         if (lftDelta <= rgtDelta) {
           if (lftDelta <= hoverProximityPx) {

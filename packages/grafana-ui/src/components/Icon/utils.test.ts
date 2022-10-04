@@ -10,7 +10,7 @@ describe('Icon utils', () => {
       ${'bookmark'} | ${'solid'}   | ${'solid'}
       ${'bookmark'} | ${undefined} | ${'mono'}
       ${'folder'}   | ${'mono'}    | ${'mono'}
-    `('it returns the correct iconSubDir for icon $name with type $type', ({ name, type, expected }) => {
+    `('returns the correct iconSubDir for icon $name with type $type', ({ name, type, expected }) => {
       const iconSubDir = getIconSubDir(name, type);
       expect(iconSubDir).toEqual(expected);
     });

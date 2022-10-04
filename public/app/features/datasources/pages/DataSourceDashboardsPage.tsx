@@ -6,7 +6,7 @@ import { GrafanaRouteComponentProps } from 'app/core/navigation/types';
 import { DataSourceDashboards } from '../components/DataSourceDashboards';
 import { useDataSourceSettingsNav } from '../state';
 
-export interface Props extends GrafanaRouteComponentProps<{ uid: string }> {}
+export type Props = GrafanaRouteComponentProps<{ uid: string }>
 
 export function DataSourceDashboardsPage(props: Props) {
   const uid = props.match.params.uid;

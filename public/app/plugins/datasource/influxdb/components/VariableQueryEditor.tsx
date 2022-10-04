@@ -18,7 +18,7 @@ export default class VariableQueryEditor extends PureComponent<Props> {
   };
 
   render() {
-    let { query, datasource, onChange } = this.props;
+    const { query, datasource, onChange } = this.props;
     if (datasource.isFlux) {
       return (
         <FluxQueryEditor

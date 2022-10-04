@@ -31,7 +31,7 @@ export class PanelHeaderCorner extends Component<Props> {
     if (error) {
       return InfoMode.Error;
     }
-    if (!!panel.description) {
+    if (panel.description) {
       return InfoMode.Info;
     }
     if (panel.links && panel.links.length) {

@@ -20,17 +20,17 @@ function isVisibleBarField(f: Field) {
 
 // will mutate the DataFrame's fields' values
 function applySpanNullsThresholds(frame: DataFrame) {
-  let refField = frame.fields.find((field) => field.type === FieldType.time); // this doesnt need to be time, just any numeric/asc join field
-  let refValues = refField?.values.toArray() as any[];
+  const refField = frame.fields.find((field) => field.type === FieldType.time); // this doesnt need to be time, just any numeric/asc join field
+  const refValues = refField?.values.toArray() as any[];
 
   for (let i = 0; i < frame.fields.length; i++) {
-    let field = frame.fields[i];
+    const field = frame.fields[i];
 
     if (field === refField || isVisibleBarField(field)) {
       continue;
     }
 
-    let spanNulls = field.config.custom?.spanNulls;
+    const spanNulls = field.config.custom?.spanNulls;
 
     if (typeof spanNulls === 'number') {
       if (spanNulls !== -1) {
@@ -107,10 +107,10 @@ export function preparePlotFrame(frames: DataFrame[], dimFields: XYFieldMatchers
     // append 2 null vals at minXDelta to bar series
     if (minXDelta !== Infinity) {
       alignedFrame.fields.forEach((f, fi) => {
-        let vals = f.values.toArray();
+        const vals = f.values.toArray();
 
         if (fi === 0) {
-          let lastVal = vals[vals.length - 1];
+          const lastVal = vals[vals.length - 1];
           vals.push(lastVal + minXDelta, lastVal + 2 * minXDelta);
         } else if (isVisibleBarField(f)) {
           vals.push(null, null);
@@ -149,7 +149,7 @@ export function buildScaleKey(config: FieldConfig<GraphFieldConfig>) {
     ? getScaleDistributionPart(config.custom.scaleDistribution)
     : ScaleDistribution.Linear;
 
-  const scaleLabel = Boolean(config.custom?.axisLabel) ? config.custom!.axisLabel : defaultPart;
+  const scaleLabel = config.custom?.axisLabel ? config.custom!.axisLabel : defaultPart;
 
   return `${scaleUnit}/${scaleRange}/${scaleSoftRange}/${scalePlacement}/${scaleDistribution}/${scaleLabel}`;
 }

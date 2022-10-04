@@ -17,7 +17,7 @@ export const calculateGridDimensions = (
   const horizontal = calculateSizeOfChild(parentHeight, parentWidth, numberOfChildren);
   const square = Math.max(vertical, horizontal);
   let xCount = Math.floor(parentWidth / square);
-  let yCount = Math.ceil(numberOfChildren / xCount);
+  const yCount = Math.ceil(numberOfChildren / xCount);
 
   // after yCount update xCount to make split between rows more even
   xCount = Math.ceil(numberOfChildren / yCount);

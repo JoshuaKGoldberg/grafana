@@ -320,7 +320,7 @@ export class UnthemedPrometheusMetricsBrowser extends React.Component<BrowserPro
     if (languageProvider) {
       const selectedLabels: string[] = lastUsedLabels;
       languageProvider.start().then(() => {
-        let rawLabels: string[] = languageProvider.getLabelKeys();
+        const rawLabels: string[] = languageProvider.getLabelKeys();
         // Get metrics
         this.fetchValues(METRIC_LABEL, EMPTY_SELECTOR);
         // Auto-select previously selected labels
@@ -382,7 +382,7 @@ export class UnthemedPrometheusMetricsBrowser extends React.Component<BrowserPro
     const { languageProvider } = this.props;
     this.updateLabelState(name, { loading: true }, `Fetching values for ${name}`);
     try {
-      let rawValues = await languageProvider.getLabelValues(name);
+      const rawValues = await languageProvider.getLabelValues(name);
       // If selector changed, clear loading state and discard result by returning early
       if (selector !== buildSelector(this.state.labels)) {
         this.updateLabelState(name, { loading: false });

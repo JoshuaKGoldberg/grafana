@@ -12,7 +12,7 @@ import { PanelEditEnteredEvent, PanelEditExitedEvent } from 'app/types/events';
 import { InlineEdit } from './InlineEdit';
 import { PanelOptions } from './models.gen';
 
-interface Props extends PanelProps<PanelOptions> {}
+type Props = PanelProps<PanelOptions>
 
 interface State {
   refresh: number;

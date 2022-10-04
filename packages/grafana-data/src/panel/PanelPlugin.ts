@@ -130,7 +130,7 @@ export class PanelPlugin<
   }
 
   get defaults() {
-    let result = this._defaults || {};
+    const result = this._defaults || {};
 
     if (!this._defaults && this.optionsSupplier) {
       const builder = new PanelOptionsEditorBuilder<TOptions>();

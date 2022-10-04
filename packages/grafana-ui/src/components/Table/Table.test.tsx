@@ -109,7 +109,7 @@ function getLinks(row: HTMLElement): HTMLElement[] {
 }
 
 function getRowsData(rows: HTMLElement[]): Object[] {
-  let content = [];
+  const content = [];
   for (let i = 1; i < rows.length; i++) {
     const row = getLinks(rows[i])[0];
     content.push({

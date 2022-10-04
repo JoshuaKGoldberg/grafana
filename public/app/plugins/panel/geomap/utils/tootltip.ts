@@ -54,7 +54,7 @@ export const pointerMoveListener = (evt: MapBrowserEvent<UIEvent>, panel: Geomap
   const layers: GeomapLayerHover[] = [];
   const layerLookup = new Map<MapLayerState, GeomapLayerHover>();
 
-  let ttip: GeomapHoverPayload = {} as GeomapHoverPayload;
+  const ttip: GeomapHoverPayload = {} as GeomapHoverPayload;
   panel.map.forEachFeatureAtPixel(
     pixel,
     (feature, layer, geo) => {

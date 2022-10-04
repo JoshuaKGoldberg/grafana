@@ -37,7 +37,7 @@ describe('SuggestionsPlugin', () => {
   let plugin: SlatePlugin, nextMock: any, suggestions: CompletionItemGroup[], editorMock: any, eventMock: any;
 
   beforeEach(() => {
-    let onTypeahead = async () => {
+    const onTypeahead = async () => {
       return {
         suggestions: suggestions,
       };

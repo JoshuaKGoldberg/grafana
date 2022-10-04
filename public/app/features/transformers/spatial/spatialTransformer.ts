@@ -46,7 +46,7 @@ async function doSetGeometry(frames: DataFrame[], options: SpatialTransformOptio
   }
 
   return frames.map((frame) => {
-    let info = getGeometryField(frame, location);
+    const info = getGeometryField(frame, location);
     if (info.field) {
       if (options.action === SpatialAction.Modify) {
         switch (options.modify?.op) {

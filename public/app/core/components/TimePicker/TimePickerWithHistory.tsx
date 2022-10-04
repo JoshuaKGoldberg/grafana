@@ -7,7 +7,7 @@ import { LocalStorageValueProvider } from '../LocalStorageValueProvider';
 
 const LOCAL_STORAGE_KEY = 'grafana.dashboard.timepicker.history';
 
-interface Props extends Omit<TimeRangePickerProps, 'history' | 'theme'> {}
+type Props = Omit<TimeRangePickerProps, 'history' | 'theme'>
 
 export const TimePickerWithHistory = (props: Props) => {
   return (

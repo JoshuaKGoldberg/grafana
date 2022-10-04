@@ -35,7 +35,7 @@ async function fetchDashboards(options: PanelOptions, replaceVars: InterpolateFu
   let recentDashboards: Promise<DashboardSearchItem[]> = Promise.resolve([]);
   let dashUIDs: string[] = [];
   if (options.showRecentlyViewed) {
-    let uids = await impressionSrv.getDashboardOpened();
+    const uids = await impressionSrv.getDashboardOpened();
     dashUIDs = take<string>(uids, options.maxItems);
     recentDashboards = getBackendSrv().search({ dashboardUIDs: dashUIDs, limit: options.maxItems });
   }
@@ -56,7 +56,7 @@ async function fetchDashboards(options: PanelOptions, replaceVars: InterpolateFu
   const [starred, searched, recent] = await Promise.all([starredDashboards, searchedDashboards, recentDashboards]);
 
   // We deliberately deal with recent dashboards first so that the order of dash IDs is preserved
-  let dashMap = new Map<string, Dashboard>();
+  const dashMap = new Map<string, Dashboard>();
   for (const dashUID of dashUIDs) {
     const dash = recent.find((d) => d.uid === dashUID);
     if (dash) {

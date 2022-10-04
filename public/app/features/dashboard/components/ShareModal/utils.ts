@@ -100,7 +100,7 @@ export function buildImageUrl(
   selectedTheme?: string,
   panel?: PanelModel
 ) {
-  let soloUrl = buildSoloUrl(useCurrentTimeRange, dashboardUid, selectedTheme, panel);
+  const soloUrl = buildSoloUrl(useCurrentTimeRange, dashboardUid, selectedTheme, panel);
   let imageUrl = soloUrl.replace(config.appSubUrl + '/dashboard-solo/', config.appSubUrl + '/render/dashboard-solo/');
   imageUrl = imageUrl.replace(config.appSubUrl + '/d-solo/', config.appSubUrl + '/render/d-solo/');
   imageUrl += '&width=1000&height=500' + getLocalTimeZone();
@@ -113,7 +113,7 @@ export function buildIframeHtml(
   selectedTheme?: string,
   panel?: PanelModel
 ) {
-  let soloUrl = buildSoloUrl(useCurrentTimeRange, dashboardUid, selectedTheme, panel);
+  const soloUrl = buildSoloUrl(useCurrentTimeRange, dashboardUid, selectedTheme, panel);
   return '<iframe src="' + soloUrl + '" width="450" height="200" frameborder="0"></iframe>';
 }
 

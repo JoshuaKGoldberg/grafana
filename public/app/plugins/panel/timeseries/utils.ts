@@ -28,13 +28,13 @@ export function prepareGraphableFields(
 
   const frames: DataFrame[] = [];
 
-  for (let frame of series) {
+  for (const frame of series) {
     const fields: Field[] = [];
 
     let hasTimeField = false;
     let hasValueField = false;
 
-    let nulledFrame = applyNullInsertThreshold({
+    const nulledFrame = applyNullInsertThreshold({
       frame,
       refFieldPseudoMin: timeRange?.from.valueOf(),
       refFieldPseudoMax: timeRange?.to.valueOf(),
@@ -86,7 +86,7 @@ export function prepareGraphableFields(
                 if (v == null) {
                   return v;
                 }
-                return Boolean(v) ? 1 : 0;
+                return v ? 1 : 0;
               })
             ),
           };

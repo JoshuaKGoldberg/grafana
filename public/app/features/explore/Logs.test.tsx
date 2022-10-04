@@ -52,7 +52,7 @@ describe('Logs', () => {
   it('should render logs', () => {
     setup();
     const logsSection = screen.getByTestId('logRows');
-    let logRows = logsSection.querySelectorAll('tr');
+    const logRows = logsSection.querySelectorAll('tr');
     expect(logRows.length).toBe(3);
     expect(logRows[0].textContent).toContain('log message 3');
     expect(logRows[2].textContent).toContain('log message 1');
@@ -64,7 +64,7 @@ describe('Logs', () => {
     fireEvent.click(oldestFirstSelection);
     jest.advanceTimersByTime(1000);
     const logsSection = screen.getByTestId('logRows');
-    let logRows = logsSection.querySelectorAll('tr');
+    const logRows = logsSection.querySelectorAll('tr');
     expect(logRows.length).toBe(3);
     expect(logRows[0].textContent).toContain('log message 1');
     expect(logRows[2].textContent).toContain('log message 3');

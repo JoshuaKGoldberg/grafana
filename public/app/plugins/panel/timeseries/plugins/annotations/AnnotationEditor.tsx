@@ -46,7 +46,7 @@ export const AnnotationEditor: React.FC<AnnotationEditorProps> = ({
     ],
   });
 
-  let xField = data.fields[0];
+  const xField = data.fields[0];
   if (!xField) {
     return null;
   }

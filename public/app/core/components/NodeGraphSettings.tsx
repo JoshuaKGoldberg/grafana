@@ -17,7 +17,7 @@ export interface NodeGraphData extends DataSourceJsonData {
   nodeGraph?: NodeGraphOptions;
 }
 
-interface Props extends DataSourcePluginOptionsEditorProps<NodeGraphData> {}
+type Props = DataSourcePluginOptionsEditorProps<NodeGraphData>
 
 export function NodeGraphSettings({ options, onOptionsChange }: Props) {
   const styles = useStyles(getStyles);

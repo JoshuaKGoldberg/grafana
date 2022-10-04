@@ -10,7 +10,7 @@ export const timelinePanelChangedHandler = (
   prevPluginId: string,
   prevOptions: any
 ) => {
-  let options = (panel.options ?? {}) as TimelineOptions;
+  const options = (panel.options ?? {}) as TimelineOptions;
 
   // Changing from angular singlestat
   if (prevPluginId === 'natel-discrete-panel' && prevOptions.angular) {
@@ -46,7 +46,7 @@ export const timelinePanelChangedHandler = (
         const text = p.text as string;
         const value = p.value as string;
         if (text && value) {
-          let old = valuemap.options[value];
+          const old = valuemap.options[value];
           if (old) {
             old.text = text;
           } else {
@@ -58,8 +58,8 @@ export const timelinePanelChangedHandler = (
 
     if (isArray(oldOptions.rangeMaps)) {
       for (const p of oldOptions.rangeMaps) {
-        let from = +p.from;
-        let to = +p.to;
+        const from = +p.from;
+        const to = +p.to;
         const text = p.text as string;
         if (text) {
           fieldConfig.defaults.mappings.push({

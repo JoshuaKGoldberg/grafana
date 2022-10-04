@@ -36,7 +36,7 @@ export function NavBarItemMenuItem({ item, state, onNavigate }: NavBarItemMenuIt
     onClose();
   };
 
-  let { menuItemProps } = useMenuItem(
+  const { menuItemProps } = useMenuItem(
     {
       isDisabled,
       'aria-label': item['aria-label'],

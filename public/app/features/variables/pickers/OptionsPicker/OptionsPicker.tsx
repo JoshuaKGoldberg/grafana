@@ -58,7 +58,7 @@ export const optionPickerFactory = <Model extends VariableWithOptions | Variable
 
   const connector = connect(mapStateToProps, mapDispatchToProps);
 
-  interface OwnProps extends VariablePickerProps<Model> {}
+  type OwnProps = VariablePickerProps<Model>
 
   type Props = OwnProps & ConnectedProps<typeof connector>;
 

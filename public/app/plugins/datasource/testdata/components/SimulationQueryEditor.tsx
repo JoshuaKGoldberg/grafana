@@ -49,12 +49,12 @@ export const SimulationQueryEditor = ({ onChange, query, ds }: EditorProps) => {
     };
   }, [info.value, simKey?.type]);
 
-  let config = useAsync(async () => {
+  const config = useAsync(async () => {
     let path = simKey.type + '/' + simKey.tick + 'hz';
     if (simKey.uid) {
       path += '/' + simKey.uid;
     }
-    let config = (await ds.getResource('sim/' + path))?.config;
+    const config = (await ds.getResource('sim/' + path))?.config;
     setCfgValue(config.value);
     return config;
   }, [simKey.type, simKey.tick, simKey.uid]);

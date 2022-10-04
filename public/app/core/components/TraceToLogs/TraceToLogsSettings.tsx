@@ -30,7 +30,7 @@ export interface TraceToLogsData extends DataSourceJsonData {
   tracesToLogs?: TraceToLogsOptions;
 }
 
-interface Props extends DataSourcePluginOptionsEditorProps<TraceToLogsData> {}
+type Props = DataSourcePluginOptionsEditorProps<TraceToLogsData>
 
 export function TraceToLogsSettings({ options, onOptionsChange }: Props) {
   const styles = useStyles(getStyles);

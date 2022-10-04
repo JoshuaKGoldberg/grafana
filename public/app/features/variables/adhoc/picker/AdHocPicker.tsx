@@ -17,7 +17,7 @@ const mapDispatchToProps = {
 
 const connector = connect(null, mapDispatchToProps);
 
-interface OwnProps extends VariablePickerProps<AdHocVariableModel> {}
+type OwnProps = VariablePickerProps<AdHocVariableModel>
 
 type Props = OwnProps & ConnectedProps<typeof connector>;
 

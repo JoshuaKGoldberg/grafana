@@ -617,7 +617,7 @@ describe('given dashboard with row and panel repeat', () => {
       { id: 12, type: 'graph', repeatPanelId: 2, repeatIteration: 101, gridPos: { x: 0, y: 3, h: 1, w: 6 } },
     ];
 
-    let panelChangedEvents: DashboardPanelsChangedEvent[] = [];
+    const panelChangedEvents: DashboardPanelsChangedEvent[] = [];
     dashboard = getDashboardModel(dashboardJSON);
     dashboard.events.subscribe(DashboardPanelsChangedEvent, (evt) => panelChangedEvents.push(evt));
     dashboard.processRepeats();

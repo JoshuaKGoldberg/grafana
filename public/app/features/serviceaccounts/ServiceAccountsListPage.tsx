@@ -285,7 +285,7 @@ export const ServiceAccountsListPageUnconnected = ({
             <ConfirmModal
               isOpen={isRemoveModalOpen}
               body={`Are you sure you want to delete '${currentServiceAccount.name}'${
-                !!currentServiceAccount.tokens
+                currentServiceAccount.tokens
                   ? ` and ${currentServiceAccount.tokens} accompanying ${pluralize(
                       'token',
                       currentServiceAccount.tokens

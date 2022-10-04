@@ -34,7 +34,7 @@ export const MappingsConfiguration = (props: Props): JSX.Element => {
               <Input
                 width={50}
                 onChange={(changeEvent: ChangeEvent<HTMLInputElement>) => {
-                  let newMappings = mappings.concat();
+                  const newMappings = mappings.concat();
                   newMappings[i] = changeEvent.target.value;
                   setMappings(newMappings);
                 }}
@@ -51,7 +51,7 @@ export const MappingsConfiguration = (props: Props): JSX.Element => {
               variant="secondary"
               size="xs"
               onClick={(_) => {
-                let newMappings = mappings.concat();
+                const newMappings = mappings.concat();
                 newMappings.splice(i, 1);
                 setMappings(newMappings);
                 props.onChange(newMappings);

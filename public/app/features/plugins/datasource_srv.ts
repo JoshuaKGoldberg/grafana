@@ -66,7 +66,7 @@ export class DatasourceSrv implements DataSourceService {
     scopedVars?: ScopedVars
   ): DataSourceInstanceSettings | undefined {
     const isstring = typeof ref === 'string';
-    let nameOrUid = isstring ? (ref as string) : ((ref as any)?.uid as string | undefined);
+    const nameOrUid = isstring ? (ref as string) : ((ref as any)?.uid as string | undefined);
 
     if (nameOrUid === 'default' || nameOrUid === null || nameOrUid === undefined) {
       if (!isstring && ref) {

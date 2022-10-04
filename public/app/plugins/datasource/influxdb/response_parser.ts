@@ -217,7 +217,7 @@ function getTableRows(dfs: DataFrame[], table: TableModel, labels: string[]): Ta
 }
 
 export function getSelectedParams(target: InfluxQuery): string[] {
-  let allParams: string[] = [];
+  const allParams: string[] = [];
   target.select?.forEach((select) => {
     const selector = select.filter((x) => x.type !== 'field');
     if (selector.length > 0) {
@@ -229,7 +229,7 @@ export function getSelectedParams(target: InfluxQuery): string[] {
     }
   });
 
-  let uniqueParams: string[] = [];
+  const uniqueParams: string[] = [];
   allParams.forEach((param) => {
     uniqueParams.push(incrementName(param, param, uniqueParams, 0));
   });

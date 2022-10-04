@@ -316,7 +316,7 @@ export const SearchView = ({
 
   return (
     <>
-      {Boolean(searchSelection.items.size > 0) ? (
+      {searchSelection.items.size > 0 ? (
         <ManageActions items={searchSelection.items} onChange={onChangeItemsList} clearSelection={clearSelection} />
       ) : (
         <ActionRow

@@ -6,14 +6,14 @@ import { DashboardModel, PanelModel } from '../../state';
 
 import { PanelHeader } from './PanelHeader';
 
-let panelModel = new PanelModel({
+const panelModel = new PanelModel({
   id: 1,
   gridPos: { x: 1, y: 1, w: 1, h: 1 },
   type: 'type',
   title: 'title',
 });
 
-let panelData = createEmptyQueryResponse();
+const panelData = createEmptyQueryResponse();
 
 describe('Panel Header', () => {
   const dashboardModel = new DashboardModel({}, { publicDashboardAccessToken: 'abc123' });

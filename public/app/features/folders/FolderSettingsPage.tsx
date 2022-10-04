@@ -15,7 +15,7 @@ import { deleteFolder, getFolderByUid, saveFolder } from './state/actions';
 import { getLoadingNav } from './state/navModel';
 import { setFolderTitle } from './state/reducers';
 
-export interface OwnProps extends GrafanaRouteComponentProps<{ uid: string }> {}
+export type OwnProps = GrafanaRouteComponentProps<{ uid: string }>
 
 const mapStateToProps = (state: StoreState, props: OwnProps) => {
   const uid = props.match.params.uid;

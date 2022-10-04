@@ -20,7 +20,7 @@ import {
 
 import { PanelOptions } from './models.gen';
 
-interface Props extends PanelProps<PanelOptions> {}
+type Props = PanelProps<PanelOptions>
 
 export class IconPanel extends Component<Props> {
   private element: ElementState;

@@ -33,7 +33,7 @@ const defaultLegendOptions: PieChartLegendOptions = {
   values: [PieChartLegendValues.Percent],
 };
 
-interface Props extends PanelProps<PanelOptions> {}
+type Props = PanelProps<PanelOptions>
 
 /**
  * @beta
@@ -112,7 +112,7 @@ function getLegend(props: Props, displayValues: FieldDisplay[]) {
         getItemKey: () => (display.title ?? '') + idx,
         getDisplayValues: () => {
           const valuesToShow = legendOptions.values ?? [];
-          let displayValues = [];
+          const displayValues = [];
 
           if (valuesToShow.includes(PieChartLegendValues.Value)) {
             displayValues.push({ numeric: display.numeric, text: formattedValueToString(display), title: 'Value' });

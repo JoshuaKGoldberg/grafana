@@ -26,7 +26,7 @@ export default class SQLGenerator {
       return undefined;
     }
 
-    let parts: string[] = [];
+    const parts: string[] = [];
     this.appendSelect(select, parts);
     this.appendFrom(from, parts);
     this.appendWhere(where, parts, true, where?.expressions?.length ?? 0);

@@ -116,7 +116,7 @@ export class ZipkinDatasource extends DataSourceApi<ZipkinQuery, ZipkinJsonData>
 }
 
 function responseToDataQueryResponse(response: { data: ZipkinSpan[] }, nodeGraph = false): DataQueryResponse {
-  let data = response?.data ? [transformResponse(response?.data)] : [];
+  const data = response?.data ? [transformResponse(response?.data)] : [];
   if (nodeGraph) {
     data.push(...createGraphFrames(response?.data));
   }

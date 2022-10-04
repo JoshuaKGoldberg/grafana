@@ -57,7 +57,7 @@ export const ZipkinQueryField = ({ query, onChange, onRunQuery, datasource }: Pr
     onChange(nextQuery);
   };
 
-  let cascaderOptions = useMapToCascaderOptions(serviceOptions, allOptions);
+  const cascaderOptions = useMapToCascaderOptions(serviceOptions, allOptions);
 
   return (
     <>

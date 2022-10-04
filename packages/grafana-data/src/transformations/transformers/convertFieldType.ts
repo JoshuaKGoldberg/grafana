@@ -114,17 +114,17 @@ const iso8601Regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/;
  * @internal
  */
 export function fieldToTimeField(field: Field, dateFormat?: string): Field {
-  let opts = dateFormat ? { format: dateFormat } : undefined;
+  const opts = dateFormat ? { format: dateFormat } : undefined;
 
   const timeValues = field.values.toArray().slice();
 
-  let firstDefined = timeValues.find((v) => v != null);
+  const firstDefined = timeValues.find((v) => v != null);
 
-  let isISO8601 = typeof firstDefined === 'string' && iso8601Regex.test(firstDefined);
+  const isISO8601 = typeof firstDefined === 'string' && iso8601Regex.test(firstDefined);
 
   for (let t = 0; t < timeValues.length; t++) {
     if (timeValues[t]) {
-      let parsed = isISO8601 ? Date.parse(timeValues[t]) : dateTimeParse(timeValues[t], opts).valueOf();
+      const parsed = isISO8601 ? Date.parse(timeValues[t]) : dateTimeParse(timeValues[t], opts).valueOf();
       timeValues[t] = Number.isFinite(parsed) ? parsed : null;
     } else {
       timeValues[t] = null;
@@ -157,7 +157,7 @@ function fieldToBooleanField(field: Field): Field {
   const booleanValues = field.values.toArray().slice();
 
   for (let b = 0; b < booleanValues.length; b++) {
-    booleanValues[b] = Boolean(!!booleanValues[b]);
+    booleanValues[b] = Boolean(booleanValues[b]);
   }
 
   return {

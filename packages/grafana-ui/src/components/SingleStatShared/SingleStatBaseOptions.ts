@@ -30,7 +30,7 @@ export function sharedSingleStatPanelChangedHandler(
   prevPluginId: string,
   prevOptions: any
 ) {
-  let options = panel.options;
+  const options = panel.options;
 
   panel.fieldConfig = panel.fieldConfig || {
     defaults: {},
@@ -218,7 +218,7 @@ export function sharedSingleStatMigrationHandler(panel: PanelModel<SingleStatBas
   if (previousVersion < 8.0) {
     // Explicit min/max was removed for percent/percentunit in 8.0
     const config = panel.fieldConfig?.defaults;
-    let unit = config?.unit;
+    const unit = config?.unit;
     if (unit === 'percent') {
       if (!isNumber(config.min)) {
         config.min = 0;

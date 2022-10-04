@@ -25,7 +25,7 @@ export function getThresholdsDrawHook(options: UPlotThresholdOptions) {
       : null;
 
   function addLines(u: uPlot, steps: Threshold[], theme: GrafanaTheme2, xMin: number, xMax: number, yScaleKey: string) {
-    let ctx = u.ctx;
+    const ctx = u.ctx;
 
     // Thresholds below a transparent threshold is treated like "less than", and line drawn previous threshold
     let transparentIndex = 0;
@@ -61,10 +61,10 @@ export function getThresholdsDrawHook(options: UPlotThresholdOptions) {
         color.setAlpha(0.7);
       }
 
-      let x0 = Math.round(u.valToPos(xMin!, 'x', true));
-      let y0 = Math.round(u.valToPos(step.value, yScaleKey, true));
-      let x1 = Math.round(u.valToPos(xMax!, 'x', true));
-      let y1 = Math.round(u.valToPos(step.value, yScaleKey, true));
+      const x0 = Math.round(u.valToPos(xMin!, 'x', true));
+      const y0 = Math.round(u.valToPos(step.value, yScaleKey, true));
+      const x1 = Math.round(u.valToPos(xMax!, 'x', true));
+      const y1 = Math.round(u.valToPos(step.value, yScaleKey, true));
 
       ctx.beginPath();
       ctx.moveTo(x0, y0);
@@ -76,13 +76,13 @@ export function getThresholdsDrawHook(options: UPlotThresholdOptions) {
   }
 
   function addAreas(u: uPlot, steps: Threshold[], theme: GrafanaTheme2) {
-    let ctx = u.ctx;
+    const ctx = u.ctx;
 
-    let grd = scaleGradient(
+    const grd = scaleGradient(
       u,
       u.series[1].scale!,
       steps.map((step) => {
-        let color = tinycolor(theme.visualization.getColorByName(step.color));
+        const color = tinycolor(theme.visualization.getColorByName(step.color));
 
         if (color.getAlpha() === 1) {
           color.setAlpha(0.15);
@@ -111,8 +111,8 @@ export function getThresholdsDrawHook(options: UPlotThresholdOptions) {
     let { steps, mode } = thresholds;
 
     if (mode === ThresholdsMode.Percentage) {
-      let [min, max] = getGradientRange(u, scaleKey, hardMin, hardMax, softMin, softMax);
-      let range = max - min;
+      const [min, max] = getGradientRange(u, scaleKey, hardMin, hardMax, softMin, softMax);
+      const range = max - min;
 
       steps = steps.map((step) => ({
         ...step,

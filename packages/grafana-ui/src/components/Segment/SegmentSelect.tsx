@@ -46,7 +46,7 @@ export function SegmentSelect<T>({
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme2();
 
-  let width = widthPixels > 0 ? widthPixels / theme.spacing.gridSize : undefined;
+  const width = widthPixels > 0 ? widthPixels / theme.spacing.gridSize : undefined;
 
   let Component;
   let asyncOptions = {};

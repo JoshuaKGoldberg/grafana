@@ -9,7 +9,7 @@ import { GrafanaRouteComponentProps } from 'app/core/navigation/types';
 
 import { getGrafanaStorage } from './storage';
 
-export interface Props extends GrafanaRouteComponentProps<{ slug: string }> {}
+export type Props = GrafanaRouteComponentProps<{ slug: string }>
 
 export function StorageFolderPage(props: Props) {
   const slug = props.match.params.slug ?? '';
@@ -24,7 +24,7 @@ export function StorageFolderPage(props: Props) {
     if (listing.value) {
       const names = listing.value.fields[0].values.toArray();
       return names.map((item: string) => {
-        let name = item;
+        const name = item;
         const isFolder = name.indexOf('.') < 0;
         const isDash = !isFolder && name.endsWith('.json');
         const url = `${childRoot}${name}`;
@@ -61,7 +61,7 @@ export function StorageFolderPage(props: Props) {
 
 export function getPageNavFromSlug(slug: string) {
   const parts = slug.split('/');
-  let pageNavs: NavModelItem[] = [];
+  const pageNavs: NavModelItem[] = [];
   let url = 'g';
   let lastPageNav: NavModelItem | undefined;
 

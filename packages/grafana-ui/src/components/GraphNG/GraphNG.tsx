@@ -101,7 +101,7 @@ export class GraphNG extends Component<GraphNGProps, GraphNGState> {
 
   constructor(props: GraphNGProps) {
     super(props);
-    let state = this.prepState(props);
+    const state = this.prepState(props);
     state.alignedData = state.config!.prepData!([state.alignedFrame]) as AlignedData;
     this.state = state;
     this.plotInstance = React.createRef();
@@ -221,7 +221,7 @@ export class GraphNG extends Component<GraphNGProps, GraphNGState> {
     const propsChanged = !sameProps(prevProps, this.props, propsToDiff);
 
     if (frames !== prevProps.frames || propsChanged || timeZone !== prevProps.timeZone) {
-      let newState = this.prepState(this.props, false);
+      const newState = this.prepState(this.props, false);
 
       if (newState) {
         const shouldReconfig =

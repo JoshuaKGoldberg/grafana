@@ -15,7 +15,7 @@ import { stylesFactory, useTheme, Input, IconButton, Icon, FieldValidationMessag
 
 import { useAllFieldNamesFromDataFrames } from '../utils';
 
-interface OrganizeFieldsTransformerEditorProps extends TransformerUIProps<OrganizeFieldsTransformerOptions> {}
+type OrganizeFieldsTransformerEditorProps = TransformerUIProps<OrganizeFieldsTransformerOptions>
 
 const OrganizeFieldsTransformerEditor: React.FC<OrganizeFieldsTransformerEditorProps> = (props) => {
   const { options, input, onChange } = props;

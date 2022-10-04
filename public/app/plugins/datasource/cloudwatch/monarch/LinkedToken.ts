@@ -81,7 +81,7 @@ export class LinkedToken {
   }
 
   getPreviousUntil(type: string, ignoreTypes: string[], value?: string): LinkedToken[] | null {
-    let tokens: LinkedToken[] = [];
+    const tokens: LinkedToken[] = [];
     let curr = this.previous;
     while (curr != null) {
       if (ignoreTypes.some((t) => t === curr?.type)) {
@@ -103,7 +103,7 @@ export class LinkedToken {
   }
 
   getNextUntil(type: string, ignoreTypes: string[], value?: string): LinkedToken[] | null {
-    let tokens: LinkedToken[] = [];
+    const tokens: LinkedToken[] = [];
     let curr = this.next;
     while (curr != null) {
       if (ignoreTypes.some((t) => t === curr?.type)) {

@@ -103,7 +103,7 @@ export class TemplateSrv implements BaseTemplateSrv {
 
   getAdhocFilters(datasourceName: string): AdHocVariableFilter[] {
     let filters: any = [];
-    let ds = getDataSourceSrv().getInstanceSettings(datasourceName);
+    const ds = getDataSourceSrv().getInstanceSettings(datasourceName);
 
     if (!ds) {
       return [];

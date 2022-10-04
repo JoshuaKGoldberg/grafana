@@ -117,7 +117,7 @@ function calculateFontSizeWithMetrics(
 export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
   const { xOri, xDir: dir, rawValue, getColor, formatValue, fillOpacity = 1, showValue, xSpacing = 0 } = opts;
   const isXHorizontal = xOri === ScaleOrientation.Horizontal;
-  const hasAutoValueSize = !Boolean(opts.text?.valueSize);
+  const hasAutoValueSize = !opts.text?.valueSize;
   const isStacked = opts.stacking !== StackingMode.None;
   const pctStacked = opts.stacking === StackingMode.Percent;
 
@@ -134,23 +134,23 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     const dim = isXHorizontal ? u.bbox.width : u.bbox.height;
     const _dir = dir * (isXHorizontal ? 1 : -1);
 
-    let dataLen = u.data[0].length;
-    let lastIdx = dataLen - 1;
+    const dataLen = u.data[0].length;
+    const lastIdx = dataLen - 1;
 
     let skipMod = 0;
 
     if (xSpacing !== 0) {
-      let cssDim = dim / devicePixelRatio;
-      let maxTicks = Math.abs(Math.floor(cssDim / xSpacing));
+      const cssDim = dim / devicePixelRatio;
+      const maxTicks = Math.abs(Math.floor(cssDim / xSpacing));
 
       skipMod = dataLen < maxTicks ? 0 : Math.ceil(dataLen / maxTicks);
     }
 
-    let splits: number[] = [];
+    const splits: number[] = [];
 
     // for distr: 2 scales, the splits array should contain indices into data[0] rather than values
     u.data[0].forEach((v, i) => {
-      let shouldSkip = skipMod !== 0 && (xSpacing > 0 ? i : lastIdx - i) % skipMod > 0;
+      const shouldSkip = skipMod !== 0 && (xSpacing > 0 ? i : lastIdx - i) % skipMod > 0;
 
       if (!shouldSkip) {
         splits.push(i);
@@ -165,14 +165,14 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     if (opts.xTimeAuto) {
       // bit of a hack:
       // temporarily set x scale range to temporal (as expected by formatTime()) rather than ordinal
-      let xScale = u.scales.x;
-      let oMin = xScale.min;
-      let oMax = xScale.max;
+      const xScale = u.scales.x;
+      const oMin = xScale.min;
+      const oMax = xScale.max;
 
       xScale.min = u.data[0][0];
       xScale.max = u.data[0][u.data[0].length - 1];
 
-      let vals = formatTime(u, splits, axisIdx, foundSpace, foundIncr);
+      const vals = formatTime(u, splits, axisIdx, foundSpace, foundIncr);
 
       // revert
       xScale.min = oMin;
@@ -197,13 +197,13 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     });
 
     // expand scale range by equal amounts on both ends
-    let rn = max - min;
+    const rn = max - min;
 
     if (pctOffset === 0.5) {
       min -= rn;
     } else {
-      let upScale = 1 / (1 - pctOffset * 2);
-      let offset = (upScale * rn - rn) / 2;
+      const upScale = 1 / (1 - pctOffset * 2);
+      const offset = (upScale * rn - rn) / 2;
 
       min -= offset;
       max += offset;
@@ -212,8 +212,8 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     return [min, max];
   };
 
-  let distrTwo = (groupCount: number, barCount: number) => {
-    let out = Array.from({ length: barCount }, () => ({
+  const distrTwo = (groupCount: number, barCount: number) => {
+    const out = Array.from({ length: barCount }, () => ({
       offs: Array(groupCount).fill(0),
       size: Array(groupCount).fill(0),
     }));
@@ -228,8 +228,8 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     return out;
   };
 
-  let distrOne = (groupCount: number, barCount: number) => {
-    let out = Array.from({ length: barCount }, () => ({
+  const distrOne = (groupCount: number, barCount: number) => {
+    const out = Array.from({ length: barCount }, () => ({
       offs: Array(groupCount).fill(0),
       size: Array(groupCount).fill(0),
     }));
@@ -258,9 +258,9 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
   let vSpace = Infinity;
   let hSpace = Infinity;
 
-  let useMappedColors = getColor != null;
+  const useMappedColors = getColor != null;
 
-  let mappedColorDisp = useMappedColors
+  const mappedColorDisp = useMappedColors
     ? {
         fill: {
           unit: 3,
@@ -273,7 +273,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
       }
     : {};
 
-  let barsBuilder = uPlot.paths.bars!({
+  const barsBuilder = uPlot.paths.bars!({
     radius: barRadius,
     disp: {
       x0: {
@@ -293,7 +293,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
       lft -= u.bbox.left;
       top -= u.bbox.top;
 
-      let val = u.data[seriesIdx][dataIdx]!;
+      const val = u.data[seriesIdx][dataIdx]!;
       // accum min space abvailable for labels
       if (isXHorizontal) {
         vSpace = Math.min(vSpace, val < 0 ? u.bbox.height - (top + hgt) : top);
@@ -303,7 +303,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
         hSpace = Math.min(hSpace, val < 0 ? lft : u.bbox.width - (lft + wid));
       }
 
-      let barRect = { x: lft, y: top, w: wid, h: hgt, sidx: seriesIdx, didx: dataIdx };
+      const barRect = { x: lft, y: top, w: wid, h: hgt, sidx: seriesIdx, didx: dataIdx };
       qt.add(barRect);
 
       if (showValue !== VisibilityMode.Never) {
@@ -337,7 +337,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
           labels[dataIdx][seriesIdx].textMetrics = textMetrics;
 
           // Retrieve the new font size and use it
-          let autoFontSize = Math.round(Math.min(fontSize, VALUE_MAX_FONT_SIZE, calculatedSize));
+          const autoFontSize = Math.round(Math.min(fontSize, VALUE_MAX_FONT_SIZE, calculatedSize));
 
           // Calculate the scaling factor for bouding boxes
           // Take into account the fact that calculateFontSize
@@ -350,7 +350,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
           labels[dataIdx][seriesIdx].textMetrics = measureText(labels[dataIdx][seriesIdx].text, fontSize);
         }
 
-        let middleShift = isXHorizontal ? 0 : -Math.round(MIDDLE_BASELINE_SHIFT * fontSize);
+        const middleShift = isXHorizontal ? 0 : -Math.round(MIDDLE_BASELINE_SHIFT * fontSize);
         let value = rawValue(seriesIdx, dataIdx);
 
         if (opts.negY?.[seriesIdx] && value != null) {
@@ -413,7 +413,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
   });
 
   const init = (u: uPlot) => {
-    let over = u.over;
+    const over = u.over;
     over.style.overflow = 'hidden';
     u.root.querySelectorAll('.u-cursor-pt').forEach((el) => {
       (el as HTMLElement).style.borderRadius = '0';
@@ -431,8 +431,8 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
       if (seriesIdx === 1) {
         hRect = null;
 
-        let cx = u.cursor.left! * devicePixelRatio;
-        let cy = u.cursor.top! * devicePixelRatio;
+        const cx = u.cursor.left! * devicePixelRatio;
+        const cy = u.cursor.top! * devicePixelRatio;
 
         qt.get(cx, cy, 1, 1, (o) => {
           if (pointWithin(cx, cy, o.x, o.y, o.x + o.w, o.y + o.h)) {
@@ -446,7 +446,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
     points: {
       fill: 'rgba(255,255,255,0.4)',
       bbox: (u, seriesIdx) => {
-        let isHovered = hRect && seriesIdx === hRect.sidx;
+        const isHovered = hRect && seriesIdx === hRect.sidx;
 
         return {
           left: isHovered ? hRect!.x / devicePixelRatio : -10,
@@ -481,7 +481,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
 
       // map per-bar colors
       for (let i = 1; i < u.data.length; i++) {
-        let colors = (u.data[i] as Array<number | null>).map((value, valueIdx) => {
+        const colors = (u.data[i] as Array<number | null>).map((value, valueIdx) => {
           if (value != null) {
             return getColor!(i, valueIdx, value);
           }
@@ -528,8 +528,8 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
           value *= -1;
         }
 
-        let align: CanvasTextAlign = isXHorizontal ? 'center' : value !== null && value < 0 ? 'right' : 'left';
-        let baseline: CanvasTextBaseline = isXHorizontal
+        const align: CanvasTextAlign = isXHorizontal ? 'center' : value !== null && value < 0 ? 'right' : 'left';
+        const baseline: CanvasTextBaseline = isXHorizontal
           ? value !== null && value < 0
             ? 'top'
             : 'alphabetic'
@@ -546,7 +546,7 @@ export function getConfig(opts: BarsOptions, theme: GrafanaTheme2) {
         if (showValue === VisibilityMode.Always) {
           u.ctx.fillText(text, x, y);
         } else if (showValue === VisibilityMode.Auto) {
-          let { bbox } = label;
+          const { bbox } = label;
 
           let intersectsLabel = false;
 

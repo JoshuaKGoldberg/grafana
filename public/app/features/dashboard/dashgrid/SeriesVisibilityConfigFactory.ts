@@ -178,7 +178,7 @@ const getDisplayNames = (data: DataFrame[], excludeName?: string): string[] => {
 };
 
 const getNamesOfHiddenFields = (overrides: ConfigOverrideRule[], data: DataFrame[]): string[] => {
-  let names: string[] = [];
+  const names: string[] = [];
 
   for (const override of overrides) {
     const property = override.properties.find((p) => p.id === 'custom.hideFrom');

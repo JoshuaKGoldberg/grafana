@@ -27,7 +27,7 @@ const SubscriptionField: React.FC<SubscriptionFieldProps> = ({
         return;
       }
 
-      let newQuery: AzureMonitorQuery = {
+      const newQuery: AzureMonitorQuery = {
         ...query,
         subscription: change.value,
       };

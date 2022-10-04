@@ -450,7 +450,7 @@ function calculateStdDev(field: Field, ignoreNulls: boolean, nullAsZero: boolean
     const currentValue = data.get(i);
     if (currentValue != null) {
       runningNonNullCount++;
-      let _oldMean = runningMean;
+      const _oldMean = runningMean;
       runningMean += (currentValue - _oldMean) / runningNonNullCount;
       squareSum += (currentValue - _oldMean) * (currentValue - runningMean);
     }
